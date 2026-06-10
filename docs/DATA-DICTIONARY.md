@@ -1,10 +1,10 @@
-# Data Dictionary — Digital Satyagraha
+# Data Dictionary — KnowYourLeaders
 
 **Version:** v1.0  
 **Generated on:** 2026-06-10  
 **Applies to:** Pilot dataset v1.1 & app-ingest v1  
 
-This document describes the schema used across the Digital Satyagraha platform datasets.
+This document describes the schema used across the KnowYourLeaders platform datasets.
 
 ---
 
@@ -137,7 +137,7 @@ Loaded by the frontend for multilingual UI. Structure:
 {
   "locale_code": "en",
   "strings": {
-    "home_title": "Digital Satyagraha",
+    "home_title": "KnowYourLeaders",
     "home_subtitle": "Vote by record, not rhetoric.",
     "search_placeholder": "Search constituency / politician / party",
     "status_done": "✅ Done",

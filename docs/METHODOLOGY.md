@@ -4,7 +4,7 @@
 **Generated on:** 2026-06-10  
 **Applies to:** Pilot dataset v1.1 and all subsequent releases
 
-This document explains how Digital Satyagraha calculates **Promise vs Execution (PVE)** and **Work vs Impact (WVI)** — the two core metrics displayed on every constituency page.
+This document explains how KnowYourLeaders calculates **Promise vs Execution (PVE)** and **Work vs Impact (WVI)** — the two core metrics displayed on every constituency page.
 
 ---
 

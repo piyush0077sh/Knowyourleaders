@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Constituency Record | Digital Satyagraha</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container">
+        <div class="brand-row">
+          <div>
+            <h1 class="logo">DIGITAL SATYAGRAHA</h1>
+            <p class="tagline">Constituency civic bahi khata</p>
+          </div>
+          <nav class="lang-switcher" aria-label="Language switcher">
+            <button class="lang-pill lang-btn" type="button" data-lang="en" aria-label="English">EN</button>
+            <button class="lang-pill lang-btn" type="button" data-lang="hi" aria-label="हिंदी">हिंदी</button>
+            <button class="lang-pill lang-btn" type="button" data-lang="ta" aria-label="தமிழ்">தமிழ்</button>
+            <a class="lang-pill" href="./index.html" style="text-decoration:none;color:#fff;">← Home</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="container search-card">
+      <div class="constituency-switcher">
+        <label for="constituencySelect"><strong>Switch constituency:</strong></label>
+        <select id="constituencySelect" class="search-input"></select>
+      </div>
+      <div class="status-legend" aria-label="Status legend">
+        <span class="status-pill">✅ Done</span>
+        <span class="status-pill">🟡 In Progress</span>
+        <span class="status-pill">⚪ Not Started</span>
+        <span class="status-pill">🔴 Misleading</span>
+      </div>
+    </section>
+
+    <main class="container">
+      <section class="hero-grid" aria-label="Constituency summary">
+        <article class="panel">
+          <h2 id="constituencyHeading">Constituency: --</h2>
+          <ul class="meta-list">
+            <li><strong>Representative:</strong> <span id="representativeName"></span></li>
+            <li><strong>Party:</strong> <span id="partyName"></span></li>
+            <li><strong>Term:</strong> <span id="termLabel"></span></li>
+            <li><strong>Last data refresh:</strong> <span id="constituencyLastUpdated"></span></li>
+            <li><strong>Dataset load:</strong> <span id="datasetStatus">Loading…</span></li>
+          </ul>
+        </article>
+        <aside class="panel">
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <p class="metric-title">Promise vs Execution</p>
+              <p id="promiseScore" class="metric-score">0%</p>
+              <div id="promiseRing" class="ring" style="--score: 0" aria-hidden="true"></div>
+            </div>
+            <div class="metric-card">
+              <p class="metric-title">Work vs Impact</p>
+              <p id="impactScore" class="metric-score">0%</p>
+              <div id="impactRing" class="ring" style="--score: 0" aria-hidden="true"></div>
+            </div>
+          </div>
+          <p class="footnote">Freshness mix: <span id="freshnessMix">--</span></p>
+        </aside>
+      </section>
+
+      <section class="table-card hide-on-mobile" aria-label="Promise table">
+        <h2>Promise Ledger</h2>
+        <table class="promise-table">
+          <caption style="position:absolute;left:-9999px;">Constituency promise and evidence ledger table</caption>
+          <thead>
+            <tr>
+              <th scope="col">Promise & Indicator</th>
+              <th scope="col">Status</th>
+              <th scope="col">Verification</th>
+              <th scope="col">Evidence</th>
+            </tr>
+          </thead>
+          <tbody id="promiseTableBody"></tbody>
+        </table>
+      </section>
+
+      <section class="hide-on-desktop" aria-label="Mobile promise list">
+        <h2>Promise Ledger</h2>
+        <div id="mobilePromiseList" class="mobile-promise-list"></div>
+      </section>
+
+      <p class="footnote container" id="constDisclaimer" style="padding:0.5rem 0 0;"></p>
+    </main>
+
+    <!-- Evidence Drawer -->
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+    <aside id="evidenceDrawer" class="drawer" aria-label="Evidence drawer" aria-modal="true" role="dialog" aria-labelledby="drawerTitle">
+      <div class="drawer-header">
+        <h3 id="drawerTitle">Evidence</h3>
+        <button id="closeDrawer" class="close-button" type="button" aria-label="Close evidence drawer">Close</button>
+      </div>
+      <div class="drawer-body">
+        <section class="meta-card">
+          <h4 data-i18n="evidenceDrawer.indicatorMapping">Indicator mapping</h4>
+          <p><strong data-i18n="evidenceDrawer.indicator">Indicator:</strong> <span id="drawerIndicator">--</span></p>
+          <p class="footnote" id="drawerNote">--</p>
+        </section>
+        <section class="meta-card">
+          <h4 data-i18n="evidenceDrawer.sources">Sources</h4>
+          <ol id="evidenceList" class="evidence-list"></ol>
+        </section>
+        <section class="meta-card">
+          <h4 data-i18n="evidenceDrawer.verification">Verification</h4>
+          <div class="result-metrics">
+            <span id="drawerConfidenceBadge" class="meta-badge">--</span>
+            <span id="drawerFreshnessBadge" class="meta-badge">--</span>
+            <span id="drawerLastVerifiedBadge" class="meta-badge">--</span>
+          </div>
+          <p><strong data-label="sourceTier" data-i18n="evidenceDrawer.sourceTier">Source tier:</strong> <span id="sourceTier">--</span></p>
+          <p><strong data-label="editHistory" data-i18n="evidenceDrawer.editHistory">Edit history:</strong> <span id="editHistory">--</span></p>
+          <button id="openCorrectionModal" type="button" class="secondary-button evidence-button">Report correction</button>
+        </section>
+      </div>
+    </aside>
+
+    <!-- Correction Modal -->
+    <div id="correctionModalBackdrop" class="modal-backdrop" aria-hidden="true"></div>
+    <section id="correctionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="correctionModalTitle">
+      <div class="modal-header">
+        <h3 id="correctionModalTitle">Submit a correction</h3>
+        <button id="closeCorrectionModal" type="button" class="close-button">Close</button>
+      </div>
+      <form id="correctionForm" class="modal-body">
+        <p class="footnote" id="correctionHelper">Share what should be corrected. Add supporting source if available.</p>
+        <input id="correctionPromiseId" type="hidden" name="promise_id" />
+        <label class="form-field">
+          <span>Name</span>
+          <input id="correctionName" class="search-input" type="text" name="name" placeholder="Your name" required />
+        </label>
+        <label class="form-field">
+          <span>Email (optional)</span>
+          <input id="correctionEmail" class="search-input" type="email" name="email" placeholder="you@example.com" />
+        </label>
+        <label class="form-field">
+          <span>Correction note</span>
+          <textarea id="correctionNote" class="search-input" name="note" rows="4" placeholder="What should be corrected?" required></textarea>
+        </label>
+        <div class="promise-actions">
+          <button type="submit" class="primary-button">Submit correction</button>
+          <button id="cancelCorrectionModal" type="button" class="secondary-button">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- App-ingest global data (primary data source) -->
+    <script src="./data/app-ingest.v1.js"></script>
+    <!-- Application engine -->
+    <script src="./main.js"></script>
+  </body>
+</html>

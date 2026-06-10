@@ -1,0 +1,760 @@
+{
+  "schema_version": "1.1.0",
+  "last_updated": "2026-06-07",
+  "dataset_note": "Pilot dataset integrates research sample CSV (Mumbai South) and two additional mock constituencies for routing/search tests.",
+  "constituencies": [
+    {
+      "id": "mumbai-south",
+      "name": "Mumbai South",
+      "state": "Maharashtra",
+      "representative": "Sample Representative",
+      "party": "Jan Pragati Party",
+      "term": "2024-2029",
+      "promises": [
+        {
+          "id": "MS-P-001",
+          "promise_text": "Clean water access in all wards",
+          "category": "Water",
+          "indicator_name": "Share of wards with functional piped-water service meeting quality norms",
+          "baseline_value": "4/10 wards",
+          "target_value": "10/10 wards",
+          "latest_value": "6/10 wards",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 71,
+          "last_verified": "2026-05-30",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Pipeline upgrades complete in 6 wards; remaining works active.",
+          "evidence": [
+            {
+              "id": "ev-ms-001-a",
+              "title": "Mumbai water progress Q4",
+              "url": "https://example.org/mumbai-water-progress-q4",
+              "source_type": "government_report",
+              "publisher": "Municipal Corporation",
+              "published_on": "2026-05-20",
+              "summary": "Ward-level rollout status and quality benchmarks by zone."
+            },
+            {
+              "id": "ev-ms-001-b",
+              "title": "State water budget release",
+              "url": "https://example.org/state-water-budget-release",
+              "source_type": "budget_document",
+              "publisher": "State Finance Department",
+              "published_on": "2026-04-27",
+              "summary": "Phase funding release for pending ward works."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-02-20",
+              "updated_by": "research-team",
+              "change_note": "Baseline mapping from pilot sheet."
+            },
+            {
+              "version": "v2",
+              "updated_on": "2026-05-30",
+              "updated_by": "verification-team",
+              "change_note": "Latest ward implementation progress synced."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-002",
+          "promise_text": "24x7 PHC services in 3 zones",
+          "category": "Health",
+          "indicator_name": "No. of target PHCs operating 24x7",
+          "baseline_value": "0/3 PHCs",
+          "target_value": "3/3 PHCs",
+          "latest_value": "3/3 PHCs",
+          "status": "done",
+          "source_tier": "A",
+          "confidence_label": "high",
+          "confidence_score": 87,
+          "last_verified": "2026-05-26",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "All three PHCs listed as round-the-clock functional with staffing records.",
+          "evidence": [
+            {
+              "id": "ev-ms-002-a",
+              "title": "District health dashboard PHC",
+              "url": "https://example.org/district-health-dashboard-phc",
+              "source_type": "government_dashboard",
+              "publisher": "District Health Department",
+              "published_on": "2026-05-23",
+              "summary": "Operational status shows all 3 target PHCs active 24x7."
+            },
+            {
+              "id": "ev-ms-002-b",
+              "title": "PHC night shift staffing audit",
+              "url": "https://example.org/phc-night-shift-staffing-audit",
+              "source_type": "audit_note",
+              "publisher": "State Health Monitoring Cell",
+              "published_on": "2026-05-25",
+              "summary": "Confirms staff rosters and on-site shift compliance."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-02-20",
+              "updated_by": "research-team",
+              "change_note": "Baseline mapping from pilot sheet."
+            },
+            {
+              "version": "v2",
+              "updated_on": "2026-05-26",
+              "updated_by": "verification-team",
+              "change_note": "Marked done after dashboard + staffing corroboration."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-003",
+          "promise_text": "Metro corridor completion by 2025",
+          "category": "Transport",
+          "indicator_name": "Completion status against declared 2025 deadline",
+          "baseline_value": "45% complete",
+          "target_value": "100% by 2025",
+          "latest_value": "67% complete by 2026-05",
+          "status": "misleading",
+          "source_tier": "A",
+          "confidence_label": "high",
+          "confidence_score": 84,
+          "last_verified": "2026-05-28",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Official timeline revised beyond 2025; claim no longer aligned with records.",
+          "evidence": [
+            {
+              "id": "ev-ms-003-a",
+              "title": "Metro progress report 2026",
+              "url": "https://example.org/metro-progress-report-2026",
+              "source_type": "government_report",
+              "publisher": "Urban Transport Authority",
+              "published_on": "2026-05-10",
+              "summary": "Timeline revision indicates completion beyond original claim."
+            },
+            {
+              "id": "ev-ms-003-b",
+              "title": "Metro budget 2026-27",
+              "url": "https://example.org/metro-budget-2026-27",
+              "source_type": "budget_document",
+              "publisher": "State Finance Department",
+              "published_on": "2026-04-30",
+              "summary": "Future-phase allocations extend execution timeline into later years."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-02-20",
+              "updated_by": "research-team",
+              "change_note": "Baseline mapping from pilot sheet."
+            },
+            {
+              "version": "v2",
+              "updated_on": "2026-05-28",
+              "updated_by": "verification-team",
+              "change_note": "Reclassified as misleading after timeline contradiction."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-004",
+          "promise_text": "School upgrades in all blocks",
+          "category": "Education",
+          "indicator_name": "No. of blocks with sanctioned + started school upgrade works",
+          "baseline_value": "0/8 blocks",
+          "target_value": "8/8 blocks",
+          "latest_value": "0/8 blocks",
+          "status": "not_started",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 63,
+          "last_verified": "2026-05-18",
+          "freshness_sla_days": 90,
+          "freshness_state": "fresh",
+          "verification_note": "Concept note exists but no sanctioned block-wise implementation yet.",
+          "evidence": [
+            {
+              "id": "ev-ms-004-a",
+              "title": "Education works plan 2026",
+              "url": "https://example.org/education-works-plan-2026",
+              "source_type": "government_plan",
+              "publisher": "Education Department",
+              "published_on": "2026-04-11",
+              "summary": "Lists policy intent but no block sanctions for field implementation."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-18",
+              "updated_by": "verification-team",
+              "change_note": "Initial publish."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-005",
+          "promise_text": "100% LED streetlight retrofit in 2 years",
+          "category": "Urban Services",
+          "indicator_name": "Share of streetlights converted to LED",
+          "baseline_value": "32%",
+          "target_value": "100%",
+          "latest_value": "78%",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 74,
+          "last_verified": "2026-05-22",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Major rollout completed; full conversion pending in older wards.",
+          "evidence": [
+            {
+              "id": "ev-ms-005-a",
+              "title": "Municipal lighting dashboard",
+              "url": "https://example.org/municipal-lighting-dashboard",
+              "source_type": "government_dashboard",
+              "publisher": "City Electrical Works",
+              "published_on": "2026-05-15",
+              "summary": "LED conversion ratio crossing three-fourths of total mapped points."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-22",
+              "updated_by": "verification-team",
+              "change_note": "Progress synced."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-006",
+          "promise_text": "Zero garbage blackspots in 12 months",
+          "category": "Sanitation",
+          "indicator_name": "No. of mapped blackspots remaining",
+          "baseline_value": "27 sites",
+          "target_value": "0 sites",
+          "latest_value": "11 sites",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 68,
+          "last_verified": "2026-05-24",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Blackspots reduced but not eliminated; recurring sites still reported.",
+          "evidence": [
+            {
+              "id": "ev-ms-006-a",
+              "title": "SWM field audit Apr 2026",
+              "url": "https://example.org/swm-field-audit-apr-2026",
+              "source_type": "audit_note",
+              "publisher": "Solid Waste Management Cell",
+              "published_on": "2026-05-08",
+              "summary": "Reduction trend visible, but unresolved hotspot clusters remain."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-24",
+              "updated_by": "verification-team",
+              "change_note": "Progress synced."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-007",
+          "promise_text": "New women safety patrol units across constituency",
+          "category": "Public Safety",
+          "indicator_name": "No. of operational patrol units vs plan",
+          "baseline_value": "2 units",
+          "target_value": "10 units",
+          "latest_value": "9 units",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 72,
+          "last_verified": "2026-04-30",
+          "freshness_sla_days": 30,
+          "freshness_state": "aging",
+          "verification_note": "Most units deployed; one unit pending staffing approval.",
+          "evidence": [
+            {
+              "id": "ev-ms-007-a",
+              "title": "Police modernization status note",
+              "url": "https://example.org/police-modernization-status-note",
+              "source_type": "government_report",
+              "publisher": "City Police",
+              "published_on": "2026-04-30",
+              "summary": "Nine units operational; one pending sanction."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-04-30",
+              "updated_by": "verification-team",
+              "change_note": "Progress synced."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-008",
+          "promise_text": "Local job center placement for 50,000 youth",
+          "category": "Employment",
+          "indicator_name": "No. of verified placements via official portal",
+          "baseline_value": "0",
+          "target_value": "50000",
+          "latest_value": "18340",
+          "status": "in_progress",
+          "source_tier": "C",
+          "confidence_label": "medium",
+          "confidence_score": 60,
+          "last_verified": "2026-03-29",
+          "freshness_sla_days": 90,
+          "freshness_state": "fresh",
+          "verification_note": "Placements rising but far below target; source granularity moderate.",
+          "evidence": [
+            {
+              "id": "ev-ms-008-a",
+              "title": "State skill mission placement dashboard",
+              "url": "https://example.org/state-skill-mission-placement-dashboard",
+              "source_type": "government_dashboard",
+              "publisher": "Skill Mission",
+              "published_on": "2026-03-29",
+              "summary": "Published cumulative verified placement numbers by city cluster."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-03-29",
+              "updated_by": "verification-team",
+              "change_note": "Progress synced."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-009",
+          "promise_text": "Flood-resilient stormwater upgrades before monsoon",
+          "category": "Climate Resilience",
+          "indicator_name": "Length of drains upgraded and de-silted vs plan",
+          "baseline_value": "12 km",
+          "target_value": "55 km",
+          "latest_value": "55 km",
+          "status": "done",
+          "source_tier": "B",
+          "confidence_label": "high",
+          "confidence_score": 81,
+          "last_verified": "2026-05-20",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Planned pre-monsoon upgrade length completed with ward-level evidence.",
+          "evidence": [
+            {
+              "id": "ev-ms-009-a",
+              "title": "Pre-monsoon drainage compliance report",
+              "url": "https://example.org/pre-monsoon-drainage-compliance-report",
+              "source_type": "compliance_report",
+              "publisher": "Urban Flood Control Unit",
+              "published_on": "2026-05-18",
+              "summary": "Shows full planned length completed in target window."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-20",
+              "updated_by": "verification-team",
+              "change_note": "Marked done."
+            }
+          ]
+        },
+        {
+          "id": "MS-P-010",
+          "promise_text": "Universal digital classrooms in municipal schools",
+          "category": "Education",
+          "indicator_name": "Share of municipal schools with functional smart-class setup",
+          "baseline_value": "18%",
+          "target_value": "100%",
+          "latest_value": "34%",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "low",
+          "confidence_score": 53,
+          "last_verified": "2026-02-15",
+          "freshness_sla_days": 90,
+          "freshness_state": "aging",
+          "verification_note": "Installations underway but functionality verification incomplete in many schools.",
+          "evidence": [
+            {
+              "id": "ev-ms-010-a",
+              "title": "School IT enablement status",
+              "url": "https://example.org/school-it-enablement-status",
+              "source_type": "government_dashboard",
+              "publisher": "Education Department",
+              "published_on": "2026-02-15",
+              "summary": "Partial installation progress with pending functionality checks."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-02-15",
+              "updated_by": "verification-team",
+              "change_note": "Progress synced."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pune-central",
+      "name": "Pune Central",
+      "state": "Maharashtra",
+      "representative": "Aarav Kulkarni",
+      "party": "Jan Pragati Party",
+      "term": "2024-2029",
+      "promises": [
+        {
+          "id": "PC-P-001",
+          "promise_text": "City bus electric fleet transition",
+          "category": "Transport",
+          "indicator_name": "Share of public buses converted to EV",
+          "baseline_value": "5%",
+          "target_value": "40%",
+          "latest_value": "29%",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 69,
+          "last_verified": "2026-05-19",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Procurement and route deployment underway.",
+          "evidence": [
+            {
+              "id": "ev-pc-001-a",
+              "title": "Municipal transport electrification tracker",
+              "url": "https://example.org/pune-ev-bus-tracker",
+              "source_type": "government_dashboard",
+              "publisher": "Urban Transport Cell",
+              "published_on": "2026-05-19",
+              "summary": "Reports fleet conversion crossing one-quarter threshold."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-19",
+              "updated_by": "verification-team",
+              "change_note": "Pilot initialization."
+            }
+          ]
+        },
+        {
+          "id": "PC-P-002",
+          "promise_text": "Ward-level citizen grievance closure within 72 hours",
+          "category": "Governance",
+          "indicator_name": "Share of grievances closed within 72 hours",
+          "baseline_value": "44%",
+          "target_value": "90%",
+          "latest_value": "88%",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "high",
+          "confidence_score": 80,
+          "last_verified": "2026-05-21",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Close to target but sustained compliance not yet demonstrated.",
+          "evidence": [
+            {
+              "id": "ev-pc-002-a",
+              "title": "City grievance closure dashboard",
+              "url": "https://example.org/pune-grievance-dashboard",
+              "source_type": "government_dashboard",
+              "publisher": "Municipal Grievance Cell",
+              "published_on": "2026-05-21",
+              "summary": "Shows strong recent performance on closure timelines."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-21",
+              "updated_by": "verification-team",
+              "change_note": "Pilot initialization."
+            }
+          ]
+        },
+        {
+          "id": "PC-P-003",
+          "promise_text": "Riverfront anti-pollution interceptor line",
+          "category": "Environment",
+          "indicator_name": "Interception coverage completed along planned river stretch",
+          "baseline_value": "0 km",
+          "target_value": "16 km",
+          "latest_value": "16 km",
+          "status": "done",
+          "source_tier": "A",
+          "confidence_label": "high",
+          "confidence_score": 86,
+          "last_verified": "2026-05-03",
+          "freshness_sla_days": 90,
+          "freshness_state": "fresh",
+          "verification_note": "Completion certificate and independent compliance check available.",
+          "evidence": [
+            {
+              "id": "ev-pc-003-a",
+              "title": "River interceptor completion certificate",
+              "url": "https://example.org/pune-river-interceptor-completion",
+              "source_type": "completion_certificate",
+              "publisher": "State Environment Department",
+              "published_on": "2026-05-01",
+              "summary": "Confirms planned corridor completion and handover."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-03",
+              "updated_by": "verification-team",
+              "change_note": "Marked done."
+            }
+          ]
+        },
+        {
+          "id": "PC-P-004",
+          "promise_text": "100% CCTV coverage at major junctions by 2025",
+          "category": "Public Safety",
+          "indicator_name": "Coverage ratio against listed major junctions",
+          "baseline_value": "34%",
+          "target_value": "100% by 2025",
+          "latest_value": "71% (2026-04)",
+          "status": "misleading",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 70,
+          "last_verified": "2026-04-30",
+          "freshness_sla_days": 30,
+          "freshness_state": "aging",
+          "verification_note": "Coverage rose but did not meet declared timeline.",
+          "evidence": [
+            {
+              "id": "ev-pc-004-a",
+              "title": "Smart surveillance implementation note",
+              "url": "https://example.org/pune-cctv-implementation-note",
+              "source_type": "government_report",
+              "publisher": "City Police",
+              "published_on": "2026-04-30",
+              "summary": "Revised plan extends deployment into next phase."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-04-30",
+              "updated_by": "verification-team",
+              "change_note": "Timeline contradiction logged."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chennai-central",
+      "name": "Chennai Central",
+      "state": "Tamil Nadu",
+      "representative": "Nila Raman",
+      "party": "People First Alliance",
+      "term": "2024-2029",
+      "promises": [
+        {
+          "id": "CC-P-001",
+          "promise_text": "Zero flood-vulnerability schools",
+          "category": "Education",
+          "indicator_name": "No. of vulnerable schools with completed flood mitigation",
+          "baseline_value": "9 schools",
+          "target_value": "9 schools",
+          "latest_value": "5 schools",
+          "status": "in_progress",
+          "source_tier": "B",
+          "confidence_label": "medium",
+          "confidence_score": 67,
+          "last_verified": "2026-05-12",
+          "freshness_sla_days": 30,
+          "freshness_state": "fresh",
+          "verification_note": "Civil works complete for over half of mapped schools.",
+          "evidence": [
+            {
+              "id": "ev-cc-001-a",
+              "title": "School resilience works tracker",
+              "url": "https://example.org/chennai-school-resilience-tracker",
+              "source_type": "government_dashboard",
+              "publisher": "Education Engineering Wing",
+              "published_on": "2026-05-12",
+              "summary": "Shows phased flood mitigation work with geotagged updates."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-12",
+              "updated_by": "verification-team",
+              "change_note": "Pilot initialization."
+            }
+          ]
+        },
+        {
+          "id": "CC-P-002",
+          "promise_text": "Universal PHC telemedicine in slum clusters",
+          "category": "Health",
+          "indicator_name": "Coverage of target clusters with telemedicine-enabled PHCs",
+          "baseline_value": "12%",
+          "target_value": "100%",
+          "latest_value": "100%",
+          "status": "done",
+          "source_tier": "A",
+          "confidence_label": "high",
+          "confidence_score": 88,
+          "last_verified": "2026-05-01",
+          "freshness_sla_days": 90,
+          "freshness_state": "fresh",
+          "verification_note": "Infrastructure and utilization records both available.",
+          "evidence": [
+            {
+              "id": "ev-cc-002-a",
+              "title": "Telemedicine expansion completion circular",
+              "url": "https://example.org/chennai-telemedicine-completion",
+              "source_type": "government_report",
+              "publisher": "Health Department",
+              "published_on": "2026-04-29",
+              "summary": "Confirms target coverage with operation proof."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-05-01",
+              "updated_by": "verification-team",
+              "change_note": "Marked done."
+            }
+          ]
+        },
+        {
+          "id": "CC-P-003",
+          "promise_text": "No untreated sewage outfall by 2025",
+          "category": "Environment",
+          "indicator_name": "Outfall points with treatment compliance",
+          "baseline_value": "61% compliant",
+          "target_value": "100% by 2025",
+          "latest_value": "82% compliant (2026-04)",
+          "status": "misleading",
+          "source_tier": "B",
+          "confidence_label": "high",
+          "confidence_score": 82,
+          "last_verified": "2026-04-22",
+          "freshness_sla_days": 30,
+          "freshness_state": "aging",
+          "verification_note": "Clear improvement, but timeline commitment missed.",
+          "evidence": [
+            {
+              "id": "ev-cc-003-a",
+              "title": "Sewage treatment compliance statement",
+              "url": "https://example.org/chennai-sewage-compliance-statement",
+              "source_type": "compliance_report",
+              "publisher": "Water & Sewerage Board",
+              "published_on": "2026-04-22",
+              "summary": "Remaining non-compliant outfalls acknowledged in official note."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-04-22",
+              "updated_by": "verification-team",
+              "change_note": "Timeline contradiction logged."
+            }
+          ]
+        },
+        {
+          "id": "CC-P-004",
+          "promise_text": "Full smart classroom enablement for all corporation schools",
+          "category": "Education",
+          "indicator_name": "Share of schools with functional smart classroom setup",
+          "baseline_value": "22%",
+          "target_value": "100%",
+          "latest_value": "30%",
+          "status": "not_started",
+          "source_tier": "C",
+          "confidence_label": "low",
+          "confidence_score": 49,
+          "last_verified": "2026-01-21",
+          "freshness_sla_days": 90,
+          "freshness_state": "stale",
+          "verification_note": "Procurement notices seen; implementation evidence insufficient.",
+          "evidence": [
+            {
+              "id": "ev-cc-004-a",
+              "title": "School ICT procurement summary",
+              "url": "https://example.org/chennai-school-ict-procurement-summary",
+              "source_type": "procurement_note",
+              "publisher": "Corporation Education Cell",
+              "published_on": "2026-01-20",
+              "summary": "Procurement initiated but no complete functional audit available."
+            }
+          ],
+          "edit_history": [
+            {
+              "version": "v1",
+              "updated_on": "2026-01-21",
+              "updated_by": "verification-team",
+              "change_note": "Low confidence due to missing implementation proof."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "id": "jan-pragati-party",
+      "name": "Jan Pragati Party"
+    },
+    {
+      "id": "people-first-alliance",
+      "name": "People First Alliance"
+    }
+  ],
+  "politicians": [
+    {
+      "id": "sample-representative",
+      "name": "Sample Representative",
+      "constituency_id": "mumbai-south",
+      "party_id": "jan-pragati-party"
+    },
+    {
+      "id": "aarav-kulkarni",
+      "name": "Aarav Kulkarni",
+      "constituency_id": "pune-central",
+      "party_id": "jan-pragati-party"
+    },
+    {
+      "id": "nila-raman",
+      "name": "Nila Raman",
+      "constituency_id": "chennai-central",
+      "party_id": "people-first-alliance"
+    }
+  ]
+}

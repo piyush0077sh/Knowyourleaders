@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "locale": "en",
+    "name": "English"
+  },
+  "global": {
+    "brand": "DIGITAL SATYAGRAHA",
+    "tagline": "Vote by record, not rhetoric.",
+    "home": "Home",
+    "languageSwitcherLabel": "Language switcher"
+  },
+  "search": {
+    "placeholder": "Search constituency, representative, or party",
+    "ariaLabel": "Search constituency, representative, or party",
+    "button": "Search",
+    "scope": {
+      "all": "All",
+      "constituency": "Constituency",
+      "politician": "Politician",
+      "party": "Party"
+    },
+    "noResults": "No records found.",
+    "tryHint": "Try constituency, representative, or party name.",
+    "resultsFor": "Search results for \"{{query}}\"",
+    "defaultResultsTitle": "Pilot constituencies"
+  },
+  "legend": {
+    "title": "Status legend",
+    "done": "✅ Done",
+    "inProgress": "🟡 In Progress",
+    "notStarted": "⚪ Not Started",
+    "misleading": "🔴 Misleading"
+  },
+  "home": {
+    "datasetBrowserTitle": "Pilot dataset browser",
+    "datasetBrowserBody": "Search across constituencies, representatives, and parties. Open a record to review evidence, confidence, freshness, and verification date.",
+    "featuredConstituency": "Featured constituency",
+    "freshnessMix": "Freshness mix"
+  },
+  "constituency": {
+    "tagline": "Constituency civic bahi khata",
+    "switchConstituency": "Switch constituency",
+    "headingPrefix": "Constituency",
+    "representative": "Representative",
+    "party": "Party",
+    "term": "Term",
+    "lastDataRefresh": "Last data refresh",
+    "datasetLoad": "Dataset load",
+    "promiseLedger": "Promise Ledger",
+    "promiseAndIndicator": "Promise & Indicator",
+    "status": "Status",
+    "verification": "Verification",
+    "evidence": "Evidence",
+    "view": "View",
+    "viewEvidence": "View Evidence"
+  },
+  "metrics": {
+    "promiseVsExecution": "Promise vs Execution",
+    "workVsImpact": "Work vs Impact"
+  },
+  "evidenceDrawer": {
+    "titlePrefix": "Evidence",
+    "indicatorMapping": "Indicator mapping",
+    "indicator": "Indicator",
+    "baselineToLatest": "Baseline → Latest",
+    "sources": "Sources",
+    "verification": "Verification",
+    "confidence": "Confidence",
+    "freshness": "Freshness",
+    "lastVerified": "Last verified",
+    "sourceTier": "Source tier",
+    "editHistory": "Edit history",
+    "close": "Close",
+    "reportCorrection": "Report correction"
+  },
+  "correction": {
+    "title": "Submit a correction",
+    "helper": "Share what should be corrected. Add supporting source if available.",
+    "name": "Name",
+    "emailOptional": "Email (optional)",
+    "note": "Correction note",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@example.com",
+    "notePlaceholder": "What should be corrected?",
+    "submit": "Submit correction",
+    "cancel": "Cancel",
+    "success": "Correction submitted for review.",
+    "failure": "Could not submit now. Please try again."
+  },
+  "freshness": {
+    "fresh": "Fresh",
+    "aging": "Aging",
+    "stale": "Stale"
+  },
+  "confidence": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "disclaimer": {
+    "neutrality": "This page presents source-linked records only. It does not endorse any party or candidate.",
+    "verification": "If data is missing or outdated, use Report correction with supporting evidence."
+  }
+}

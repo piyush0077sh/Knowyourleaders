@@ -1,0 +1,1477 @@
+window.DIGITAL_SATYAGRAHA_DATA = {
+  "schema_version": "1.1.1",
+  "last_updated": "2026-06-08",
+  "source_dataset": "pilot-dataset-v1.1",
+  "constituencies": [
+    {
+      "id": "chennai-central",
+      "name": "Chennai Central",
+      "state": "Tamil Nadu",
+      "representative": "Pilot Representative — Chennai Central",
+      "party": "Public Accountability Front",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 67,
+          "completed_promises": 2,
+          "total_promises_mapped": 12,
+          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 61,
+          "work_items_completed": 2,
+          "total_work_items": 12,
+          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+        }
+      },
+      "promises": [
+        {
+          "id": "cc-c01",
+          "promise_text": "Improve reliable piped-water access across all wards",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-01-e1",
+              "title": "Ward water service dashboard",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Municipal Corporation",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-01-e2",
+              "title": "Jal Jeevan Mission portal",
+              "url": "https://jaljeevanmission.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Department of Drinking Water & Sanitation",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-31",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c02",
+          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-02-e1",
+              "title": "Municipal health department portal",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Municipal Health Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-02-e2",
+              "title": "Open Government Data health datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-26",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c03",
+          "promise_text": "Upgrade government school infrastructure and digital classrooms",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2029-03-31",
+          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "evidence": [
+            {
+              "id": "cc-03-e1",
+              "title": "UDISE+ portal",
+              "url": "https://udiseplus.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Ministry of Education",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-03-e2",
+              "title": "Municipal education works portal",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Municipal Education Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-18",
+          "confidence": "high",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c04",
+          "promise_text": "Eliminate legacy garbage blackspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-04-e1",
+              "title": "Swachh Bharat Mission-Urban dashboard",
+              "url": "https://www.swachhbharaturban.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-04-e2",
+              "title": "Municipal sanitation dashboard",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Municipal Sanitation Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-03",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c05",
+          "promise_text": "Accelerate affordable housing completion for eligible households",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-05-e1",
+              "title": "PMAY-U portal",
+              "url": "https://pmay-urban.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-05-e2",
+              "title": "Municipal housing program portal",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Municipal Housing Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-26",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c06",
+          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-06-e1",
+              "title": "Municipal public works updates",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Municipal Public Works Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-06-e2",
+              "title": "CAG portal for audit context",
+              "url": "https://cag.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Comptroller and Auditor General of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-23",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c07",
+          "promise_text": "Expand public transport access and service frequency",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-07-e1",
+              "title": "Municipal/metro transport updates",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "City Transport Authority",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-07-e2",
+              "title": "PIB transport release archive",
+              "url": "https://pib.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "Press Information Bureau",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-20",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c08",
+          "promise_text": "Improve women safety infrastructure in identified hotspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-08-e1",
+              "title": "Municipal safety infrastructure updates",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "Municipal Administration",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-08-e2",
+              "title": "National crime data portal",
+              "url": "https://ncrb.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "National Crime Records Bureau",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-13",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c09",
+          "promise_text": "Strengthen urban youth skilling and placement support",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-09-e1",
+              "title": "Open Government Data employment datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-09-e2",
+              "title": "Municipal skilling notices",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Municipal Skill Development Cell",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-03-04",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c10",
+          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-10-e1",
+              "title": "CPCB CAAQMS dashboard",
+              "url": "https://app.cpcbccr.com/",
+              "source_type": "environment_dashboard",
+              "publisher": "Central Pollution Control Board",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-10-e2",
+              "title": "Municipal environment updates",
+              "url": "https://chennaicorporation.gov.in/",
+              "source_type": "environment_dashboard",
+              "publisher": "Municipal Environment Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-16",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c11",
+          "promise_text": "Increase legislative participation on constituency issues",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "cc-11-e1",
+              "title": "Lok Sabha member activity records",
+              "url": "https://sansad.in/ls",
+              "source_type": "legislative_records",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-11-e2",
+              "title": "ECI results portal for representative mapping",
+              "url": "https://results.eci.gov.in/",
+              "source_type": "legislative_records",
+              "publisher": "Election Commission of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-30",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "cc-c12",
+          "promise_text": "Publish periodic budget allocation and utilization updates",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2029-03-31",
+          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "evidence": [
+            {
+              "id": "cc-12-e1",
+              "title": "Union Budget portal",
+              "url": "https://www.indiabudget.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Ministry of Finance, Government of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "cc-12-e2",
+              "title": "State budget portal",
+              "url": "https://tnbudget.tn.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Tamil Nadu Finance Department",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-28",
+          "confidence": "high",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mumbai-south",
+      "name": "Mumbai South",
+      "state": "Maharashtra",
+      "representative": "Pilot Representative — Mumbai South",
+      "party": "Civic Reform Platform",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 62,
+          "completed_promises": 2,
+          "total_promises_mapped": 12,
+          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 58,
+          "work_items_completed": 2,
+          "total_work_items": 12,
+          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+        }
+      },
+      "promises": [
+        {
+          "id": "ms-c01",
+          "promise_text": "Improve reliable piped-water access across all wards",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-01-e1",
+              "title": "Ward water service dashboard",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Municipal Corporation",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-01-e2",
+              "title": "Jal Jeevan Mission portal",
+              "url": "https://jaljeevanmission.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Department of Drinking Water & Sanitation",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-31",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c02",
+          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2029-03-31",
+          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "evidence": [
+            {
+              "id": "ms-02-e1",
+              "title": "Municipal health department portal",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Municipal Health Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-02-e2",
+              "title": "Open Government Data health datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-26",
+          "confidence": "high",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c03",
+          "promise_text": "Upgrade government school infrastructure and digital classrooms",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-03-e1",
+              "title": "UDISE+ portal",
+              "url": "https://udiseplus.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Ministry of Education",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-03-e2",
+              "title": "Municipal education works portal",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Municipal Education Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-18",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c04",
+          "promise_text": "Eliminate legacy garbage blackspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-04-e1",
+              "title": "Swachh Bharat Mission-Urban dashboard",
+              "url": "https://www.swachhbharaturban.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-04-e2",
+              "title": "Municipal sanitation dashboard",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Municipal Sanitation Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-03",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c05",
+          "promise_text": "Accelerate affordable housing completion for eligible households",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-05-e1",
+              "title": "PMAY-U portal",
+              "url": "https://pmay-urban.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-05-e2",
+              "title": "Municipal housing program portal",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Municipal Housing Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-26",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c06",
+          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-06-e1",
+              "title": "Municipal public works updates",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Municipal Public Works Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-06-e2",
+              "title": "CAG portal for audit context",
+              "url": "https://cag.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Comptroller and Auditor General of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-23",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c07",
+          "promise_text": "Expand public transport access and service frequency",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-07-e1",
+              "title": "Municipal/metro transport updates",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "City Transport Authority",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-07-e2",
+              "title": "PIB transport release archive",
+              "url": "https://pib.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "Press Information Bureau",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-20",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c08",
+          "promise_text": "Improve women safety infrastructure in identified hotspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-08-e1",
+              "title": "Municipal safety infrastructure updates",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "Municipal Administration",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-08-e2",
+              "title": "National crime data portal",
+              "url": "https://ncrb.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "National Crime Records Bureau",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-13",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c09",
+          "promise_text": "Strengthen urban youth skilling and placement support",
+          "category": "Governance",
+          "status": "not_started",
+          "target_date": "2029-03-31",
+          "impact_summary": "No verifiable execution milestone found yet in prioritized official sources.",
+          "evidence": [
+            {
+              "id": "ms-09-e1",
+              "title": "Open Government Data employment datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-09-e2",
+              "title": "Municipal skilling notices",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Municipal Skill Development Cell",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-03-04",
+          "confidence": "low",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c10",
+          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-10-e1",
+              "title": "CPCB CAAQMS dashboard",
+              "url": "https://app.cpcbccr.com/",
+              "source_type": "environment_dashboard",
+              "publisher": "Central Pollution Control Board",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-10-e2",
+              "title": "Municipal environment updates",
+              "url": "https://portal.mcgm.gov.in/",
+              "source_type": "environment_dashboard",
+              "publisher": "Municipal Environment Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-16",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c11",
+          "promise_text": "Increase legislative participation on constituency issues",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "ms-11-e1",
+              "title": "Lok Sabha member activity records",
+              "url": "https://sansad.in/ls",
+              "source_type": "legislative_records",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-11-e2",
+              "title": "ECI results portal for representative mapping",
+              "url": "https://results.eci.gov.in/",
+              "source_type": "legislative_records",
+              "publisher": "Election Commission of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-30",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "ms-c12",
+          "promise_text": "Publish periodic budget allocation and utilization updates",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2029-03-31",
+          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "evidence": [
+            {
+              "id": "ms-12-e1",
+              "title": "Union Budget portal",
+              "url": "https://www.indiabudget.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Ministry of Finance, Government of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "ms-12-e2",
+              "title": "State budget portal",
+              "url": "https://finance.maharashtra.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Maharashtra Finance Department",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-28",
+          "confidence": "high",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pune",
+      "name": "Pune",
+      "state": "Maharashtra",
+      "representative": "Pilot Representative — Pune",
+      "party": "Civic Reform Platform",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 59,
+          "completed_promises": 1,
+          "total_promises_mapped": 12,
+          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 55,
+          "work_items_completed": 1,
+          "total_work_items": 12,
+          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+        }
+      },
+      "promises": [
+        {
+          "id": "pn-c01",
+          "promise_text": "Improve reliable piped-water access across all wards",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-01-e1",
+              "title": "Ward water service dashboard",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Municipal Corporation",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-01-e2",
+              "title": "Jal Jeevan Mission portal",
+              "url": "https://jaljeevanmission.gov.in/",
+              "source_type": "service_dashboard",
+              "publisher": "Department of Drinking Water & Sanitation",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-31",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c02",
+          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-02-e1",
+              "title": "Municipal health department portal",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Municipal Health Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-02-e2",
+              "title": "Open Government Data health datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "health_dashboard",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-26",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c03",
+          "promise_text": "Upgrade government school infrastructure and digital classrooms",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-03-e1",
+              "title": "UDISE+ portal",
+              "url": "https://udiseplus.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Ministry of Education",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-03-e2",
+              "title": "Municipal education works portal",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "education_dataset",
+              "publisher": "Municipal Education Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-18",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c04",
+          "promise_text": "Eliminate legacy garbage blackspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-04-e1",
+              "title": "Swachh Bharat Mission-Urban dashboard",
+              "url": "https://www.swachhbharaturban.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-04-e2",
+              "title": "Municipal sanitation dashboard",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "sanitation_dashboard",
+              "publisher": "Municipal Sanitation Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-03",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c05",
+          "promise_text": "Accelerate affordable housing completion for eligible households",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-05-e1",
+              "title": "PMAY-U portal",
+              "url": "https://pmay-urban.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-05-e2",
+              "title": "Municipal housing program portal",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "housing_mis",
+              "publisher": "Municipal Housing Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-26",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c06",
+          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2029-03-31",
+          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "evidence": [
+            {
+              "id": "pn-06-e1",
+              "title": "Municipal public works updates",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Municipal Public Works Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-06-e2",
+              "title": "CAG portal for audit context",
+              "url": "https://cag.gov.in/",
+              "source_type": "works_report",
+              "publisher": "Comptroller and Auditor General of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-23",
+          "confidence": "high",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c07",
+          "promise_text": "Expand public transport access and service frequency",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-07-e1",
+              "title": "Municipal/metro transport updates",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "City Transport Authority",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-07-e2",
+              "title": "PIB transport release archive",
+              "url": "https://pib.gov.in/",
+              "source_type": "transport_updates",
+              "publisher": "Press Information Bureau",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-20",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c08",
+          "promise_text": "Improve women safety infrastructure in identified hotspots",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-08-e1",
+              "title": "Municipal safety infrastructure updates",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "Municipal Administration",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-08-e2",
+              "title": "National crime data portal",
+              "url": "https://ncrb.gov.in/",
+              "source_type": "safety_records",
+              "publisher": "National Crime Records Bureau",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-13",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c09",
+          "promise_text": "Strengthen urban youth skilling and placement support",
+          "category": "Governance",
+          "status": "not_started",
+          "target_date": "2029-03-31",
+          "impact_summary": "No verifiable execution milestone found yet in prioritized official sources.",
+          "evidence": [
+            {
+              "id": "pn-09-e1",
+              "title": "Open Government Data employment datasets",
+              "url": "https://data.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Open Government Data Platform India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-09-e2",
+              "title": "Municipal skilling notices",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "employment_dataset",
+              "publisher": "Municipal Skill Development Cell",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-03-04",
+          "confidence": "low",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c10",
+          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-10-e1",
+              "title": "CPCB CAAQMS dashboard",
+              "url": "https://app.cpcbccr.com/",
+              "source_type": "environment_dashboard",
+              "publisher": "Central Pollution Control Board",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-10-e2",
+              "title": "Municipal environment updates",
+              "url": "https://www.pmc.gov.in/",
+              "source_type": "environment_dashboard",
+              "publisher": "Municipal Environment Department",
+              "published_on": null,
+              "summary": "Tier B source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-16",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c11",
+          "promise_text": "Increase legislative participation on constituency issues",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-11-e1",
+              "title": "Lok Sabha member activity records",
+              "url": "https://sansad.in/ls",
+              "source_type": "legislative_records",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-11-e2",
+              "title": "ECI results portal for representative mapping",
+              "url": "https://results.eci.gov.in/",
+              "source_type": "legislative_records",
+              "publisher": "Election Commission of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-05-30",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        },
+        {
+          "id": "pn-c12",
+          "promise_text": "Publish periodic budget allocation and utilization updates",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "evidence": [
+            {
+              "id": "pn-12-e1",
+              "title": "Union Budget portal",
+              "url": "https://www.indiabudget.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Ministry of Finance, Government of India",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            },
+            {
+              "id": "pn-12-e2",
+              "title": "State budget portal",
+              "url": "https://finance.maharashtra.gov.in/",
+              "source_type": "budget_documents",
+              "publisher": "Maharashtra Finance Department",
+              "published_on": null,
+              "summary": "Tier A source retrieved on 2026-06-07"
+            }
+          ],
+          "last_verified": "2026-04-28",
+          "confidence": "medium",
+          "edit_history": [
+            {
+              "version": "v1.1",
+              "updated_on": "2026-06-07",
+              "updated_by": "civic-data-research-team",
+              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "id": "civic-reform-platform",
+      "name": "Civic Reform Platform"
+    },
+    {
+      "id": "public-accountability-front",
+      "name": "Public Accountability Front"
+    }
+  ],
+  "politicians": [
+    {
+      "id": "pilot-representative-chennai-central",
+      "name": "Pilot Representative — Chennai Central",
+      "constituency_id": "chennai-central",
+      "party_id": "public-accountability-front"
+    },
+    {
+      "id": "pilot-representative-mumbai-south",
+      "name": "Pilot Representative — Mumbai South",
+      "constituency_id": "mumbai-south",
+      "party_id": "civic-reform-platform"
+    },
+    {
+      "id": "pilot-representative-pune",
+      "name": "Pilot Representative — Pune",
+      "constituency_id": "pune",
+      "party_id": "civic-reform-platform"
+    }
+  ]
+};

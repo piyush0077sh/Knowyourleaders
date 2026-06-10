@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "locale": "hi",
+    "name": "हिंदी"
+  },
+  "global": {
+    "brand": "DIGITAL SATYAGRAHA",
+    "tagline": "नारों नहीं, रिकॉर्ड के आधार पर वोट करें।",
+    "home": "होम",
+    "languageSwitcherLabel": "भाषा चयन"
+  },
+  "search": {
+    "placeholder": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी खोजें",
+    "ariaLabel": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी खोजें",
+    "button": "खोजें",
+    "scope": {
+      "all": "सभी",
+      "constituency": "निर्वाचन क्षेत्र",
+      "politician": "राजनेता",
+      "party": "पार्टी"
+    },
+    "noResults": "कोई रिकॉर्ड नहीं मिला।",
+    "tryHint": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी का नाम आज़माएँ।",
+    "resultsFor": "\"{{query}}\" के लिए खोज परिणाम",
+    "defaultResultsTitle": "पायलट निर्वाचन क्षेत्र"
+  },
+  "legend": {
+    "title": "स्थिति संकेत",
+    "done": "✅ पूरा",
+    "inProgress": "🟡 प्रगति में",
+    "notStarted": "⚪ शुरू नहीं हुआ",
+    "misleading": "🔴 भ्रामक"
+  },
+  "home": {
+    "datasetBrowserTitle": "पायलट डेटासेट ब्राउज़र",
+    "datasetBrowserBody": "निर्वाचन क्षेत्रों, प्रतिनिधियों और पार्टियों में खोजें। किसी रिकॉर्ड में प्रमाण, भरोसा स्तर, ताज़गी और सत्यापन तिथि देखें।",
+    "featuredConstituency": "मुख्य निर्वाचन क्षेत्र",
+    "freshnessMix": "ताज़गी मिश्रण"
+  },
+  "constituency": {
+    "tagline": "निर्वाचन क्षेत्र का नागरिक बही-खाता",
+    "switchConstituency": "निर्वाचन क्षेत्र बदलें",
+    "headingPrefix": "निर्वाचन क्षेत्र",
+    "representative": "प्रतिनिधि",
+    "party": "पार्टी",
+    "term": "कार्यकाल",
+    "lastDataRefresh": "डेटा का अंतिम अद्यतन",
+    "datasetLoad": "डेटासेट स्थिति",
+    "promiseLedger": "वादा रजिस्टर",
+    "promiseAndIndicator": "वादा और संकेतक",
+    "status": "स्थिति",
+    "verification": "सत्यापन",
+    "evidence": "प्रमाण",
+    "view": "देखें",
+    "viewEvidence": "प्रमाण देखें"
+  },
+  "metrics": {
+    "promiseVsExecution": "वादा बनाम क्रियान्वयन",
+    "workVsImpact": "काम बनाम प्रभाव"
+  },
+  "evidenceDrawer": {
+    "titlePrefix": "प्रमाण",
+    "indicatorMapping": "संकेतक मैपिंग",
+    "indicator": "संकेतक",
+    "baselineToLatest": "आधार रेखा → नवीनतम",
+    "sources": "स्रोत",
+    "verification": "सत्यापन",
+    "confidence": "भरोसा स्तर",
+    "freshness": "ताज़गी",
+    "lastVerified": "अंतिम सत्यापन",
+    "sourceTier": "स्रोत श्रेणी",
+    "editHistory": "संपादन इतिहास",
+    "close": "बंद करें",
+    "reportCorrection": "सुधार रिपोर्ट करें"
+  },
+  "correction": {
+    "title": "सुधार भेजें",
+    "helper": "क्या सुधारना है, वह लिखें। संभव हो तो सहायक स्रोत जोड़ें।",
+    "name": "नाम",
+    "emailOptional": "ईमेल (वैकल्पिक)",
+    "note": "सुधार टिप्पणी",
+    "namePlaceholder": "आपका नाम",
+    "emailPlaceholder": "you@example.com",
+    "notePlaceholder": "क्या सुधारा जाना चाहिए?",
+    "submit": "सुधार भेजें",
+    "cancel": "रद्द करें",
+    "success": "सुधार समीक्षा के लिए भेज दिया गया है।",
+    "failure": "अभी जमा नहीं हो सका। कृपया फिर प्रयास करें।"
+  },
+  "freshness": {
+    "fresh": "ताज़ा",
+    "aging": "पुराना हो रहा",
+    "stale": "पुराना"
+  },
+  "confidence": {
+    "high": "उच्च",
+    "medium": "मध्यम",
+    "low": "कम"
+  },
+  "disclaimer": {
+    "neutrality": "यह पेज केवल स्रोत-लिंक रिकॉर्ड दिखाता है। यह किसी पार्टी या उम्मीदवार का समर्थन नहीं करता।",
+    "verification": "यदि डेटा अधूरा या पुराना हो, तो सहायक प्रमाण के साथ सुधार रिपोर्ट करें।"
+  }
+}

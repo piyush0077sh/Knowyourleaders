@@ -1,4 +1,4 @@
-# Digital Satyagraha — Lightweight Website MVP v1.2
+# KnowYourLeaders — Lightweight Website MVP v1.2
 
 Dependency-free, mobile-first static MVP with **multilingual i18n** (EN/हिंदी/தமிழ்),
 **app-ingest v1 dataset integration**, and **WCAG AA accessibility refinements**.
@@ -62,7 +62,7 @@ Dependency-free, mobile-first static MVP with **multilingual i18n** (EN/हि�
 ## Local development
 
 ```bash
-cd /home/team/shared/digital-satyagraha-mvp
+cd /home/team/shared/Knowyourleaders-repo
 python3 -m http.server 4173 --bind 0.0.0.0
 ```
 

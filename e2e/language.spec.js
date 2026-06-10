@@ -7,7 +7,7 @@ test.describe('Language switching', () => {
   });
 
   test('default locale is English', async ({ page }) => {
-    await expect(page.locator('.logo')).toHaveText('DIGITAL SATYAGRAHA');
+    await expect(page.locator('.logo')).toHaveText('KNOWYOURLEADERS');
     await expect(page.locator('.tagline')).toHaveText('Vote by record, not rhetoric.');
     await expect(page.locator('#heroTitle')).toHaveText('Pilot dataset browser');
   });

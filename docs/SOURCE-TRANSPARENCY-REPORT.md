@@ -1,10 +1,10 @@
-# Source Transparency Report — Digital Satyagraha
+# Source Transparency Report — KnowYourLeaders
 
 **Version:** v1.0  
 **Generated on:** 2026-06-10  
 **Prepared by:** Civic Data Research Team
 
-This report documents the evidence collection, verification, and maintenance process behind every claim displayed on Digital Satyagraha. It is designed to allow independent audit of our methodology.
+This report documents the evidence collection, verification, and maintenance process behind every claim displayed on KnowYourLeaders. It is designed to allow independent audit of our methodology.
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * Digital Satyagraha — Main Application Engine
+ * KnowYourLeaders — Main Application Engine
  *
  * Features:
  * - App-ingest v1 dataset adapter

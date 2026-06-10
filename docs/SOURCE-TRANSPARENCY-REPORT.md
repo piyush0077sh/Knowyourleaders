@@ -234,7 +234,7 @@ Every claim maintains an immutable edit history:
 
 A machine-readable source registry is maintained at:
 - `/home/team/shared/source-registry-v1.csv` (research artifact)
-- `/home/team/shared/digital-satyagraha-mvp/data/source-registry-v1.csv` (repo copy)
+- `/home/team/shared/Knowyourleaders-repo/data/source-registry-v1.csv` (repo copy)
 
 This registry catalogs every source family referenced in the dataset, with URL, tier, typical use, and freshness targets.
 

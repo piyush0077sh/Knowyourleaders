@@ -100,5 +100,70 @@
   "disclaimer": {
     "neutrality": "This page presents source-linked records only. It does not endorse any party or candidate.",
     "verification": "If data is missing or outdated, use Report correction with supporting evidence."
+  },
+  "submissionForm": {
+    "promiseContext": "Promise",
+    "yourName": "Your name",
+    "emailOptional": "Email (optional)",
+    "emailHelper": "For follow-up if needed. Not shared publicly.",
+    "description": "Description of correction",
+    "descriptionPlaceholder": "Describe what should be corrected and why...",
+    "descriptionHint": "Clearly state what information is incorrect and what the correct data should be.",
+    "sourceUrl": "Source URL",
+    "sourceUrlRecommended": "Source URL (recommended)",
+    "sourceUrlPlaceholder": "https://",
+    "sourceUrlHint": "Link to official document, news article, or other verifiable source.",
+    "attachFile": "Attach supporting document",
+    "dragDrop": "Drag & drop or",
+    "browse": "browse",
+    "fileHint": "PDF, PNG, JPG up to 10MB",
+    "submit": "Submit correction",
+    "cancel": "Cancel",
+    "descriptionRequired": "Please describe the correction (min 20 characters).",
+    "nameRequired": "Please enter your name."
+  },
+  "submissionToast": {
+    "successTitle": "Correction submitted",
+    "successBody": "Thank you, your submission is under review.",
+    "refLabel": "Ref",
+    "errorTitle": "Could not submit",
+    "errorBody": "Network error. Your draft has been saved. Try again."
+  },
+  "submissionTracker": {
+    "title": "Your submissions",
+    "subtitle": "Track the status of corrections and evidence you have submitted.",
+    "filterAll": "All",
+    "filterPending": "Pending",
+    "filterReview": "Under review",
+    "filterVerified": "Verified",
+    "filterRejected": "Rejected",
+    "colReference": "Reference ID",
+    "colPromise": "Promise",
+    "colSubmitted": "Submitted",
+    "colStatus": "Status",
+    "colUpdated": "Updated",
+    "colConstituency": "Constituency",
+    "showing": "Showing {start}–{end} of {total} submissions",
+    "tapHint": "Tap a submission to view full details and timeline."
+  },
+  "submissionDetail": {
+    "backLink": "Back to submissions",
+    "submittedBy": "Submitted by",
+    "description": "Description",
+    "sourceUrl": "Source URL",
+    "attachedFile": "Attached document",
+    "statusTimeline": "Status timeline",
+    "statusPending": "Submitted",
+    "statusReview": "Under review",
+    "statusVerified": "Verified",
+    "statusRejected": "Rejected",
+    "pendingDesc": "Correction submitted for review",
+    "reviewDesc": "Being verified against official sources",
+    "verifiedDesc": "Correction reviewed and data updated",
+    "rejectedDesc": "Correction reviewed but not accepted"
+  },
+  "evidenceFlow": {
+    "submitEvidence": "Submit evidence",
+    "evidenceHelper": "Share supporting evidence for this promise."
   }
 }

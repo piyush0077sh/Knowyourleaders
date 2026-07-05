@@ -100,5 +100,70 @@
   "disclaimer": {
     "neutrality": "यह पेज केवल स्रोत-लिंक रिकॉर्ड दिखाता है। यह किसी पार्टी या उम्मीदवार का समर्थन नहीं करता।",
     "verification": "यदि डेटा अधूरा या पुराना हो, तो सहायक प्रमाण के साथ सुधार रिपोर्ट करें।"
+  },
+  "submissionForm": {
+    "promiseContext": "वादा",
+    "yourName": "आपका नाम",
+    "emailOptional": "ईमेल (वैकल्पिक)",
+    "emailHelper": "यदि आवश्यक हो तो अनुवर्ती के लिए। सार्वजनिक रूप से साझा नहीं किया जाता।",
+    "description": "सुधार का विवरण",
+    "descriptionPlaceholder": "क्या सुधारना है और क्यों, इसका वर्णन करें...",
+    "descriptionHint": "स्पष्ट रूप से बताएं कि कौन सी जानकारी गलत है और सही डेटा क्या होना चाहिए।",
+    "sourceUrl": "स्रोत URL",
+    "sourceUrlRecommended": "स्रोत URL (अनुशंसित)",
+    "sourceUrlPlaceholder": "https://",
+    "sourceUrlHint": "आधिकारिक दस्तावेज़, समाचार लेख या अन्य सत्यापन योग्य स्रोत का लिंक।",
+    "attachFile": "सहायक दस्तावेज़ संलग्न करें",
+    "dragDrop": "खींचें और छोड़ें या",
+    "browse": "ब्राउज़ करें",
+    "fileHint": "PDF, PNG, JPG अधिकतम 10MB",
+    "submit": "सुधार भेजें",
+    "cancel": "रद्द करें",
+    "descriptionRequired": "कृपया सुधार का वर्णन करें (न्यूनतम 20 अक्षर)।",
+    "nameRequired": "कृपया अपना नाम दर्ज करें।"
+  },
+  "submissionToast": {
+    "successTitle": "सुधार सबमिट किया गया",
+    "successBody": "धन्यवाद, आपका सबमिशन समीक्षााधीन है।",
+    "refLabel": "संदर्भ",
+    "errorTitle": "सबमिट नहीं हो सका",
+    "errorBody": "नेटवर्क त्रुटि। आपका ड्राफ्ट सहेज लिया गया है। पुनः प्रयास करें।"
+  },
+  "submissionTracker": {
+    "title": "आपके सबमिशन",
+    "subtitle": "आपके द्वारा सबमिट किए गए सुधारों और प्रमाणों की स्थिति ट्रैक करें।",
+    "filterAll": "सभी",
+    "filterPending": "लंबित",
+    "filterReview": "समीक्षााधीन",
+    "filterVerified": "सत्यापित",
+    "filterRejected": "अस्वीकृत",
+    "colReference": "संदर्भ ID",
+    "colPromise": "वादा",
+    "colSubmitted": "सबमिट किया",
+    "colStatus": "स्थिति",
+    "colUpdated": "अपडेट किया",
+    "colConstituency": "निर्वाचन क्षेत्र",
+    "showing": "{start}–{end} (कुल {total} सबमिशन) दिखा रहा है",
+    "tapHint": "पूर्ण विवरण और टाइमलाइन देखने के लिए सबमिशन पर टैप करें।"
+  },
+  "submissionDetail": {
+    "backLink": "सबमिशन पर वापस",
+    "submittedBy": "द्वारा सबमिट",
+    "description": "विवरण",
+    "sourceUrl": "स्रोत URL",
+    "attachedFile": "संलग्न दस्तावेज़",
+    "statusTimeline": "स्थिति टाइमलाइन",
+    "statusPending": "सबमिट किया गया",
+    "statusReview": "समीक्षा में",
+    "statusVerified": "सत्यापित",
+    "statusRejected": "अस्वीकृत",
+    "pendingDesc": "सुधार समीक्षा के लिए सबमिट किया गया",
+    "reviewDesc": "आधिकारिक स्रोतों से सत्यापित किया जा रहा है",
+    "verifiedDesc": "सुधार की समीक्षा हुई और डेटा अपडेट किया गया",
+    "rejectedDesc": "सुधार की समीक्षा हुई लेकिन स्वीकार नहीं किया गया"
+  },
+  "evidenceFlow": {
+    "submitEvidence": "प्रमाण सबमिट करें",
+    "evidenceHelper": "इस वादे के लिए सहायक प्रमाण साझा करें।"
   }
 }

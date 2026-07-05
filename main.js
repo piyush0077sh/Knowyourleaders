@@ -36,6 +36,9 @@ const DATE_OPTIONS = { day: '2-digit', month: 'short', year: 'numeric' };
 // ── 3. App state ────────────────────────────────────────────────────────────
 let appData = null;
 let enrichedConstituencies = [];
+let submissions = [];
+let submissionCounter = 0;
+const SUBMISSION_REF_PREFIX = 'KYL-COR-';
 
 // ── 4. i18n engine ──────────────────────────────────────────────────────────
 
@@ -694,7 +697,71 @@ function wireDrawer(constituency) {
   });
 }
 
-// ── 11. Correction modal ────────────────────────────────────────────────────
+// ── 11. Toast notification ───────────────────────────────────────────────────
+
+function showToast(type, title, body) {
+  const toast = document.getElementById('confirmationToast');
+  const toastTitle = document.getElementById('toastTitle');
+  const toastBody = document.getElementById('toastBody');
+  const toastIcon = document.getElementById('toastIcon');
+  const toastClose = document.getElementById('toastClose');
+  if (!toast || !toastTitle || !toastBody) return;
+
+  // Reset state
+  toast.classList.remove('open', 'success', 'error');
+  toastIcon.textContent = type === 'success' ? '✓' : '!';
+  toastTitle.textContent = title;
+  toastBody.textContent = body;
+  toast.classList.add('open', type);
+
+  // Auto-dismiss
+  const dismissMs = type === 'success' ? 6000 : 10000;
+  let dismissTimer = setTimeout(() => hideToast(toast), dismissMs);
+
+  function hideToast(t) {
+    t.classList.remove('open');
+    clearTimeout(dismissTimer);
+  }
+
+  toastClose?.addEventListener('click', () => hideToast(toast), { once: true });
+  document.addEventListener('keydown', function onEscape(e) {
+    if (e.key === 'Escape' && toast.classList.contains('open')) {
+      hideToast(toast);
+      document.removeEventListener('keydown', onEscape);
+    }
+  });
+
+  // Respect prefers-reduced-motion
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq.matches) toast.style.transition = 'none';
+  else toast.style.transition = '';
+}
+
+// ── 12. Correction modal (enhanced citizen submission) ─────────────────────
+
+function validateField(input, errorEl, validationFn) {
+  const error = validationFn(input.value);
+  errorEl.textContent = error || '';
+  return !error;
+}
+
+function validateForm() {
+  const nameInput = document.getElementById('correctionName');
+  const descInput = document.getElementById('correctionNote');
+  const nameErr = document.getElementById('nameError');
+  const descErr = document.getElementById('descError');
+  const submitBtn = document.getElementById('correctionSubmitBtn');
+  if (!nameInput || !descInput || !submitBtn) return;
+
+  const nameOk = validateField(nameInput, nameErr, v =>
+    !v.trim() ? t('submissionForm.nameRequired') : v.trim().length < 2 ? t('submissionForm.nameRequired') : ''
+  );
+  const descOk = validateField(descInput, descErr, v =>
+    !v.trim() ? t('submissionForm.descriptionRequired')
+      : v.trim().length < 20 ? t('submissionForm.descriptionRequired') : ''
+  );
+  submitBtn.disabled = !(nameOk && descOk);
+}
 
 function wireCorrectionModal() {
   const modal = document.getElementById('correctionModal');
@@ -704,69 +771,162 @@ function wireCorrectionModal() {
   const cancel = document.getElementById('cancelCorrectionModal');
   const form = document.getElementById('correctionForm');
   const promiseField = document.getElementById('correctionPromiseId');
+  const promiseTextField = document.getElementById('correctionPromiseText');
+  const contextText = document.getElementById('promiseContextText');
+  const nameInput = document.getElementById('correctionName');
+  const descInput = document.getElementById('correctionNote');
+  const nameErr = document.getElementById('nameError');
+  const descErr = document.getElementById('descError');
+  const submitBtn = document.getElementById('correctionSubmitBtn');
+  const browseBtn = document.getElementById('browseBtn');
+  const fileInput = document.getElementById('correctionFile');
+  const fileZone = document.getElementById('fileUploadZone');
 
   if (!modal || !backdrop || !trigger || !form || !promiseField) return;
 
-  function closeModal() {
+  function closeModal(focusTarget) {
     modal.classList.remove('open');
     backdrop.classList.remove('open');
+    form.reset();
+    if (nameErr) nameErr.textContent = '';
+    if (descErr) descErr.textContent = '';
+    if (submitBtn) submitBtn.disabled = true;
     const drawerOpen = document.getElementById('evidenceDrawer')?.classList.contains('open');
     document.body.style.overflow = drawerOpen ? 'hidden' : '';
-    if (trigger) trigger.focus();
+    (focusTarget || trigger).focus();
   }
 
   function openModal() {
     promiseField.value = trigger.dataset.promiseId || '';
+    promiseTextField.value = trigger.dataset.promiseText || '';
+    if (contextText) contextText.textContent = trigger.dataset.promiseText || '';
+
     modal.classList.add('open');
     backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
-    // Localise modal via i18n
+
+    // Localise via i18n
     const title = document.getElementById('correctionModalTitle');
-    if (title) title.textContent = t('correction.title');
+    if (title) title.textContent = t('submissionForm.title');
     const helper = document.getElementById('correctionHelper');
     if (helper) helper.textContent = t('correction.helper');
-    // Labels
-    const labels = modal.querySelectorAll('label.form-field span:first-child');
-    if (labels[0]) labels[0].textContent = t('correction.name');
-    if (labels[1]) labels[1].textContent = t('correction.emailOptional');
-    if (labels[2]) labels[2].textContent = t('correction.note');
-    // Placeholders
-    const nameInput = document.getElementById('correctionName');
+    const ctxLabel = document.querySelector('.context-label');
+    if (ctxLabel) ctxLabel.textContent = `${t('submissionForm.promiseContext')}:`;
+    const labelName = document.getElementById('labelName');
+    if (labelName) labelName.innerHTML = `${t('submissionForm.yourName')} <span class="required-star">*</span>`;
+    const labelEmail = document.getElementById('labelEmail');
+    if (labelEmail) labelEmail.textContent = t('submissionForm.emailOptional');
+    const labelDesc = document.getElementById('labelDescription');
+    if (labelDesc) labelDesc.innerHTML = `${t('submissionForm.description')} <span class="required-star">*</span>`;
+    const labelSource = document.getElementById('labelSourceUrl');
+    if (labelSource) labelSource.textContent = t('submissionForm.sourceUrlRecommended');
+    const labelFile = document.getElementById('labelFile');
+    if (labelFile) labelFile.textContent = t('submissionForm.attachFile');
+
+    if (nameInput) nameInput.placeholder = t('submissionForm.yourName');
+    if (descInput) descInput.placeholder = t('submissionForm.descriptionPlaceholder');
+    const sourceInput = document.getElementById('correctionSourceUrl');
+    if (sourceInput) sourceInput.placeholder = t('submissionForm.sourceUrlPlaceholder');
     const emailInput = document.getElementById('correctionEmail');
-    const noteInput = document.getElementById('correctionNote');
-    if (nameInput) nameInput.placeholder = t('correction.namePlaceholder');
-    if (emailInput) emailInput.placeholder = t('correction.emailPlaceholder');
-    if (noteInput) noteInput.placeholder = t('correction.notePlaceholder');
-    const submitBtn = modal.querySelector('button[type="submit"]');
-    if (submitBtn) submitBtn.textContent = t('correction.submit');
-    if (cancel) cancel.textContent = t('correction.cancel');
-    if (close) close.textContent = t('correction.cancel');
-    // Focus first input
+    if (emailInput) emailInput.placeholder = 'you@example.com';
+    const dragDrop = document.getElementById('dragDropText');
+    if (dragDrop) dragDrop.textContent = t('submissionForm.dragDrop');
+    const browseText = document.getElementById('browseBtn');
+    if (browseText) browseText.textContent = t('submissionForm.browse');
+    const fileHint = document.getElementById('fileHint');
+    if (fileHint) fileHint.textContent = t('submissionForm.fileHint');
+
+    const descHint = document.getElementById('descHint');
+    if (descHint) descHint.textContent = t('submissionForm.descriptionHint');
+
+    if (submitBtn) submitBtn.textContent = t('submissionForm.submit');
+    if (cancel) cancel.textContent = t('submissionForm.cancel');
+    if (close) close.textContent = '✕';
+
+    if (submitBtn) submitBtn.disabled = true;
     setTimeout(() => nameInput?.focus(), 100);
   }
 
   trigger.addEventListener('click', openModal);
-  if (close) close.addEventListener('click', closeModal);
-  if (cancel) cancel.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', closeModal);
+  if (close) close.addEventListener('click', () => closeModal());
+  if (cancel) cancel.addEventListener('click', () => closeModal());
+  backdrop.addEventListener('click', () => closeModal());
 
+  // Real-time validation
+  [nameInput, descInput].forEach(el => {
+    if (el) el.addEventListener('input', validateForm);
+  });
+
+  // Browse file button
+  browseBtn?.addEventListener('click', () => fileInput?.click());
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      fileZone.classList.add('has-file');
+      const nameSpan = fileZone.querySelector('.file-upload-icon');
+      if (nameSpan) nameSpan.textContent = `📄 ${fileInput.files[0].name}`;
+    }
+  });
+
+  // Drag-and-drop
+  fileZone?.addEventListener('dragover', e => { e.preventDefault(); fileZone.classList.add('dragover'); });
+  fileZone?.addEventListener('dragleave', () => fileZone.classList.remove('dragover'));
+  fileZone?.addEventListener('drop', e => {
+    e.preventDefault();
+    fileZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) {
+      fileInput.files = e.dataTransfer.files;
+      const evt = new Event('change');
+      fileInput.dispatchEvent(evt);
+    }
+  });
+
+  // Form submission
   form.addEventListener('submit', e => {
     e.preventDefault();
+    if (submitBtn?.disabled) return;
+
     const fd = new FormData(form);
-    const payload = {
-      promise_id: fd.get('promise_id'),
-      name:       fd.get('name'),
-      email:      fd.get('email'),
-      note:       fd.get('note')
+    const counterVal = ++submissionCounter;
+    const refId = `${SUBMISSION_REF_PREFIX}${String(counterVal).padStart(4, '0')}`;
+    const now = new Date().toISOString();
+
+    const submission = {
+      id: refId,
+      type: 'correction',
+      status: 'pending',
+      status_history: [
+        { status: 'pending', timestamp: now, note: 'Correction submitted for review' }
+      ],
+      promise_id: fd.get('promise_id') || '',
+      promise_text: fd.get('promise_text') || '',
+      submitter_name: fd.get('name') || '',
+      submitter_email: fd.get('email') || '',
+      description: fd.get('note') || '',
+      source_url: fd.get('source_url') || '',
+      attached_file: fileInput?.files[0] ? {
+        name: fileInput.files[0].name,
+        size_bytes: fileInput.files[0].size,
+        mime_type: fileInput.files[0].type,
+        url: null
+      } : null,
+      submitted_at: now,
+      last_updated: now,
+      rejection_reason: null
     };
-    // Simulated submission — alert shows localised message
-    alert(t('correction.success'));
-    form.reset();
-    closeModal();
+
+    submissions.push(submission);
+    closeModal(trigger);
+
+    // Show success toast
+    const successTitle = t('submissionToast.successTitle');
+    const successBody = `${t('submissionToast.refLabel')}: ${refId} · ${t('submissionToast.successBody')}`;
+    showToast('success', successTitle, successBody);
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    if (e.key === 'Escape') {
+      if (modal.classList.contains('open')) closeModal();
+    }
   });
 }
 

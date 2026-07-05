@@ -121,34 +121,79 @@
       </div>
     </aside>
 
-    <!-- Correction Modal -->
+    <!-- Correction Modal (Citizen Submission Form) -->
     <div id="correctionModalBackdrop" class="modal-backdrop" aria-hidden="true"></div>
-    <section id="correctionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="correctionModalTitle">
+    <section id="correctionModal" class="modal correction-modal" role="dialog" aria-modal="true" aria-labelledby="correctionModalTitle">
       <div class="modal-header">
-        <h3 id="correctionModalTitle">Submit a correction</h3>
-        <button id="closeCorrectionModal" type="button" class="close-button">Close</button>
+        <div>
+          <h3 id="correctionModalTitle">Submit a correction</h3>
+          <p class="footnote" id="correctionHelper">Share what should be corrected and add supporting source if available.</p>
+        </div>
+        <button id="closeCorrectionModal" type="button" class="close-button" aria-label="Close">✕</button>
       </div>
-      <form id="correctionForm" class="modal-body">
-        <p class="footnote" id="correctionHelper">Share what should be corrected. Add supporting source if available.</p>
-        <input id="correctionPromiseId" type="hidden" name="promise_id" />
+      <form id="correctionForm" class="modal-body" novalidate>
+        <!-- Context banner -->
+        <div id="promiseContextBanner" class="context-banner">
+          <span class="context-label">Promise:</span>
+          <span id="promiseContextText"></span>
+          <input id="correctionPromiseId" type="hidden" name="promise_id" />
+          <input id="correctionPromiseText" type="hidden" name="promise_text" />
+        </div>
+
         <label class="form-field">
-          <span>Name</span>
-          <input id="correctionName" class="search-input" type="text" name="name" placeholder="Your name" required />
+          <span id="labelName">Your name <span class="required-star">*</span></span>
+          <input id="correctionName" class="search-input" type="text" name="name" placeholder="Your name" required minlength="2" aria-required="true" autocomplete="name" />
+          <span id="nameError" class="field-error" role="alert"></span>
         </label>
+
         <label class="form-field">
-          <span>Email (optional)</span>
-          <input id="correctionEmail" class="search-input" type="email" name="email" placeholder="you@example.com" />
+          <span id="labelEmail">Email (optional)</span>
+          <input id="correctionEmail" class="search-input" type="email" name="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="field-helper">For follow-up if needed. Not shared publicly.</span>
         </label>
+
         <label class="form-field">
-          <span>Correction note</span>
-          <textarea id="correctionNote" class="search-input" name="note" rows="4" placeholder="What should be corrected?" required></textarea>
+          <span id="labelDescription">Description of correction <span class="required-star">*</span></span>
+          <textarea id="correctionNote" class="search-input" name="note" rows="4" minlength="20" placeholder="Describe what should be corrected and why..." required aria-required="true"></textarea>
+          <span id="descError" class="field-error" role="alert"></span>
+          <span class="field-helper" id="descHint">Clearly state what information is incorrect and what the correct data should be.</span>
         </label>
-        <div class="promise-actions">
-          <button type="submit" class="primary-button">Submit correction</button>
-          <button id="cancelCorrectionModal" type="button" class="secondary-button">Cancel</button>
+
+        <label class="form-field">
+          <span id="labelSourceUrl">Source URL (recommended)</span>
+          <input id="correctionSourceUrl" class="search-input" type="url" name="source_url" placeholder="https://" />
+          <span class="field-helper">Link to official document, news article, or other verifiable source.</span>
+        </label>
+
+        <label class="form-field">
+          <span id="labelFile">Attach supporting document</span>
+          <div class="file-upload-zone" id="fileUploadZone">
+            <div class="file-upload-content">
+              <span class="file-upload-icon">📎</span>
+              <span id="dragDropText">Drag & drop or</span>
+              <button type="button" id="browseBtn" class="browse-button">browse</button>
+              <span id="fileHint">PDF, PNG, JPG up to 10MB</span>
+            </div>
+            <input id="correctionFile" type="file" accept=".pdf,.png,.jpg,.jpeg" style="display:none" />
+          </div>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" id="cancelCorrectionModal" class="secondary-button">Cancel</button>
+          <button type="submit" id="correctionSubmitBtn" class="primary-button" disabled>Submit correction</button>
         </div>
       </form>
     </section>
+
+    <!-- Confirmation Toast -->
+    <div id="confirmationToast" class="toast" role="status" aria-live="polite" aria-hidden="true">
+      <div class="toast-icon" id="toastIcon"></div>
+      <div class="toast-content">
+        <p class="toast-title" id="toastTitle"></p>
+        <p class="toast-body" id="toastBody"></p>
+      </div>
+      <button class="toast-close" id="toastClose" aria-label="Dismiss">✕</button>
+    </div>
 
     <!-- App-ingest global data (primary data source) -->
     <script src="./data/app-ingest.v1.js"></script>

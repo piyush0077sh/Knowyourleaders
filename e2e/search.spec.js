@@ -7,12 +7,12 @@ test.describe('Search functionality', () => {
     await expect(page.locator('#datasetStatus')).toContainText(/Loaded/i, { timeout: 10000 });
   });
 
-  test('shows all 3 pilot constituencies by default', async ({ page }) => {
+  test('shows all 12 constituencies by default', async ({ page }) => {
     const resultCards = page.locator('.result-card');
-    await expect(resultCards).toHaveCount(3);
-    await expect(resultCards.nth(0)).toContainText('Chennai Central');
-    await expect(resultCards.nth(1)).toContainText('Mumbai South');
-    await expect(resultCards.nth(2)).toContainText('Pune');
+    await expect(resultCards).toHaveCount(12);
+    await expect(resultCards.nth(0)).toContainText('New Delhi');
+    await expect(resultCards.nth(1)).toContainText('Varanasi');
+    await expect(resultCards.nth(2)).toContainText('Wayanad');
   });
 
   test('filters by constituency name', async ({ page }) => {
@@ -26,21 +26,21 @@ test.describe('Search functionality', () => {
 
   test('filters by representative name', async ({ page }) => {
     const searchInput = page.locator('#globalSearch');
-    await searchInput.fill('Chennai');
+    await searchInput.fill('Modi');
     await page.locator('#searchButton').click();
     const resultCards = page.locator('.result-card');
     await expect(resultCards).toHaveCount(1);
-    await expect(resultCards).toContainText('Chennai Central');
+    await expect(resultCards).toContainText('Varanasi');
   });
 
   test('filters by party name', async ({ page }) => {
     const searchInput = page.locator('#globalSearch');
-    await searchInput.fill('Civic Reform');
+    await searchInput.fill('Bharatiya Janata Party');
     await page.locator('#searchButton').click();
     const resultCards = page.locator('.result-card');
-    await expect(resultCards).toHaveCount(2);
-    await expect(resultCards.nth(0)).toContainText('Mumbai South');
-    await expect(resultCards.nth(1)).toContainText('Pune');
+    await expect(resultCards).toHaveCount(7);
+    await expect(resultCards.nth(0)).toContainText('New Delhi');
+    await expect(resultCards.nth(1)).toContainText('Varanasi');
   });
 
   test('scope tabs filter correctly', async ({ page }) => {
@@ -54,10 +54,10 @@ test.describe('Search functionality', () => {
     await allTab.click();
     await expect(page.locator('.result-card')).toHaveCount(1);
 
-    // Clear search, expect all
+    // Clear search, expect all 12
     await searchInput.fill('');
     await constituencyTab.click();
-    await expect(page.locator('.result-card')).toHaveCount(3);
+    await expect(page.locator('.result-card')).toHaveCount(12);
   });
 
   test('no results shows empty state', async ({ page }) => {
@@ -71,7 +71,7 @@ test.describe('Search functionality', () => {
 
   test('results count badge updates', async ({ page }) => {
     const countChip = page.locator('#resultsCount');
-    await expect(countChip).toHaveText('3');
+    await expect(countChip).toHaveText('12');
 
     await page.locator('#globalSearch').fill('Pune');
     await page.locator('#searchButton').click();

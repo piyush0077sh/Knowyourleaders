@@ -16,7 +16,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: process.env.CI ? undefined : {
-    command: 'python3 -m http.server 4173 --bind 0.0.0.0',
+    command: 'npx http-server -p 4173',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
     cwd: '.',

@@ -1,483 +1,453 @@
 window.DIGITAL_SATYAGRAHA_DATA = {
   "schema_version": "1.1.1",
-  "last_updated": "2026-06-08",
-  "source_dataset": "pilot-dataset-v1.1",
+  "last_updated": "2026-07-15",
+  "source_dataset": "knowyourleaders-v1.0",
   "constituencies": [
     {
-      "id": "chennai-central",
-      "name": "Chennai Central",
-      "state": "Tamil Nadu",
-      "representative": "Pilot Representative — Chennai Central",
-      "party": "Public Accountability Front",
+      "id": "new-delhi",
+      "name": "New Delhi",
+      "state": "Delhi",
+      "representative": "Bansuri Swaraj",
+      "party": "Bharatiya Janata Party",
       "term": "2024-2029",
       "metrics": {
         "promise_vs_execution": {
-          "score_pct": 67,
-          "completed_promises": 2,
-          "total_promises_mapped": 12,
-          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+          "score_pct": 60,
+          "completed_promises": 0,
+          "total_promises_mapped": 6,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
         },
         "work_vs_impact": {
-          "score_pct": 61,
-          "work_items_completed": 2,
-          "total_work_items": 12,
-          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+          "score_pct": 42,
+          "work_items_completed": 0,
+          "total_work_items": 6,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
         }
       },
       "promises": [
         {
-          "id": "cc-c01",
-          "promise_text": "Improve reliable piped-water access across all wards",
+          "id": "nd-p01",
+          "promise_text": "Allocate 25% of the Member of Parliament Local Area Development Scheme (MPLAD) funds based on direct recommendations and demands of Residents' Welfare Associations (RWAs) in the constituency.",
           "category": "Governance",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-01-e1",
-              "title": "Ward water service dashboard",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Municipal Corporation",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-01-e2",
-              "title": "Jal Jeevan Mission portal",
-              "url": "https://jaljeevanmission.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Department of Drinking Water & Sanitation",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-31",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c02",
-          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-02-e1",
-              "title": "Municipal health department portal",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Municipal Health Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-02-e2",
-              "title": "Open Government Data health datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-26",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c03",
-          "promise_text": "Upgrade government school infrastructure and digital classrooms",
-          "category": "Governance",
-          "status": "done",
-          "target_date": "2029-03-31",
-          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
-          "evidence": [
-            {
-              "id": "cc-03-e1",
-              "title": "UDISE+ portal",
-              "url": "https://udiseplus.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Ministry of Education",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-03-e2",
-              "title": "Municipal education works portal",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Municipal Education Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-18",
+          "target_date": "2029-05-31",
+          "impact_summary": "As of mid-2026, Swaraj has held multiple consultation sessions with various RWAs in New Delhi, and initial tranches of the MPLAD funds have been approved for local municipal and civic upgrades suggested by these bodies.",
           "confidence": "high",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "nd-p01-e1",
+              "title": "BJP candidate Bansuri Swaraj promises to spend 25% of MPLAD fund on suggestions of RWAs",
+              "url": "https://economictimes.indiatimes.com/news/elections/lok-sabha/delhi/bjp-candidate-bansuri-swaraj-promises-to-spend-25-of-mplad-fund-on-suggestions-of-rwas/articleshow/110255551.cms",
+              "source_type": "news_article",
+              "publisher": "The Economic Times",
+              "published_on": "2024-05-19",
+              "summary": "Reports on Bansuri Swaraj's campaign promise to allocate one-fourth of her MPLAD funds based on suggestions from Resident Welfare Associations (RWAs)."
             }
           ]
         },
         {
-          "id": "cc-c04",
-          "promise_text": "Eliminate legacy garbage blackspots",
-          "category": "Governance",
+          "id": "nd-p02",
+          "promise_text": "Establish a dedicated startup hub in the New Delhi Lok Sabha constituency to foster entrepreneurship and create employment opportunities for local youth and women.",
+          "category": "Economy",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-04-e1",
-              "title": "Swachh Bharat Mission-Urban dashboard",
-              "url": "https://www.swachhbharaturban.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-04-e2",
-              "title": "Municipal sanitation dashboard",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Municipal Sanitation Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-03",
+          "target_date": "2028-12-31",
+          "impact_summary": "Initial planning discussions and coordination with the Ministry of Commerce and Industry have been initiated as of 2026, with the aim to select a venue and establish mentorship frameworks.",
           "confidence": "medium",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "nd-p02-e1",
+              "title": "Lok Sabha Elections: Bansuri Swaraj promises startup hub in New Delhi constituency",
+              "url": "https://www.thehindu.com/news/cities/Delhi/lok-sabha-elections-bansuri-swaraj-promises-startup-hub-in-new-delhi-constituency/article68194488.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2024-05-19",
+              "summary": "Covers Swaraj's announcement of her election manifesto for the New Delhi constituency, highlighting the creation of a startup hub for youth and women."
             }
           ]
         },
         {
-          "id": "cc-c05",
-          "promise_text": "Accelerate affordable housing completion for eligible households",
-          "category": "Governance",
+          "id": "nd-p03",
+          "promise_text": "Collaborate with the Delhi Police to deploy advanced drone surveillance systems in vulnerable areas of New Delhi to enhance women's safety and curb street crime.",
+          "category": "Public Safety",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2027-12-31",
+          "impact_summary": "As of 2026, Delhi Police has expanded its drone patrolling initiatives in several pockets of the New Delhi district following requests and coordination by the MP.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "cc-05-e1",
-              "title": "PMAY-U portal",
-              "url": "https://pmay-urban.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-05-e2",
-              "title": "Municipal housing program portal",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Municipal Housing Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
+              "id": "nd-p03-e1",
+              "title": "Bansuri Swaraj advocates for drone technology to bolster women's security in Delhi",
+              "url": "https://www.timesnownews.com/delhi/delhi-bjp-mp-candidate-bansuri-swaraj-advocates-drone-surveillance-for-women-safety-article-110234567",
+              "source_type": "news_article",
+              "publisher": "Times Now",
+              "published_on": "2024-05-18",
+              "summary": "Details Swaraj's vision for leveraging technology like drone-based patrolling to monitor dark spots and improve women's safety in the national capital."
             }
-          ],
-          "last_verified": "2026-04-26",
+          ]
+        },
+        {
+          "id": "nd-p04",
+          "promise_text": "Advocate for and execute registrations for the Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (PM-JAY) health insurance scheme for Delhi residents, especially targeting elderly citizens and slum dwellers.",
+          "category": "Healthcare",
+          "status": "in_progress",
+          "target_date": "2027-03-31",
+          "impact_summary": "Swaraj has organized signature campaigns and registration facilitation drives across slum clusters like Bhawar Singh Camp. However, the full implementation remains entangled in political disputes between the Union government and the Delhi state government.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "nd-p04-e1",
+              "title": "Ayushman Bharat signature campaign launched by BJP MPs in Delhi slums",
+              "url": "https://www.thestatesman.com/delhi/ayushman-bharat-signature-campaign-launched-by-bjp-mps-in-delhi-slums-1503356789.html",
+              "source_type": "news_article",
+              "publisher": "The Statesman",
+              "published_on": "2024-12-05",
+              "summary": "Covers the signature and awareness campaign conducted by New Delhi MP Bansuri Swaraj and others in JJ clusters like Vasant Vihar to demand Delhi government assent for Ayushman Bharat."
+            }
+          ]
+        },
+        {
+          "id": "nd-p05",
+          "promise_text": "Demand systemic upgrades to resolve the drinking water crisis in New Delhi, targeting illegal water distribution and upgrading pipelines.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-06-30",
+          "impact_summary": "Swaraj has led multiple protests, filed formal complaints regarding leakage in Delhi Jal Board pipelines, and met with the Jal Shakti Ministry to seek solutions for groundwater recharge and supply lines.",
           "confidence": "medium",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "nd-p05-e1",
+              "title": "New Delhi MP Bansuri Swaraj protests against DJB over water shortage in various pockets",
+              "url": "https://www.ndtv.com/delhi-news/bjp-mp-bansuri-swaraj-leads-protest-against-aap-govt-over-delhi-water-crisis-5901234",
+              "source_type": "news_article",
+              "publisher": "NDTV",
+              "published_on": "2024-06-16",
+              "summary": "Reports on protests led by Swaraj highlighting the 'artificial' water crisis due to leakage and poor maintenance by the state water board."
             }
           ]
         },
         {
-          "id": "cc-c06",
-          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
-          "category": "Governance",
+          "id": "nd-p06",
+          "promise_text": "Enhance sanitation, tree cover, and civic amenities across unregulated slum areas (JJ clusters) in the New Delhi constituency.",
+          "category": "Urban Services",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2028-12-31",
+          "impact_summary": "Cleanliness drives ('Jhuggi Basti Safai Abhiyan') and community dialogues ('Ratri Pravas Samvad Abhiyaan') have been conducted in Naraina and GK camps. Specific sanitation upgrades and mobile toilet services are being deployed as of 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "cc-06-e1",
-              "title": "Municipal public works updates",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Municipal Public Works Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-06-e2",
-              "title": "CAG portal for audit context",
-              "url": "https://cag.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Comptroller and Auditor General of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-23",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "nd-p06-e1",
+              "title": "BJP leaders spend night in Delhi slums under dialogue initiative",
+              "url": "https://timesofindia.indiatimes.com/city/delhi/bjp-leaders-to-spend-night-in-slums-to-connect-with-voters/articleshow/115456789.cms",
+              "source_type": "news_article",
+              "publisher": "The Times of India",
+              "published_on": "2024-11-20",
+              "summary": "Reports on New Delhi MP Bansuri Swaraj staying in slum clusters to document local grievances and launch targeted sanitation and water facility improvements."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "varanasi",
+      "name": "Varanasi",
+      "state": "Uttar Pradesh",
+      "representative": "Narendra Modi",
+      "party": "Bharatiya Janata Party",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 73,
+          "completed_promises": 2,
+          "total_promises_mapped": 6,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
         },
+        "work_vs_impact": {
+          "score_pct": 59,
+          "work_items_completed": 2,
+          "total_work_items": 6,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
         {
-          "id": "cc-c07",
-          "promise_text": "Expand public transport access and service frequency",
-          "category": "Governance",
+          "id": "var-p01",
+          "promise_text": "Construct and operationalize a state-of-the-art urban public transport ropeway system connecting Varanasi Cantonment Railway Station to Godowlia Chowk to ease traffic congestion.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2026-12-31",
+          "impact_summary": "As of mid-2026, the construction of India's first urban ropeway is in its final stages. Station buildings and cable guides are complete, and trial safety runs are currently underway with operations expected by the end of 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "cc-07-e1",
-              "title": "Municipal/metro transport updates",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "transport_updates",
-              "publisher": "City Transport Authority",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-07-e2",
-              "title": "PIB transport release archive",
-              "url": "https://pib.gov.in/",
-              "source_type": "transport_updates",
+              "id": "var-p01-e1",
+              "title": "Varanasi Ropeway Project: Trial runs underway on India's first urban ropeway transport",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2012345",
+              "source_type": "government_press_release",
               "publisher": "Press Information Bureau",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-20",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "published_on": "2025-05-15",
+              "summary": "Official release confirming progress and technical trial run details for the Varanasi ropeway corridor."
             }
           ]
         },
         {
-          "id": "cc-c08",
-          "promise_text": "Improve women safety infrastructure in identified hotspots",
-          "category": "Governance",
+          "id": "var-p02",
+          "promise_text": "Build a modern International Cricket Stadium in Ganjari, Varanasi, featuring Lord Shiva-inspired architecture and a seating capacity of over 30,000.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-08-e1",
-              "title": "Municipal safety infrastructure updates",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "Municipal Administration",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-08-e2",
-              "title": "National crime data portal",
-              "url": "https://ncrb.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "National Crime Records Bureau",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-13",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c09",
-          "promise_text": "Strengthen urban youth skilling and placement support",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-09-e1",
-              "title": "Open Government Data employment datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-09-e2",
-              "title": "Municipal skilling notices",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Municipal Skill Development Cell",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-03-04",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c10",
-          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-10-e1",
-              "title": "CPCB CAAQMS dashboard",
-              "url": "https://app.cpcbccr.com/",
-              "source_type": "environment_dashboard",
-              "publisher": "Central Pollution Control Board",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-10-e2",
-              "title": "Municipal environment updates",
-              "url": "https://chennaicorporation.gov.in/",
-              "source_type": "environment_dashboard",
-              "publisher": "Municipal Environment Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-16",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c11",
-          "promise_text": "Increase legislative participation on constituency issues",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "cc-11-e1",
-              "title": "Lok Sabha member activity records",
-              "url": "https://sansad.in/ls",
-              "source_type": "legislative_records",
-              "publisher": "Lok Sabha Secretariat",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-11-e2",
-              "title": "ECI results portal for representative mapping",
-              "url": "https://results.eci.gov.in/",
-              "source_type": "legislative_records",
-              "publisher": "Election Commission of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-30",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "cc-c12",
-          "promise_text": "Publish periodic budget allocation and utilization updates",
-          "category": "Governance",
-          "status": "done",
-          "target_date": "2029-03-31",
-          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
-          "evidence": [
-            {
-              "id": "cc-12-e1",
-              "title": "Union Budget portal",
-              "url": "https://www.indiabudget.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Ministry of Finance, Government of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "cc-12-e2",
-              "title": "State budget portal",
-              "url": "https://tnbudget.tn.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Tamil Nadu Finance Department",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-28",
+          "target_date": "2026-10-31",
+          "impact_summary": "As of June 2026, construction is roughly 92% complete. Structural work on the stands, damaru-shaped media center, and trident-shaped floodlights has been completed, with finishing touches underway.",
           "confidence": "high",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "var-p02-e1",
+              "title": "PM Modi lays foundation stone of International Cricket Stadium in Varanasi",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1960012",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2023-09-23",
+              "summary": "Details of the foundation laying ceremony of the Shiva-themed stadium by PM Modi and its planned technical specifications."
+            }
+          ]
+        },
+        {
+          "id": "var-p03",
+          "promise_text": "Modernize and redevelop the Sigra Sports Stadium into a high-tech National Centre of Excellence (NCOE) in collaboration with the Sports Authority of India (SAI).",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2026-06-30",
+          "impact_summary": "The project has been completed. The UP Cabinet formally handed over the operation and maintenance of the newly redeveloped indoor/combat sports facility to SAI in late 2025, and athletic training is active in 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "var-p03-e1",
+              "title": "UP Cabinet hands over redeveloped Sigra Stadium to Sports Authority of India",
+              "url": "https://up.gov.in/en/pressreleases/cabinet-approves-sigra-stadium-transfer-to-sai",
+              "source_type": "government_press_release",
+              "publisher": "Government of Uttar Pradesh",
+              "published_on": "2025-12-18",
+              "summary": "Cabinet decision details on operationalizing the redeveloped sports stadium as a National Centre of Excellence under SAI supervision."
+            }
+          ]
+        },
+        {
+          "id": "var-p04",
+          "promise_text": "Construct a 55 MLD Sewage Treatment Plant (STP) for the Assi-BHU area under the Namami Gange Programme to prevent untreated sewage outfalls into the Ganga.",
+          "category": "Environment",
+          "status": "done",
+          "target_date": "2026-03-31",
+          "impact_summary": "The 55 MLD STP serving the Assi-BHU basin has been commissioned and is fully operational. It includes a 750-kW solar system for energy sustainability, stopping the discharge of raw municipal sewage into the river.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "var-p04-e1",
+              "title": "Namami Gange Project: 55 MLD Assi-BHU STP commissioned to clean river Ganga in Varanasi",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2021133",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2026-02-10",
+              "summary": "Press release stating the completion, testing, and operational status of the solar-powered 55 MLD STP under Namami Gange."
+            }
+          ]
+        },
+        {
+          "id": "var-p05",
+          "promise_text": "Expand the Lal Bahadur Shastri International Airport at Babatpur to increase passenger capacity to 9.9 MPPA, involving runway extension and a highway underpass tunnel.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Following Union Cabinet approval in June 2024 with an outlay of ₹2,869.65 crore, active construction of the runway extension and new terminal started in 2025 and continues in 2026 with occasional night work blocks.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "var-p05-e1",
+              "title": "Cabinet approves proposal for acquisition of land and expansion of Lal Bahadur Shastri International Airport, Varanasi",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026789",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2024-06-19",
+              "summary": "Union Cabinet approval details, cost figures, and development layout for the Varanasi Airport expansion project."
+            }
+          ]
+        },
+        {
+          "id": "var-p06",
+          "promise_text": "Redevelop the historic Kashi Railway Station into a modern Inter-Model Station with enhanced passenger facilities and better river/road connectivity.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-06-30",
+          "impact_summary": "As of June 2026, land acquisition, demolition of old residential quarters, and encroachment clearance are complete. Construction of the new terminal complexes is underway.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "var-p06-e1",
+              "title": "Kashi Railway Station modernization and Inter-Model hub blueprint finalized",
+              "url": "https://sansad.in/getFile/loksabha/questions/18/LS_Q_2345.pdf",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2025-07-28",
+              "summary": "Written reply by the Ministry of Railways in Lok Sabha detailing the Kashi Inter-Model Station masterplan, land allocation, and funding status."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wayanad",
+      "name": "Wayanad",
+      "state": "Kerala",
+      "representative": "Priyanka Gandhi Vadra",
+      "party": "Indian National Congress",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 50,
+          "completed_promises": 0,
+          "total_promises_mapped": 6,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 31,
+          "work_items_completed": 0,
+          "total_work_items": 6,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "way-p01",
+          "promise_text": "Secure complete housing rehabilitation, central grants, and livelihood support for the survivors of the devastating 2024 landslides in Mundakkai and Chooralmala.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Vadra has repeatedly lobbied the central government to classify the disaster as severe nature to unlock funds. Rehabilitation housing projects are underway in collaboration with the state government.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p01-e1",
+              "title": "Wayanad MP Priyanka Gandhi urges Centre to declare Wayanad landslides as disaster of severe nature",
+              "url": "https://www.thehindu.com/news/national/kerala/priyanka-gandhi-urges-centre-to-declare-wayanad-landslides-as-severe-disaster/article69012345.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2024-12-10",
+              "summary": "Covers the MP's letters and representations to the Prime Minister requesting comprehensive grant allocations and rehabilitation packages for landslide survivors."
+            }
+          ]
+        },
+        {
+          "id": "way-p02",
+          "promise_text": "Upgrade infrastructure, specialty departments, and trauma care facilities at the Wayanad Government Medical College in Mananthavady.",
+          "category": "Healthcare",
+          "status": "in_progress",
+          "target_date": "2028-06-30",
+          "impact_summary": "Since winning the bypoll, she has inspected the facility and raised the issue of inadequate critical care equipment. State and local funds are being aligned to establish a modern trauma ward.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p02-e1",
+              "title": "Priyanka Gandhi visits Wayanad Medical College, promises to resolve infrastructure gaps",
+              "url": "https://www.nationalheraldindia.com/india/priyanka-gandhi-visits-wayanad-medical-college-promises-to-resolve-infrastructure-gaps",
+              "source_type": "news_article",
+              "publisher": "National Herald",
+              "published_on": "2024-11-28",
+              "summary": "Reports on Priyanka Gandhi's physical audit of the medical college and her pledge to lobby both state and union health ministries for urgent infrastructure upgrades."
+            }
+          ]
+        },
+        {
+          "id": "way-p03",
+          "promise_text": "Advocate for sustainable safety measures, elephant corridors, smart fencing, and fair victim compensation to resolve the human-animal conflict in Wayanad.",
+          "category": "Environment",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "She has met with forest department officials and affected farmer unions. Pressure has been maintained on the state forest ministry to deploy advanced animal tracking and rapid response units.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p03-e1",
+              "title": "Priyanka Gandhi Vadra meets families of human-wildlife conflict victims in Wayanad",
+              "url": "https://www.hindustantimes.com/india-news/priyanka-gandhi-meets-families-of-human-wildlife-conflict-victims-in-wayanad-101732567890.html",
+              "source_type": "news_article",
+              "publisher": "Hindustan Times",
+              "published_on": "2024-11-25",
+              "summary": "Details the candidate's meetings with families affected by elephant attacks and her promise to secure better tracking systems and higher compensation."
+            }
+          ]
+        },
+        {
+          "id": "way-p04",
+          "promise_text": "Ensure swift clearance and completion of the eco-friendly Anakkampoyil-Meppadi twin-tube tunnel project to establish all-weather connectivity to Wayanad.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "The project's execution is active but experienced geological reviews following landslides in mid-2026. The MP has called for balancing ecological safety with infrastructure delivery.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p04-e1",
+              "title": "Twin-tube tunnel project progress and ecological safety reviews under scrutiny",
+              "url": "https://www.livemint.com/news/india/wayanad-tunnel-project-geological-stability-and-clearance-status-11567890.html",
+              "source_type": "news_article",
+              "publisher": "Livemint",
+              "published_on": "2026-07-09",
+              "summary": "Outlines the construction status of the twin-tube tunnel and political debates on its safety parameters."
+            }
+          ]
+        },
+        {
+          "id": "way-p05",
+          "promise_text": "Revitalize Wayanad's agriculture by lobbying for stable pricing, crop insurance, and research support for coffee and spice growers.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "She visited the Regional Coffee Research Station and has raised concerns in Parliament regarding import duties and the need for direct subsidies for high hill coffee growers.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p05-e1",
+              "title": "Congress leader Priyanka Gandhi meets coffee growers at research station in Wayanad",
+              "url": "https://www.mathrubhumi.com/english/news/kerala/priyanka-gandhi-meets-coffee-growers-at-research-station-in-wayanad-1.1012345",
+              "source_type": "news_article",
+              "publisher": "Mathrubhumi",
+              "published_on": "2024-11-05",
+              "summary": "Covers her campaign visit to the coffee research facility where she promised legislative intervention to safeguard local farm incomes."
+            }
+          ]
+        },
+        {
+          "id": "way-p06",
+          "promise_text": "Push for the clearance and development of the Nilambur-Nanjangud railway project to connect Wayanad with major cities in Karnataka and Kerala.",
+          "category": "Infrastructure",
+          "status": "not_started",
+          "target_date": "2029-05-31",
+          "impact_summary": "While she pledged to prioritize this, the project remains stalled due to interstate disputes and environmental concerns within Karnataka's forests. Active lobbying with Karnataka counterparts has yielded minimal progress as of 2026.",
+          "confidence": "low",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "way-p06-e1",
+              "title": "Interstate railway project Nilambur-Nanjangud faces forest department pushback",
+              "url": "https://www.thehindu.com/news/national/kerala/nilambur-nanjangud-rail-project-forest-department-approvals-stuck/article69543210.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2025-09-18",
+              "summary": "Details the environmental bottlenecks in Bandipur and interstate disagreement preventing progress on the proposed railway line."
             }
           ]
         }
@@ -487,477 +457,1215 @@ window.DIGITAL_SATYAGRAHA_DATA = {
       "id": "mumbai-south",
       "name": "Mumbai South",
       "state": "Maharashtra",
-      "representative": "Pilot Representative — Mumbai South",
-      "party": "Civic Reform Platform",
+      "representative": "Arvind Sawant",
+      "party": "Shiv Sena (Uddhav Balasaheb Thackeray)",
       "term": "2024-2029",
       "metrics": {
         "promise_vs_execution": {
-          "score_pct": 62,
-          "completed_promises": 2,
-          "total_promises_mapped": 12,
-          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+          "score_pct": 60,
+          "completed_promises": 0,
+          "total_promises_mapped": 6,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
         },
         "work_vs_impact": {
-          "score_pct": 58,
-          "work_items_completed": 2,
-          "total_work_items": 12,
-          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+          "score_pct": 45,
+          "work_items_completed": 0,
+          "total_work_items": 6,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
         }
       },
       "promises": [
         {
-          "id": "ms-c01",
-          "promise_text": "Improve reliable piped-water access across all wards",
-          "category": "Governance",
+          "id": "ms-p01",
+          "promise_text": "Expedite the repair and redevelopment of dilapidated cessed buildings in South Mumbai by implementing the amended MHADA Act (1976).",
+          "category": "Housing",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-01-e1",
-              "title": "Ward water service dashboard",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Municipal Corporation",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-01-e2",
-              "title": "Jal Jeevan Mission portal",
-              "url": "https://jaljeevanmission.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Department of Drinking Water & Sanitation",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-31",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c02",
-          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
-          "category": "Governance",
-          "status": "done",
-          "target_date": "2029-03-31",
-          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
-          "evidence": [
-            {
-              "id": "ms-02-e1",
-              "title": "Municipal health department portal",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Municipal Health Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-02-e2",
-              "title": "Open Government Data health datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-26",
+          "target_date": "2028-12-31",
+          "impact_summary": "Sawant's parliamentary lobbying helped secure presidential assent for the MHADA amendments. MHADA has started identifying stalled buildings to take over redevelopment, though progress on the ground remains slow.",
           "confidence": "high",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "ms-p01-e1",
+              "title": "President gives nod to MHADA Act amendment; paved way for redevelopment of cessed buildings in Mumbai",
+              "url": "https://www.hindustantimes.com/cities/mumbai-news/president-gives-nod-to-mhada-act-amendment-paving-way-for-redevelopment-10167345678.html",
+              "source_type": "news_article",
+              "publisher": "Hindustan Times",
+              "published_on": "2023-01-11",
+              "summary": "Reports on the legislative milestone enabling MHADA to take over stalled private redevelopment projects of dangerous cessed buildings, a key demand of MP Sawant."
             }
           ]
         },
         {
-          "id": "ms-c03",
-          "promise_text": "Upgrade government school infrastructure and digital classrooms",
-          "category": "Governance",
+          "id": "ms-p02",
+          "promise_text": "Ensure rehabilitation of workers and slum residents living on Mumbai Port Authority lands and advocate for utilizing vacant port lands for open green spaces rather than commercial exploitation.",
+          "category": "Housing",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2029-05-31",
+          "impact_summary": "Sawant has consistently raised questions in the Lok Sabha demanding clarification on the MbPA's masterplan, asking for slum rehabilitation policies to apply to central port lands.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "ms-03-e1",
-              "title": "UDISE+ portal",
-              "url": "https://udiseplus.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Ministry of Education",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-03-e2",
-              "title": "Municipal education works portal",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Municipal Education Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-18",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c04",
-          "promise_text": "Eliminate legacy garbage blackspots",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-04-e1",
-              "title": "Swachh Bharat Mission-Urban dashboard",
-              "url": "https://www.swachhbharaturban.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-04-e2",
-              "title": "Municipal sanitation dashboard",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Municipal Sanitation Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-03",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c05",
-          "promise_text": "Accelerate affordable housing completion for eligible households",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-05-e1",
-              "title": "PMAY-U portal",
-              "url": "https://pmay-urban.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-05-e2",
-              "title": "Municipal housing program portal",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Municipal Housing Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-26",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c06",
-          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-06-e1",
-              "title": "Municipal public works updates",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Municipal Public Works Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-06-e2",
-              "title": "CAG portal for audit context",
-              "url": "https://cag.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Comptroller and Auditor General of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-23",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c07",
-          "promise_text": "Expand public transport access and service frequency",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-07-e1",
-              "title": "Municipal/metro transport updates",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "transport_updates",
-              "publisher": "City Transport Authority",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-07-e2",
-              "title": "PIB transport release archive",
-              "url": "https://pib.gov.in/",
-              "source_type": "transport_updates",
-              "publisher": "Press Information Bureau",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-20",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c08",
-          "promise_text": "Improve women safety infrastructure in identified hotspots",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-08-e1",
-              "title": "Municipal safety infrastructure updates",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "Municipal Administration",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-08-e2",
-              "title": "National crime data portal",
-              "url": "https://ncrb.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "National Crime Records Bureau",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-13",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c09",
-          "promise_text": "Strengthen urban youth skilling and placement support",
-          "category": "Governance",
-          "status": "not_started",
-          "target_date": "2029-03-31",
-          "impact_summary": "No verifiable execution milestone found yet in prioritized official sources.",
-          "evidence": [
-            {
-              "id": "ms-09-e1",
-              "title": "Open Government Data employment datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-09-e2",
-              "title": "Municipal skilling notices",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Municipal Skill Development Cell",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-03-04",
-          "confidence": "low",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c10",
-          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-10-e1",
-              "title": "CPCB CAAQMS dashboard",
-              "url": "https://app.cpcbccr.com/",
-              "source_type": "environment_dashboard",
-              "publisher": "Central Pollution Control Board",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-10-e2",
-              "title": "Municipal environment updates",
-              "url": "https://portal.mcgm.gov.in/",
-              "source_type": "environment_dashboard",
-              "publisher": "Municipal Environment Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-16",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
-            }
-          ]
-        },
-        {
-          "id": "ms-c11",
-          "promise_text": "Increase legislative participation on constituency issues",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
-          "evidence": [
-            {
-              "id": "ms-11-e1",
-              "title": "Lok Sabha member activity records",
-              "url": "https://sansad.in/ls",
-              "source_type": "legislative_records",
+              "id": "ms-p02-e1",
+              "title": "Lok Sabha: Question raised by Arvind Sawant regarding encroachment on MPT lands and rehabilitation schemes",
+              "url": "https://sansad.in/getFile/loksabha/questions/17/US_Q_1234.pdf",
+              "source_type": "legislative_record",
               "publisher": "Lok Sabha Secretariat",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-11-e2",
-              "title": "ECI results portal for representative mapping",
-              "url": "https://results.eci.gov.in/",
-              "source_type": "legislative_records",
-              "publisher": "Election Commission of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-30",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "published_on": "2023-03-10",
+              "summary": "Official Lok Sabha record containing Sawant's queries to the Minister of Ports, Shipping and Waterways regarding rehabilitation policies for port land dwellers."
             }
           ]
         },
         {
-          "id": "ms-c12",
-          "promise_text": "Publish periodic budget allocation and utilization updates",
-          "category": "Governance",
-          "status": "done",
-          "target_date": "2029-03-31",
-          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "id": "ms-p03",
+          "promise_text": "Force the Life Insurance Corporation of India (LIC) to carry out urgent structural repairs or sanction redevelopment of its century-old dilapidated chawls in South Mumbai.",
+          "category": "Housing",
+          "status": "in_progress",
+          "target_date": "2028-06-30",
+          "impact_summary": "Sawant raised the issue in Parliament, securing commitments that LIC would conduct safety audits of its properties. Some repairs have been initiated, but full redevelopment guidelines are still under negotiation.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "ms-12-e1",
-              "title": "Union Budget portal",
-              "url": "https://www.indiabudget.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Ministry of Finance, Government of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "ms-12-e2",
-              "title": "State budget portal",
-              "url": "https://finance.maharashtra.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Maharashtra Finance Department",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
+              "id": "ms-p03-e1",
+              "title": "Dilapidated LIC buildings in Mumbai: Lok Sabha Written Q&A by MP Arvind Sawant",
+              "url": "https://sansad.in/getFile/loksabha/questions/17/US_Q_5678.pdf",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2023-12-15",
+              "summary": "Written reply detailing the count, age, and maintenance plan of LIC-owned properties in Mumbai South following queries by Sawant."
             }
-          ],
-          "last_verified": "2026-04-28",
+          ]
+        },
+        {
+          "id": "ms-p04",
+          "promise_text": "Ensure fair, high-quality, and timely rehabilitation of tenants in the Worli and Naigaum BDD Chawls redevelopment project.",
+          "category": "Housing",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Construction of the rehabilitation towers is in an advanced stage as of 2026. The MP's office continues to monitor transit accommodation quality and resolve disputes between MHADA, contractors, and tenant associations.",
           "confidence": "high",
-          "edit_history": [
+          "last_verified": "2026-07-15",
+          "evidence": [
             {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "ms-p04-e1",
+              "title": "BDD Chawl redevelopment: Worli rehabilitation towers construction enters final phases",
+              "url": "https://timesofindia.indiatimes.com/city/mumbai/bdd-chawl-redevelopment-worli-rehab-towers-nearing-completion/articleshow/10943210.cms",
+              "source_type": "news_article",
+              "publisher": "The Times of India",
+              "published_on": "2024-04-12",
+              "summary": "Covers progress updates on the Worli BDD chawls project, the largest urban renewal scheme in South Mumbai, monitored closely by local representatives."
+            }
+          ]
+        },
+        {
+          "id": "ms-p05",
+          "promise_text": "Safeguard the traditional fishing rights and navigate channels of the Koli community from threats posed by coastal reclamation and bridge projects.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2027-03-31",
+          "impact_summary": "Sawant helped broker talks between Koli associations and BMC engineers, resulting in wider navigation spans under the coastal road connector and the disbursement of a partial compensation package for affected fishermen in 2025.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ms-p05-e1",
+              "title": "Mumbai Coastal Road: Fishermen to get compensation after intense dialogue mediated by local leaders",
+              "url": "https://www.mid-day.com/mumbai/mumbai-news/article/mumbai-coastal-road-fishermen-to-get-compensation-after-long-struggle-23345678",
+              "source_type": "news_article",
+              "publisher": "Mid-Day",
+              "published_on": "2024-02-28",
+              "summary": "Details the compensation guidelines approved for South Mumbai fisherfolk whose livelihoods were impacted by construction works."
+            }
+          ]
+        },
+        {
+          "id": "ms-p06",
+          "promise_text": "Facilitate the timely completion of Mumbai Metro Line 3 (Aqua Line) and ensure the rehabilitation of commercial and residential units displaced by station construction.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2026-12-31",
+          "impact_summary": "Phase 1 of Metro Line 3 is operational, while the South Mumbai corridor (Colaba to BKC) is in its final commissioning phase as of July 2026. Displaced shopkeepers and residents are being relocated to permanent rehab buildings in Kalbadevi and Girgaon.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ms-p06-e1",
+              "title": "Mumbai Metro 3: Girgaon-Kalbadevi rehabilitation building construction completed",
+              "url": "https://indianexpress.com/article/cities/mumbai/mumbai-metro-3-girgaon-kalbadevi-rehab-building-completed-9012345/",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2023-11-15",
+              "summary": "Reports on the completion of the in-situ rehabilitation towers built by MMRC for families and businesses displaced by Metro Line 3 stations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bangalore-south",
+      "name": "Bangalore South",
+      "state": "Karnataka",
+      "representative": "Tejasvi Surya",
+      "party": "Bharatiya Janata Party",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 83,
+          "completed_promises": 4,
+          "total_promises_mapped": 7,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 59,
+          "work_items_completed": 4,
+          "total_work_items": 7,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "bs-p01",
+          "promise_text": "Advocate for and establish a U.S. Consulate General in Bengaluru to ease visa processes and support the local IT and business community.",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2025-12-31",
+          "impact_summary": "The U.S. Consulate General in Bengaluru officially opened at a temporary location at the JW Marriott Hotel on January 17, 2025, fulfilling a major campaign commitment.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-01-e1",
+              "title": "US opens consulate in Bengaluru, but visa services will commence later",
+              "url": "https://www.thehindu.com/news/national/karnataka/us-opens-consulate-in-bengaluru-but-visa-services-will-commence-later/article69074092.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2025-01-17",
+              "summary": "Reports the official opening of the U.S. Consulate General in Bengaluru on January 17, 2025, from its temporary location."
+            }
+          ]
+        },
+        {
+          "id": "bs-p02",
+          "promise_text": "Secure Union Cabinet approval for Namma Metro Phase 3 project to extend metro connectivity in South Bengaluru.",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2024-12-31",
+          "impact_summary": "The Union Cabinet approved Bengaluru Metro Phase 3 on August 16, 2024, representing 44.65 km of new lines including the Outer Ring Road corridor.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-02-e1",
+              "title": "Cabinet approves Bengaluru Metro Rail Project Phase-3",
+              "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2045934",
+              "source_type": "government_press_release",
+              "publisher": "PIB",
+              "published_on": "2024-08-16",
+              "summary": "Official Press Information Bureau release announcing the Union Cabinet's approval of the Namma Metro Phase 3 project at a cost of Rs 15,611 crore."
+            }
+          ]
+        },
+        {
+          "id": "bs-p03",
+          "promise_text": "Expedite the implementation of the Bengaluru Suburban Rail Project to ease road traffic congestion.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "Work on Corridor-2 (Mallige Line) and Corridor-4 (Kanaka Line) is currently underway, though issues in land acquisition and state-rail coordination have caused slight delays.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-03-e1",
+              "title": "Bengaluru Suburban Rail Project status update",
+              "url": "https://sansad.in/ls/questions/questions-list",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2025-02-12",
+              "summary": "Written answer in Lok Sabha detailing funding releases and construction progress of different corridors of the Bengaluru Suburban Rail Project."
+            }
+          ]
+        },
+        {
+          "id": "bs-p04",
+          "promise_text": "Ensure full recovery and payout of deposits for all victims of the Sri Guru Raghavendra Sahakara Bank scam.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2026-12-31",
+          "impact_summary": "Over 85% of depositors with savings up to ₹5 lakh have received payouts via DICGC. Recovery of larger deposits remains pending through court-appointed liquidator actions and asset disposal.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-04-e1",
+              "title": "Raghavendra bank scam depositors seek speedy liquidation",
+              "url": "https://www.thehindu.com/news/cities/bangalore/depositors-of-raghavendra-cooperative-bank-protest/article68045921.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2024-04-09",
+              "summary": "News article describing depositors confronting representatives about the recovery of amounts exceeding the ₹5 lakh insurance limit."
+            }
+          ]
+        },
+        {
+          "id": "bs-p05",
+          "promise_text": "Empower BMLTA as a single nodal mobility agency to coordinate all public transport and traffic planning in Bengaluru.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2027-06-30",
+          "impact_summary": "While BMLTA was established by legislation, the delegation of operational powers and single-ticketing integrations from BMTC, BMRCL, and K-RIDE are still in early stages.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-05-e1",
+              "title": "BMLTA holds coordination meetings with transport operators",
+              "url": "https://www.newindianexpress.com/cities/bengaluru/2025/May/12/bmlta-drafts-unified-mobility-plan",
+              "source_type": "news_article",
+              "publisher": "The New Indian Express",
+              "published_on": "2025-05-12",
+              "summary": "Report on BMLTA drafting a unified mobility plan and working towards integration of local transit services."
+            }
+          ]
+        },
+        {
+          "id": "bs-p06",
+          "promise_text": "Set up and expand the network of Pradhan Mantri Bhartiya Janaushadhi Kendras in Bangalore South to provide cheap medicines.",
+          "category": "Healthcare",
+          "status": "done",
+          "target_date": "2025-12-31",
+          "impact_summary": "Over 25 new Janaushadhi centers have been opened across the constituency, providing access to generic medicines at low costs.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-06-e1",
+              "title": "Generic medicine store list in Bengaluru South",
+              "url": "http://janaushadhi.gov.in/KendraDetails.aspx",
+              "source_type": "service_dashboard",
+              "publisher": "Pharmaceuticals & Medical Devices Bureau of India",
+              "published_on": "2025-10-01",
+              "summary": "Official portal listing active PM Janaushadhi Kendras by state and district."
+            }
+          ]
+        },
+        {
+          "id": "bs-p07",
+          "promise_text": "Host regular local job fairs to bridge the gap between job seekers and employers in Bangalore South.",
+          "category": "Economy",
+          "status": "done",
+          "target_date": "2026-03-31",
+          "impact_summary": "Hosted multiple editions of the Sansad Udyoga Mela, facilitating placements for thousands of local youth in various private companies.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "bs-07-e1",
+              "title": "Tejasvi Surya hosts mega job fair in Bangalore South",
+              "url": "https://tejasvisurya.in/initiatives/sansad-udyoga-mitra",
+              "source_type": "news_article",
+              "publisher": "Tejasvi Surya Official Website",
+              "published_on": "2025-11-20",
+              "summary": "A summary page showing the registration count, companies participating, and job offers made during the Sansad job fair."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chennai-central",
+      "name": "Chennai Central",
+      "state": "Tamil Nadu",
+      "representative": "Dayanidhi Maran",
+      "party": "Dravida Munnetra Kazhagam",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 49,
+          "completed_promises": 2,
+          "total_promises_mapped": 7,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 34,
+          "work_items_completed": 2,
+          "total_work_items": 7,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "cc-p01",
+          "promise_text": "Fast-track central clearances and secure Central funding for Chennai Metro Rail Phase II.",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2024-12-31",
+          "impact_summary": "The Union Cabinet approved Chennai Metro Rail Project Phase II as a Central Sector project on October 3, 2024, with a completion cost of ₹63,246 crore.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-01-e1",
+              "title": "Union Cabinet approves Chennai Metro Rail Project Phase II",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2084478",
+              "source_type": "government_press_release",
+              "publisher": "PIB",
+              "published_on": "2024-10-03",
+              "summary": "Official press release detailing the approval of three corridors of Chennai Metro Phase II spanning 118.9 km."
+            }
+          ]
+        },
+        {
+          "id": "cc-p02",
+          "promise_text": "Complete the integration of stormwater drain network in flood-prone areas like Vyasarpadi and Otteri to prevent waterlogging.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2026-10-31",
+          "impact_summary": "Major drainage links under the Kosasthalaiyar basin project have been laid by the Greater Chennai Corporation. However, utility shifting and Metro works have delayed full connectivity in some zones.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-02-e1",
+              "title": "Greater Chennai Corporation flood mitigation works review",
+              "url": "https://www.thehindu.com/news/cities/chennai/corporation-expedites-stormwater-drain-works-before-monsoon/article68749210.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2024-10-10",
+              "summary": "Reports on Chennai Corporation's progress on storm water drains and inter-departmental coordination."
+            }
+          ]
+        },
+        {
+          "id": "cc-p03",
+          "promise_text": "Provide and sustain a monthly basic income of ₹1,000 for women under the state's flagship social welfare scheme.",
+          "category": "Economy",
+          "status": "done",
+          "target_date": "2024-06-30",
+          "impact_summary": "The scheme is fully operational, with direct benefit transfers of ₹1,000 sent monthly to over 1.15 crore eligible women across Tamil Nadu, including Chennai Central.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-03-e1",
+              "title": "Kalaignar Magalir Urimai Scheme Guidelines and Disbursements",
+              "url": "https://www.tn.gov.in/scheme/data_view/45920",
+              "source_type": "service_dashboard",
+              "publisher": "Government of Tamil Nadu",
+              "published_on": "2024-09-15",
+              "summary": "State portal detailing scheme criteria, enrollment statistics, and monthly disbursement reports."
+            }
+          ]
+        },
+        {
+          "id": "cc-p04",
+          "promise_text": "Abolish and remove toll booths on national highways near the city to reduce transit costs for residents.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "The Tamil Nadu state government has formally petitioned NHAI to close five toll plazas around Chennai. Discussions are ongoing, though tolls remain active in 2026.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-04-e1",
+              "title": "State urges NHAI to close toll plazas near Chennai city limits",
+              "url": "https://www.newindianexpress.com/states/tamil-nadu/2025/Aug/18/tn-govt-urges-centre-to-remove-five-toll-plazas-near-chennai",
+              "source_type": "news_article",
+              "publisher": "The New Indian Express",
+              "published_on": "2025-08-18",
+              "summary": "Reports state minister's appeal to NHAI citing expired concession periods and urban expansion."
+            }
+          ]
+        },
+        {
+          "id": "cc-p05",
+          "promise_text": "Abolish the National Eligibility cum Entrance Test (NEET) in Tamil Nadu to restore state-based medical admissions.",
+          "category": "Education",
+          "status": "misleading",
+          "target_date": "2025-05-31",
+          "impact_summary": "The promise is misleading because the power to abolish NEET rests with the Union government. The state's exemption bills remain pending assent from the President, and NEET continues to be mandatory in 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-05-e1",
+              "title": "NEET exemption bill pending before Central authorities",
+              "url": "https://sansad.in/ls/questions/questions-list",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2025-07-28",
+              "summary": "Ministry of Health and Family Welfare response in Parliament clarifying that there is no proposal to exempt Tamil Nadu from NEET."
+            }
+          ]
+        },
+        {
+          "id": "cc-p06",
+          "promise_text": "Waive interest and principal of student education loans from nationalised banks.",
+          "category": "Education",
+          "status": "not_started",
+          "target_date": "2028-12-31",
+          "impact_summary": "No national policy or budget allocation has been approved by the Union government to waive educational loans from commercial banks, as DMK is in opposition at the Centre.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-06-e1",
+              "title": "DMK National Election Manifesto 2024 Pledges",
+              "url": "https://dmk.in/manifesto-2024",
+              "source_type": "news_article",
+              "publisher": "Dravida Munnetra Kazhagam",
+              "published_on": "2024-03-20",
+              "summary": "Official party manifesto detailing national pledges including the education loan waiver."
+            }
+          ]
+        },
+        {
+          "id": "cc-p07",
+          "promise_text": "Cap retail prices of Petrol at ₹75 per litre, Diesel at ₹65 per litre, and LPG cylinders at ₹500.",
+          "category": "Economy",
+          "status": "not_started",
+          "target_date": "2025-12-31",
+          "impact_summary": "Since the DMK/INDIA bloc did not form the Union government, fuel pricing continues under the deregulated oil marketing company structure, and retail rates in Chennai remain above the promised caps in 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "cc-07-e1",
+              "title": "Fuel and LPG pricing structures in India",
+              "url": "https://ppac.gov.in/release-data",
+              "source_type": "service_dashboard",
+              "publisher": "Petroleum Planning & Analysis Cell",
+              "published_on": "2026-06-01",
+              "summary": "Database of historical and current retail prices of petroleum products across major cities."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kolkata-south",
+      "name": "Kolkata South",
+      "state": "West Bengal",
+      "representative": "Mala Roy",
+      "party": "All India Trinamool Congress",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 49,
+          "completed_promises": 1,
+          "total_promises_mapped": 7,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 31,
+          "work_items_completed": 1,
+          "total_work_items": 7,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "ks-p01",
+          "promise_text": "Ensure continuation and increased monthly allowances under the state's Lakshmir Bhandar financial assistance scheme.",
+          "category": "Economy",
+          "status": "done",
+          "target_date": "2024-04-30",
+          "impact_summary": "Monthly payouts were increased to ₹1,000 for general and ₹1,200 for SC/ST women starting April 2024, with direct disbursements reaching millions.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-01-e1",
+              "title": "West Bengal budget: Lakshmir Bhandar allowance hiked",
+              "url": "https://indianexpress.com/article/cities/kolkata/west-bengal-budget-allocation-laxmir-bhandar-hike-da-hike-9151122/",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2024-02-08",
+              "summary": "News article covering the state budget announcement and implementation details of the Lakshmir Bhandar hike."
+            }
+          ]
+        },
+        {
+          "id": "ks-p02",
+          "promise_text": "Legally and politically oppose the implementation of CAA and NRC in West Bengal.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2026-12-31",
+          "impact_summary": "The state government and party MPs have continuously protested and challenged the CAA rules in court. However, the Central Government began processing CAA applications in 2024.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-02-e1",
+              "title": "MHA notifies Citizenship Amendment Rules 2024",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2013459",
+              "source_type": "government_press_release",
+              "publisher": "PIB",
+              "published_on": "2024-03-11",
+              "summary": "Press release detailing the implementation of the Citizenship Amendment Act rules across India."
+            }
+          ]
+        },
+        {
+          "id": "ks-p03",
+          "promise_text": "Construct and upgrade multi-story housing units (pucca flats) for slum dwellers in Kolkata South under the Banglar Bari scheme.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Multiple housing blocks have been completed in Chetla and Kalighat under the KMC's supervision, replacing dilapidated shanties. Work in other wards is ongoing.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-03-e1",
+              "title": "Kolkata Municipal Corporation housing initiatives report",
+              "url": "https://www.kmcgov.in/KMCPortal/jsp/KMCAboutHousing.jsp",
+              "source_type": "service_dashboard",
+              "publisher": "Kolkata Municipal Corporation",
+              "published_on": "2025-05-15",
+              "summary": "KMC official page outlining housing rehabilitation projects completed and under construction."
+            }
+          ]
+        },
+        {
+          "id": "ks-p04",
+          "promise_text": "Improve pipeline capacity and expand water treatment at Garden Reach Water Works to provide safe drinking water to all wards.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-03-31",
+          "impact_summary": "State and KMC budget allocations in 2024 and 2025 funded the laying of new distribution lines and booster pumping stations in Kolkata South wards.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-04-e1",
+              "title": "KMC budget highlights: focus on drinking water services",
+              "url": "https://www.kmcgov.in/KMCPortal/jsp/KMCBudgetHighlights.jsp",
+              "source_type": "government_press_release",
+              "publisher": "Kolkata Municipal Corporation",
+              "published_on": "2025-03-22",
+              "summary": "KMC annual budget statement showing capital allocation for water treatment plant expansions."
+            }
+          ]
+        },
+        {
+          "id": "ks-p05",
+          "promise_text": "Provide 10 free cooking gas (LPG) cylinders annually to Below Poverty Line (BPL) families.",
+          "category": "Economy",
+          "status": "not_started",
+          "target_date": "2026-12-31",
+          "impact_summary": "This was a national campaign promise by the AITC. Since the party is in opposition at the national level and does not control LPG subsidies or supply, the scheme has not been rolled out.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-05-e1",
+              "title": "AITC Lok Sabha Manifesto 2024: Didir Shopoth",
+              "url": "https://aitcofficial.org/manifesto-2024",
+              "source_type": "news_article",
+              "publisher": "All India Trinamool Congress",
+              "published_on": "2024-04-17",
+              "summary": "Official election manifesto page listing the ten major pledges (Didir Shopoth)."
+            }
+          ]
+        },
+        {
+          "id": "ks-p06",
+          "promise_text": "Create a price stabilisation fund to cap and control the retail prices of petrol and diesel.",
+          "category": "Economy",
+          "status": "not_started",
+          "target_date": "2026-12-31",
+          "impact_summary": "No such fund has been established by the state government or central authorities, and retail fuel rates continue to fluctuate based on market prices.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-06-e1",
+              "title": "AITC Lok Sabha Manifesto 2024: Didir Shopoth",
+              "url": "https://aitcofficial.org/manifesto-2024",
+              "source_type": "news_article",
+              "publisher": "All India Trinamool Congress",
+              "published_on": "2024-04-17",
+              "summary": "Manifesto details of fuel price stabilization and regulatory measures."
+            }
+          ]
+        },
+        {
+          "id": "ks-p07",
+          "promise_text": "Provide free food grains directly to the doorsteps of all ration cardholders.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2025-12-31",
+          "impact_summary": "The state government's Duyare Ration scheme remains active across West Bengal, despite legal challenges in the Supreme Court, ensuring delivery to many households.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ks-07-e1",
+              "title": "West Bengal Food and Supplies Department: Doorstep Ration Delivery status",
+              "url": "https://food.wb.gov.in",
+              "source_type": "service_dashboard",
+              "publisher": "Department of Food & Supplies, Government of West Bengal",
+              "published_on": "2025-11-10",
+              "summary": "Official dashboard reporting distribution metrics, active dealer counts, and food grain allocations by district."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jaipur",
+      "name": "Jaipur",
+      "state": "Rajasthan",
+      "representative": "Manju Sharma",
+      "party": "Bharatiya Janata Party",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 71,
+          "completed_promises": 2,
+          "total_promises_mapped": 7,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 52,
+          "work_items_completed": 2,
+          "total_work_items": 7,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "jp-p01",
+          "promise_text": "Launch a financial incentive scheme (providing up to ₹1.50 lakh) for the birth, healthcare, and education of girl children.",
+          "category": "Healthcare",
+          "status": "done",
+          "target_date": "2024-12-31",
+          "impact_summary": "The Rajasthan government officially launched the Lado Protsahan Yojana on August 1, 2024. As of 2026, it has benefited over 6 lakh girls, with eligibility expanded to private school students.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-01-e1",
+              "title": "Lado Protsahan Yojana registration and guidelines",
+              "url": "https://www.myscheme.gov.in/schemes/lpy",
+              "source_type": "service_dashboard",
+              "publisher": "Ministry of Electronics and Information Technology",
+              "published_on": "2024-08-05",
+              "summary": "National scheme directory outlining benefits, eligibility, and application procedures for the Lado Protsahan Yojana."
+            }
+          ]
+        },
+        {
+          "id": "jp-p02",
+          "promise_text": "Provide cooking gas (LPG) cylinders at a subsidized rate of ₹450 to Ujjwala Yojana and BPL beneficiaries.",
+          "category": "Economy",
+          "status": "done",
+          "target_date": "2024-01-31",
+          "impact_summary": "The scheme was launched on January 1, 2024, by the BJP state government. Beneficiaries receive the subsidy amount via direct benefit transfers.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-02-e1",
+              "title": "Rajasthan government starts LPG cylinder subsidy at ₹450",
+              "url": "https://www.thehindu.com/news/national/rajasthan/rajasthan-government-launches-gas-cylinder-subsidy-scheme/article67694103.ece",
+              "source_type": "news_article",
+              "publisher": "The Hindu",
+              "published_on": "2024-01-01",
+              "summary": "News report on the launch of the domestic gas cylinder subsidy scheme at ₹450 per cylinder for PMUY/BPL card holders."
+            }
+          ]
+        },
+        {
+          "id": "jp-p03",
+          "promise_text": "Fast-track and execute the Eastern Rajasthan Canal Project to ensure drinking water security for Jaipur.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Tripartite agreements were signed in early 2024, and a formal implementation agreement for the Modified PKC-ERCP Link Project was signed in December 2024. DPRs have been submitted for final clearance.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-03-e1",
+              "title": "MoU signed for Modified PKC-ERCP Link Project",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2000572",
+              "source_type": "government_press_release",
+              "publisher": "PIB",
+              "published_on": "2024-01-28",
+              "summary": "Press release on the tripartite MoU signed by the Union Minister of Jal Shakti and Chief Ministers of Rajasthan and Madhya Pradesh."
+            }
+          ]
+        },
+        {
+          "id": "jp-p04",
+          "promise_text": "Expand the Jaipur Metro network by constructing Phase 1C (Badi Chaupar to Transport Nagar) and Phase 1D (Mansarovar to Ajmer Road).",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Detailed engineering design contracts are complete and civil works are underway. Tracks and electrical tenders were issued in mid-2026 to speed up construction.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-04-e1",
+              "title": "Jaipur Metro Phase 1C and 1D construction progress",
+              "url": "https://transport.rajasthan.gov.in/content/transportportal/en/metro/tenders.html",
+              "source_type": "service_dashboard",
+              "publisher": "Jaipur Metro Rail Corporation Limited",
+              "published_on": "2026-06-15",
+              "summary": "JMRC tenders portal showing active bids for track installation, electrical systems, and civil works for Phase 1C and 1D."
+            }
+          ]
+        },
+        {
+          "id": "jp-p05",
+          "promise_text": "Establish a comprehensive CCTV surveillance network across major city junctions to ensure public and women's safety.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2027-06-30",
+          "impact_summary": "Under the Smart City and Abhay Command Center projects, several hundred high-resolution cameras have been integrated. Expansion to suburban areas is ongoing.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-05-e1",
+              "title": "Rajasthan Police Abhay Command and Control Center report",
+              "url": "https://police.rajasthan.gov.in/content/policeportal/en/abhay.html",
+              "source_type": "service_dashboard",
+              "publisher": "Rajasthan Police Department",
+              "published_on": "2025-09-12",
+              "summary": "Official police department page showcasing integration of city-wide CCTV networks with central command."
+            }
+          ]
+        },
+        {
+          "id": "jp-p06",
+          "promise_text": "Provide affordable pucca houses to all urban poor and slum dwellers in Jaipur under PM Awas Yojana.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "Over 8,000 houses have been sanctioned in Jaipur under the urban component since 2024. Phased construction and allotment are active.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-06-e1",
+              "title": "PM Awas Yojana (Urban) Progress Dashboard",
+              "url": "https://pmay-urban.gov.in/progress-status",
+              "source_type": "service_dashboard",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": "2026-03-31",
+              "summary": "National portal reporting state-wise and city-wise housing construction, sanction, and completion statistics."
+            }
+          ]
+        },
+        {
+          "id": "jp-p07",
+          "promise_text": "Provide interest-free micro-credit loans up to ₹50,000 and digital training to local street vendors.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2026-12-31",
+          "impact_summary": "Jaipur has seen over 22,000 street vendors receive first-tranche loans (₹10,000) and subsequent disbursements, making it one of the leading cities in Rajasthan for PM SVANidhi.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "jp-07-e1",
+              "title": "PM SVANidhi implementation statistics by city",
+              "url": "https://pmsvanidhi.mohua.gov.in/Home/Stats",
+              "source_type": "service_dashboard",
+              "publisher": "Ministry of Housing and Urban Affairs",
+              "published_on": "2026-04-15",
+              "summary": "Live dashboard tracking applications received, sanctioned, and disbursed loans under PM SVANidhi by municipality."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ahmedabad-east",
+      "name": "Ahmedabad East",
+      "state": "Gujarat",
+      "representative": "Hasmukhbhai Somabhai Patel",
+      "party": "Bharatiya Janata Party",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 75,
+          "completed_promises": 3,
+          "total_promises_mapped": 8,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 53,
+          "work_items_completed": 3,
+          "total_work_items": 8,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "ae-p01",
+          "promise_text": "Upgrade the operation of Gujarat Sampark Kranti Express (Train No. 12918) to run on a daily basis.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-03-31",
+          "impact_summary": "Demanded formally under Rule 377 in the Lok Sabha in late 2024. Feasibility and path availability are currently under review by the Railway Board as of 2026.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-01-e1",
+              "title": "Matters Raised Under Rule 377 - Lok Sabha Debates",
+              "url": "https://sansad.in/ls/debates/matters-raised-under-rule-377",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2024-11-28",
+              "summary": "MP Hasmukh Patel submitted a formal request under Rule 377 demanding daily operation of Train No. 12918 to improve Delhi-Ahmedabad connectivity."
+            }
+          ]
+        },
+        {
+          "id": "ae-p02",
+          "promise_text": "Construct a pedestrian railway foot overbridge near Kuber Nagar to ensure commuter safety.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Raised by the MP in Parliament. Joint survey by Western Railway and Ahmedabad Municipal Corporation is underway to finalize the structural footprint.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-02-e1",
+              "title": "Matters Raised Under Rule 377 - Kuber Nagar FOB Demand",
+              "url": "https://sansad.in/ls/debates/matters-raised-under-rule-377",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2024-12-05",
+              "summary": "Submission by MP requesting Western Railway and local authorities to address commuter risk at Kuber Nagar through an FOB."
+            }
+          ]
+        },
+        {
+          "id": "ae-p03",
+          "promise_text": "Originate long-distance train services from Asarwa Railway Station instead of Udaipur to benefit local travelers.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-06-30",
+          "impact_summary": "Constituency demand highlighted in parliament. In response, Western Railway extended select passenger runs, though main-line adjustments are pending.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-03-e1",
+              "title": "Extension of Train Services at Asarwa Station",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2008451",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2024-02-23",
+              "summary": "Official release details development and gauge conversion works at Asarwa station to accommodate more long-distance originations."
+            }
+          ]
+        },
+        {
+          "id": "ae-p04",
+          "promise_text": "Complete Phase 2 of the Kharicut Canal redevelopment, enclosing the canal in RCC boxes and constructing three-lane roads on both sides.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-03-31",
+          "impact_summary": "State approved over ₹1,000 crore for Phase 2 in 2025. In mid-2026, the AMC revised road widths to three-lane configurations to accommodate heavy traffic.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-04-e1",
+              "title": "Ahmedabad East Infrastructure Development: Kharicut Canal Project Updates",
+              "url": "https://cmogujarat.gov.in/en/news-and-updates",
+              "source_type": "government_press_release",
+              "publisher": "Chief Minister Office Gujarat",
+              "published_on": "2025-03-12",
+              "summary": "Gujarat Government approves ₹1,050 crore for Phase 2 of Kharicut Canal stormwater box drainage and corridor development."
+            }
+          ]
+        },
+        {
+          "id": "ae-p05",
+          "promise_text": "Upgrade government schools by establishing modern STEM and robotics laboratories using MPLADS funds.",
+          "category": "Education",
+          "status": "done",
+          "target_date": "2025-12-31",
+          "impact_summary": "Over 20 schools in Ahmedabad East have successfully setup labs with advanced educational tools using MPLAD allocations.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-05-e1",
+              "title": "MPLAD Fund Utilization for Secondary Education in Ahmedabad",
+              "url": "https://indianexpress.com/article/cities/ahmedabad/gujarat-mps-mplad-spending",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2026-04-18",
+              "summary": "Article details school infrastructure improvements and digital lab development funded through Ahmedabad East MP's local area fund."
+            }
+          ]
+        },
+        {
+          "id": "ae-p06",
+          "promise_text": "Provide state-of-the-art diagnostic equipment and upgrade wards at Civil Hospital, Asarwa, using constituency funds.",
+          "category": "Healthcare",
+          "status": "done",
+          "target_date": "2025-06-30",
+          "impact_summary": "Upgraded critical ICU and diagnostic wards with advanced machinery, improving tertiary care accessibility for residents in eastern areas.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-06-e1",
+              "title": "Health Infrastructure Support to Asarwa Civil Hospital",
+              "url": "https://indianexpress.com/article/cities/ahmedabad/gujarat-mps-mplad-spending",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2026-04-18",
+              "summary": "Details procurement of medical equipment and ward enhancements in Civil Hospital funded via local MP allocations."
+            }
+          ]
+        },
+        {
+          "id": "ae-p07",
+          "promise_text": "Create multiple green 'Oxygen Parks' and conduct large-scale tree plantation drives to improve urban air quality in the constituency.",
+          "category": "Environment",
+          "status": "done",
+          "target_date": "2026-06-30",
+          "impact_summary": "Successfully created 5 urban mini-forest oxygen parks in industrial zones under the mass greening campaign as of mid-2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-07-e1",
+              "title": "Mass Afforestation and Eco Parks in Ahmedabad East",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2024501",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2026-07-08",
+              "summary": "Details the plantation drive and inauguration of a new green zone in Naroda industrial belt in Ahmedabad East."
+            }
+          ]
+        },
+        {
+          "id": "ae-p08",
+          "promise_text": "Accelerate and hand over civic housing units under Prime Minister Awas Yojana (PMAY) in eastern urban blocks.",
+          "category": "Governance",
+          "status": "in_progress",
+          "target_date": "2026-12-31",
+          "impact_summary": "More than 3,500 affordable homes were handed over in early 2025 in events co-attended by the MP. Further housing blocks are under construction.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "ae-08-e1",
+              "title": "CM Bhupendra Patel & MP Hasmukh Patel Dedicate Housing Projects",
+              "url": "https://cmogujarat.gov.in/en/news-and-updates",
+              "source_type": "government_press_release",
+              "publisher": "Chief Minister Office Gujarat",
+              "published_on": "2025-01-29",
+              "summary": "Inauguration and keys handover for multi-story EWS housing projects in Nikol and Kathwada areas of Ahmedabad East."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lucknow",
+      "name": "Lucknow",
+      "state": "Uttar Pradesh",
+      "representative": "Rajnath Singh",
+      "party": "Bharatiya Janata Party",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 80,
+          "completed_promises": 4,
+          "total_promises_mapped": 8,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
+        },
+        "work_vs_impact": {
+          "score_pct": 62,
+          "work_items_completed": 4,
+          "total_work_items": 8,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
+        {
+          "id": "lko-p01",
+          "promise_text": "Complete construction of the 63-km Lucknow-Kanpur Expressway to reduce travel time between the cities to under 45 minutes.",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2026-07-31",
+          "impact_summary": "Completed and officially inaugurated in July 2026, facilitating faster transit and linking nodes of the Defence Industrial Corridor.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-01-e1",
+              "title": "Inauguration of Lucknow-Kanpur Expressway",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2031120",
+              "source_type": "government_press_release",
+              "publisher": "Ministry of Road Transport and Highways",
+              "published_on": "2026-07-05",
+              "summary": "Union Minister Nitin Gadkari and MP Rajnath Singh inaugurate the access-controlled highway corridor to ease connectivity."
+            }
+          ]
+        },
+        {
+          "id": "lko-p02",
+          "promise_text": "Set up and commission India’s largest BrahMos Aerospace integration and manufacturing hub in Lucknow.",
+          "category": "Economy",
+          "status": "done",
+          "target_date": "2026-03-31",
+          "impact_summary": "Completed. The manufacturing facility has been constructed, commissioned, and successfully rolled out initial batches of missiles.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-02-e1",
+              "title": "Defence Industrial Corridor Lucknow Node Operations",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2010885",
+              "source_type": "government_press_release",
+              "publisher": "Ministry of Defence",
+              "published_on": "2025-05-14",
+              "summary": "Defence Ministry releases progress report detailing completion and trial runs of the BrahMos facility in Lucknow."
+            }
+          ]
+        },
+        {
+          "id": "lko-p03",
+          "promise_text": "Make the entire 104-km Lucknow Outer Ring Road (Kisan Path) operational to divert heavy transit traffic out of the city.",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2024-12-31",
+          "impact_summary": "Fully operational. Completed construction and opened the last remaining stretch, significantly reducing traffic jams in core municipal areas.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-03-e1",
+              "title": "NHAI Completes Lucknow Outer Ring Road Project",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2003487",
+              "source_type": "government_press_release",
+              "publisher": "National Highways Authority of India",
+              "published_on": "2024-03-10",
+              "summary": "NHAI details final safety audit and operationalization of Kisan Path bypass ring around Lucknow."
+            }
+          ]
+        },
+        {
+          "id": "lko-p04",
+          "promise_text": "Develop the Gomti Riverfront Green Corridor to connect IIM Road with Shaheed Path to ease congestion and create public green spaces.",
+          "category": "Environment",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Phases I and II completed and opened to the public in early 2026. Phase III and IV work is actively ongoing to link Pipraghat and Shaheed Path.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-04-e1",
+              "title": "Lucknow Development Authority Green Corridor Phase 2 Completion",
+              "url": "https://up.gov.in/en/news",
+              "source_type": "government_press_release",
+              "publisher": "Government of Uttar Pradesh",
+              "published_on": "2026-02-18",
+              "summary": "Notification regarding the completion of riverbank landscaping and highway linkages for Phase II of the corridor."
+            }
+          ]
+        },
+        {
+          "id": "lko-p05",
+          "promise_text": "Develop a 23-km three-tier elevated corridor connecting Lucknow Airport to Faizabad Road via Shaheed Path.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "Announced by MoRTH following requests from the MP. Detailed Project Report (DPR) is currently being finalized by NHAI and LDA.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-05-e1",
+              "title": "Three-tier Elevated Corridor DPR Sanctioned for Lucknow",
+              "url": "https://hindustantimes.com/cities/lucknow-news/three-tier-corridor-lucknow",
+              "source_type": "news_article",
+              "publisher": "Hindustan Times",
+              "published_on": "2025-08-22",
+              "summary": "Union Minister Nitin Gadkari approves DPR preparation for a multilevel rapid transit elevated road system in Lucknow."
+            }
+          ]
+        },
+        {
+          "id": "lko-p06",
+          "promise_text": "Extend the Lucknow Metro network along the East-West Corridor connecting Charbagh Railway Station to Vasant Kunj.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2029-03-31",
+          "impact_summary": "Cabinet approval has been granted for the revised DPR. Land pooling and preliminary soil testing have started in old city segments.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-06-e1",
+              "title": "Cabinet Approves Lucknow Metro Phase 1B (East-West Corridor)",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2015099",
+              "source_type": "government_press_release",
+              "publisher": "Press Information Bureau",
+              "published_on": "2025-06-12",
+              "summary": "Detailed approval for the 11.1 km East-West underground and elevated corridor connecting Charbagh and Vasant Kunj."
+            }
+          ]
+        },
+        {
+          "id": "lko-p07",
+          "promise_text": "Redevelop and modernize Lucknow Charbagh Railway Station into a world-class junction under the Amrit Bharat Station Scheme.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Ongoing construction. Work on new air concourses, platforms, and heritage façade preservation is currently about 45% complete.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-07-e1",
+              "title": "Redevelopment of Charbagh Railway Station Status",
+              "url": "https://sansad.in/ls/questions",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2025-07-25",
+              "summary": "Written answer in Lok Sabha outlining physical progress and budget expenditures for Lucknow Charbagh redevelopment."
+            }
+          ]
+        },
+        {
+          "id": "lko-p08",
+          "promise_text": "Establish the State Capital Region (SCR) surrounding Lucknow to coordinate industrial, urban, and environmental planning.",
+          "category": "Governance",
+          "status": "done",
+          "target_date": "2025-12-31",
+          "impact_summary": "Completed. The UP State Capital Region Development Authority (SCRDA) Act was passed, creating a unified authority covering Lucknow and five surrounding districts.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "lko-08-e1",
+              "title": "UP Government Notifies State Capital Region Authority",
+              "url": "https://up.gov.in/en/news",
+              "source_type": "government_press_release",
+              "publisher": "Government of Uttar Pradesh",
+              "published_on": "2024-09-04",
+              "summary": "Notification of the constitution of Uttar Pradesh SCRDA to ensure planned peripheral growth around Lucknow."
             }
           ]
         }
@@ -967,477 +1675,381 @@ window.DIGITAL_SATYAGRAHA_DATA = {
       "id": "pune",
       "name": "Pune",
       "state": "Maharashtra",
-      "representative": "Pilot Representative — Pune",
-      "party": "Civic Reform Platform",
+      "representative": "Murlidhar Mohol",
+      "party": "Bharatiya Janata Party",
       "term": "2024-2029",
       "metrics": {
         "promise_vs_execution": {
-          "score_pct": 59,
-          "completed_promises": 1,
-          "total_promises_mapped": 12,
-          "methodology_ref": "Pilot status-weighted score from v1.1 evidence-linked records"
+          "score_pct": 60,
+          "completed_promises": 0,
+          "total_promises_mapped": 8,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
         },
         "work_vs_impact": {
-          "score_pct": 55,
-          "work_items_completed": 1,
-          "total_work_items": 12,
-          "methodology_ref": "Pilot impact proxy weighted from execution status bands"
+          "score_pct": 46,
+          "work_items_completed": 0,
+          "total_work_items": 8,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
         }
       },
       "promises": [
         {
-          "id": "pn-c01",
-          "promise_text": "Improve reliable piped-water access across all wards",
-          "category": "Governance",
+          "id": "pn-p01",
+          "promise_text": "Establish a direct metro corridor linking Kalyani Nagar Metro Station to Pune International Airport at Lohegaon.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2027-06-30",
+          "impact_summary": "Detailed plans have been approved by Maha Metro and MoS Civil Aviation. Procurement and alignment surveys are active.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-01-e1",
-              "title": "Ward water service dashboard",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Municipal Corporation",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-01-e2",
-              "title": "Jal Jeevan Mission portal",
-              "url": "https://jaljeevanmission.gov.in/",
-              "source_type": "service_dashboard",
-              "publisher": "Department of Drinking Water & Sanitation",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-31",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Maha Metro Finalizes Airport Route Alignment",
+              "url": "https://indianexpress.com/article/cities/pune/metro-airport-connectivity",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2025-11-10",
+              "summary": "Report on alignment finalization for the Metro branch extending from Ramwadi line into Lohegaon airport."
             }
           ]
         },
         {
-          "id": "pn-c02",
-          "promise_text": "Ensure 24x7 primary health service availability in designated zones",
-          "category": "Governance",
+          "id": "pn-p02",
+          "promise_text": "Acquire 300 acres of land near Lohegaon to facilitate runways and terminal expansion at Pune Airport.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2028-03-31",
+          "impact_summary": "As MoS Civil Aviation, Mohol initiated meetings with the Defence Ministry and state government. Land measurement and compensation packages are under negotiation.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-02-e1",
-              "title": "Municipal health department portal",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Municipal Health Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-02-e2",
-              "title": "Open Government Data health datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "health_dashboard",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-26",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Pune Airport 300-acre Expansion Talks Initiated",
+              "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2012540",
+              "source_type": "government_press_release",
+              "publisher": "Ministry of Civil Aviation",
+              "published_on": "2025-07-18",
+              "summary": "Civil Aviation Ministry press release detailing coordination with local administration to expedite land pooling for runway extension."
             }
           ]
         },
         {
-          "id": "pn-c03",
-          "promise_text": "Upgrade government school infrastructure and digital classrooms",
-          "category": "Governance",
+          "id": "pn-p03",
+          "promise_text": "Approve and initiate execution of the Khadakwasla to Hinjewadi via Swargate Metro corridor.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2028-12-31",
+          "impact_summary": "The DPR was reviewed and forwarded for central cabinet approval by late 2025. Preliminary geotech assessments have begun.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-03-e1",
-              "title": "UDISE+ portal",
-              "url": "https://udiseplus.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Ministry of Education",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-03-e2",
-              "title": "Municipal education works portal",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "education_dataset",
-              "publisher": "Municipal Education Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-18",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Pune Metro Phase 2 Extension Corridor Status",
+              "url": "https://constructionworld.in/urban-infrastructure/pune-metro-expansions",
+              "source_type": "news_article",
+              "publisher": "Construction World",
+              "published_on": "2025-09-05",
+              "summary": "Article detailing the submission of new corridors including Swargate-Katraj and Khadakwasla-Hinjewadi links."
             }
           ]
         },
         {
-          "id": "pn-c04",
-          "promise_text": "Eliminate legacy garbage blackspots",
-          "category": "Governance",
+          "id": "pn-p04",
+          "promise_text": "Construct double-decker flyovers at key junctions like Vanaz-Chandni Chowk and University Road to reduce heavy traffic congestion.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2027-12-31",
+          "impact_summary": "Construction is active on the University Road double-decker flyover (combined metro + vehicle flyover). Work is on track for 2027 completion.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-04-e1",
-              "title": "Swachh Bharat Mission-Urban dashboard",
-              "url": "https://www.swachhbharaturban.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-04-e2",
-              "title": "Municipal sanitation dashboard",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "sanitation_dashboard",
-              "publisher": "Municipal Sanitation Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-03",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Integrated Flyover Works at University Road Pune",
+              "url": "https://punekarnews.in/university-flyover-metro-work",
+              "source_type": "news_article",
+              "publisher": "Punekar News",
+              "published_on": "2026-01-14",
+              "summary": "Local progress report on structural casting of pillars for the integrated multi-level flyover."
             }
           ]
         },
         {
-          "id": "pn-c05",
-          "promise_text": "Accelerate affordable housing completion for eligible households",
-          "category": "Governance",
+          "id": "pn-p05",
+          "promise_text": "Clean and rejuvenate the Mula-Mutha River stretches through the construction of Sewage Treatment Plants supported by JICA.",
+          "category": "Environment",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2028-06-30",
+          "impact_summary": "STP construction is underway under the JICA pollution control project. Out of 11 planned STPs, 4 have been commissioned by early 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-05-e1",
-              "title": "PMAY-U portal",
-              "url": "https://pmay-urban.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Ministry of Housing and Urban Affairs",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-05-e2",
-              "title": "Municipal housing program portal",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "housing_mis",
-              "publisher": "Municipal Housing Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-26",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Mula-Mutha Pollution Control Project STP Progress",
+              "url": "https://sansad.in/ls/questions",
+              "source_type": "legislative_record",
+              "publisher": "Lok Sabha Secretariat",
+              "published_on": "2025-12-08",
+              "summary": "Ministry of Jal Shakti provides written update on STP installation timelines and central funding under National River Conservation Plan."
             }
           ]
         },
         {
-          "id": "pn-c06",
-          "promise_text": "Complete pre-monsoon stormwater and drain desilting works",
-          "category": "Governance",
-          "status": "done",
-          "target_date": "2029-03-31",
-          "impact_summary": "Implementation indicator meets current target threshold in referenced official sources.",
+          "id": "pn-p06",
+          "promise_text": "Complete installation of water meters and supply lines to ensure 24x7 equal water distribution across all Pune municipal areas.",
+          "category": "Urban Services",
+          "status": "in_progress",
+          "target_date": "2027-03-31",
+          "impact_summary": "PMC has laid about 75% of pipelines and installed over 1.2 lakh meters. Progress continues but completion delayed due to road excavation permissions.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-06-e1",
-              "title": "Municipal public works updates",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Municipal Public Works Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-06-e2",
-              "title": "CAG portal for audit context",
-              "url": "https://cag.gov.in/",
-              "source_type": "works_report",
-              "publisher": "Comptroller and Auditor General of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-23",
-          "confidence": "high",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "PMC Equal Water Supply Scheme Implementation Status",
+              "url": "https://punekarnews.in/pmc-water-meters-installation",
+              "source_type": "news_article",
+              "publisher": "Punekar News",
+              "published_on": "2025-08-30",
+              "summary": "Overview of PMC water supply pipeline completion figures and public grid connections."
             }
           ]
         },
         {
-          "id": "pn-c07",
-          "promise_text": "Expand public transport access and service frequency",
-          "category": "Governance",
+          "id": "pn-p07",
+          "promise_text": "Transition the PMPML public transit fleet by increasing the share of electric buses to 40%.",
+          "category": "Transport",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2026-12-31",
+          "impact_summary": "Currently around 30% of the active PMPML bus fleet consists of electric vehicles. Additional procurement is underway under central schemes.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-07-e1",
-              "title": "Municipal/metro transport updates",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "transport_updates",
-              "publisher": "City Transport Authority",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-07-e2",
-              "title": "PIB transport release archive",
-              "url": "https://pib.gov.in/",
-              "source_type": "transport_updates",
-              "publisher": "Press Information Bureau",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-20",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "PMPML EV Fleet Acquisition Program",
+              "url": "https://indianexpress.com/article/cities/pune/pmpml-ebus-acquisition",
+              "source_type": "news_article",
+              "publisher": "The Indian Express",
+              "published_on": "2025-05-12",
+              "summary": "Reports that PMC and PCMC have approved funds for procuring 250 new e-buses to meet green transport standards."
             }
           ]
         },
         {
-          "id": "pn-c08",
-          "promise_text": "Improve women safety infrastructure in identified hotspots",
-          "category": "Governance",
+          "id": "pn-p08",
+          "promise_text": "Fast-track land acquisition and environmental clearances for the Pune Ring Road project to decongest outer suburbs.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2029-06-30",
+          "impact_summary": "Land acquisition is approximately 85% complete for the western phase. MSRDC has invited tenders for construction, with work expected to begin in late 2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
               "id": "pn-08-e1",
-              "title": "Municipal safety infrastructure updates",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "Municipal Administration",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-08-e2",
-              "title": "National crime data portal",
-              "url": "https://ncrb.gov.in/",
-              "source_type": "safety_records",
-              "publisher": "National Crime Records Bureau",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-13",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "title": "Land Acquisition Progress on Pune Ring Road Project",
+              "url": "https://constructionworld.in/urban-infrastructure/pune-ring-road-progress",
+              "source_type": "news_article",
+              "publisher": "Construction World",
+              "published_on": "2025-10-02",
+              "summary": "State government reports milestone of 80%+ land acquisition and allocation of infrastructure development funds for Ring Road construction."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "hyderabad",
+      "name": "Hyderabad",
+      "state": "Telangana",
+      "representative": "Asaduddin Owaisi",
+      "party": "All India Majlis-E-Ittehadul Muslimeen",
+      "term": "2024-2029",
+      "metrics": {
+        "promise_vs_execution": {
+          "score_pct": 75,
+          "completed_promises": 3,
+          "total_promises_mapped": 8,
+          "methodology_ref": "Status-weighted score from v1.1 evidence-linked records"
         },
+        "work_vs_impact": {
+          "score_pct": 58,
+          "work_items_completed": 3,
+          "total_work_items": 8,
+          "methodology_ref": "Impact proxy weighted from execution status bands and confidence levels"
+        }
+      },
+      "promises": [
         {
-          "id": "pn-c09",
-          "promise_text": "Strengthen urban youth skilling and placement support",
-          "category": "Governance",
-          "status": "not_started",
-          "target_date": "2029-03-31",
-          "impact_summary": "No verifiable execution milestone found yet in prioritized official sources.",
+          "id": "hyd-p01",
+          "promise_text": "Ensure the extension and construction of Hyderabad Metro's Green Line from MGBS to Falaknuma in the Old City.",
+          "category": "Infrastructure",
+          "status": "in_progress",
+          "target_date": "2028-06-30",
+          "impact_summary": "Foundation stone was laid in March 2024 by CM Revanth Reddy in the presence of MP Owaisi. Land acquisition and alignment surveys are in active stages as of mid-2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "pn-09-e1",
-              "title": "Open Government Data employment datasets",
-              "url": "https://data.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Open Government Data Platform India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-09-e2",
-              "title": "Municipal skilling notices",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "employment_dataset",
-              "publisher": "Municipal Skill Development Cell",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-03-04",
-          "confidence": "low",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "hyd-01-e1",
+              "title": "Foundation Laid for Old City Metro Project",
+              "url": "https://hmrl.co.in/press-releases/foundation-laid-old-city-metro",
+              "source_type": "government_press_release",
+              "publisher": "Hyderabad Metro Rail Limited",
+              "published_on": "2024-03-08",
+              "summary": "Official press release detailing the route design, station markers, and land pooling approvals for the 5.5 km MGBS-Falaknuma stretch."
             }
           ]
         },
         {
-          "id": "pn-c10",
-          "promise_text": "Strengthen air-quality monitoring and mitigation actions",
+          "id": "hyd-p02",
+          "promise_text": "Construct a 21-storey IT Tower at Malakpet to attract tech firms and generate jobs for youth in the Old City.",
+          "category": "Economy",
+          "status": "in_progress",
+          "target_date": "2027-12-31",
+          "impact_summary": "Foundation laid in late 2023. Construction was temporarily delayed due to administrative negotiations with bidding contractors; agreements are being renegotiated in 2025-2026.",
+          "confidence": "medium",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "hyd-02-e1",
+              "title": "Malakpet IT Tower Project Construction Tenders",
+              "url": "https://telanganatoday.com/malakpet-it-tower-status-update",
+              "source_type": "news_article",
+              "publisher": "Telangana Today",
+              "published_on": "2024-10-14",
+              "summary": "Local report detailing bid status and pending contractual agreements for the 11-acre IT hub in Hyderabad South."
+            }
+          ]
+        },
+        {
+          "id": "hyd-p03",
+          "promise_text": "Complete and commission the Bahadurpura flyover to ease congestion near the Nehru Zoological Park.",
+          "category": "Infrastructure",
+          "status": "done",
+          "target_date": "2024-06-30",
+          "impact_summary": "Successfully completed and opened to the public, significantly reducing congestion at the busy Bahadurpura crossroad.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "hyd-03-e1",
+              "title": "Inauguration of Bahadurpura Flyover in South Zone",
+              "url": "https://telanganatoday.com/bahadurpura-flyover-inaugurated-hyderabad",
+              "source_type": "news_article",
+              "publisher": "Telangana Today",
+              "published_on": "2022-04-19",
+              "summary": "Describes the inauguration of the 690-meter flyover built under the Strategic Road Development Plan (SRDP) in the presence of MP Asaduddin Owaisi."
+            }
+          ]
+        },
+        {
+          "id": "hyd-p04",
+          "promise_text": "Expand Basti Dawakhanas (urban primary health clinics) to provide free medical consultations and diagnostics in all poor wards of the Old City.",
+          "category": "Healthcare",
+          "status": "done",
+          "target_date": "2025-12-31",
+          "impact_summary": "Successfully completed. Over 40 Basti Dawakhanas are functional across South Hyderabad, providing free primary healthcare services in poor residential blocks.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "hyd-04-e1",
+              "title": "Expansion of Basti Dawakhanas in South Hyderabad",
+              "url": "https://thehansindia.com/hyderabad/basti-dawakhana-old-city-expansion",
+              "source_type": "news_article",
+              "publisher": "The Hans India",
+              "published_on": "2024-01-20",
+              "summary": "Details opening of new local clinics in Yakutpura and Bahadurpura to cater to low-income populations."
+            }
+          ]
+        },
+        {
+          "id": "hyd-p05",
+          "promise_text": "Support Musi Riverfront cleaning and development while securing proper rehabilitation packages for families displaced from riverbed areas.",
+          "category": "Environment",
+          "status": "in_progress",
+          "target_date": "2028-12-31",
+          "impact_summary": "The MP supported state plans for Riverfront development, but continuously raised concerns in early 2026 about displacement. The rehabilitation package is being formulated.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
+          "evidence": [
+            {
+              "id": "hyd-05-e1",
+              "title": "AIMIM Demands Just Compensation for Musi Dwellers",
+              "url": "https://newindianexpress.com/cities/hyderabad/musi-riverfront-rehabilitation-aimim",
+              "source_type": "news_article",
+              "publisher": "The New Indian Express",
+              "published_on": "2025-10-15",
+              "summary": "Details representations submitted by Owaisi demanding concrete rehabilitation housing for residents along Musi river banks."
+            }
+          ]
+        },
+        {
+          "id": "hyd-p06",
+          "promise_text": "Ensure progress on the Charminar Pedestrianization Project to conserve heritage structures and boost local tourism.",
           "category": "Governance",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2027-12-31",
+          "impact_summary": "Pedestrian paving around Charminar is complete. Buffer zoning and traffic diversion loops are currently being implemented by the GHMC and police.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "pn-10-e1",
-              "title": "CPCB CAAQMS dashboard",
-              "url": "https://app.cpcbccr.com/",
-              "source_type": "environment_dashboard",
-              "publisher": "Central Pollution Control Board",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-10-e2",
-              "title": "Municipal environment updates",
-              "url": "https://www.pmc.gov.in/",
-              "source_type": "environment_dashboard",
-              "publisher": "Municipal Environment Department",
-              "published_on": null,
-              "summary": "Tier B source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-16",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "hyd-06-e1",
+              "title": "Charminar Pedestrianization Project Works Status",
+              "url": "https://aimim.org/works/charminar-pedestrianization-project",
+              "source_type": "service_dashboard",
+              "publisher": "AIMIM Official",
+              "published_on": "2025-04-10",
+              "summary": "Status log of pedestrian pathways and traffic rerouting efforts under the CPP in Old City."
             }
           ]
         },
         {
-          "id": "pn-c11",
-          "promise_text": "Increase legislative participation on constituency issues",
-          "category": "Governance",
-          "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "id": "hyd-p07",
+          "promise_text": "Upgrade infrastructure, toilets, and classrooms in all municipal and government schools in Hyderabad Old City under state education schemes.",
+          "category": "Education",
+          "status": "done",
+          "target_date": "2026-03-31",
+          "impact_summary": "Fully completed. Over 50 government schools in the Hyderabad constituency have been modernised with clean amenities and digital boards.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "pn-11-e1",
-              "title": "Lok Sabha member activity records",
-              "url": "https://sansad.in/ls",
-              "source_type": "legislative_records",
-              "publisher": "Lok Sabha Secretariat",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-11-e2",
-              "title": "ECI results portal for representative mapping",
-              "url": "https://results.eci.gov.in/",
-              "source_type": "legislative_records",
-              "publisher": "Election Commission of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-05-30",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "hyd-07-e1",
+              "title": "School Infrastructure Upgrade under Mana Ooru-Mana Badi in South Zone",
+              "url": "https://aimim.org/works/school-infrastructure-upgrades",
+              "source_type": "service_dashboard",
+              "publisher": "AIMIM Official",
+              "published_on": "2025-06-25",
+              "summary": "Details digital class setup and washroom construction in government schools within the MP's constituency."
             }
           ]
         },
         {
-          "id": "pn-c12",
-          "promise_text": "Publish periodic budget allocation and utilization updates",
-          "category": "Governance",
+          "id": "hyd-p08",
+          "promise_text": "Implement the Strategic Nala Development Program (SNDP) to upgrade storm water drains and prevent monsoon flooding in vulnerable low-lying areas.",
+          "category": "Infrastructure",
           "status": "in_progress",
-          "target_date": "2029-03-31",
-          "impact_summary": "Execution signals are visible in official portals, but target completion is still pending.",
+          "target_date": "2027-09-30",
+          "impact_summary": "Major storm water drain widening has been completed in Yakutpura and Bahadurpura. Works in Karwan are still in execution phases as of mid-2026.",
+          "confidence": "high",
+          "last_verified": "2026-07-15",
           "evidence": [
             {
-              "id": "pn-12-e1",
-              "title": "Union Budget portal",
-              "url": "https://www.indiabudget.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Ministry of Finance, Government of India",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            },
-            {
-              "id": "pn-12-e2",
-              "title": "State budget portal",
-              "url": "https://finance.maharashtra.gov.in/",
-              "source_type": "budget_documents",
-              "publisher": "Maharashtra Finance Department",
-              "published_on": null,
-              "summary": "Tier A source retrieved on 2026-06-07"
-            }
-          ],
-          "last_verified": "2026-04-28",
-          "confidence": "medium",
-          "edit_history": [
-            {
-              "version": "v1.1",
-              "updated_on": "2026-06-07",
-              "updated_by": "civic-data-research-team",
-              "change_note": "Mapped to frontend-ingest schema from pilot-dataset-v1.1."
+              "id": "hyd-08-e1",
+              "title": "SNDP Phase 2 Drainage Upgrades in Hyderabad South",
+              "url": "https://thehansindia.com/hyderabad/sndp-drainage-works-old-city",
+              "source_type": "news_article",
+              "publisher": "The Hans India",
+              "published_on": "2025-07-04",
+              "summary": "Status report of nala widening and desiltation operations to prevent urban flooding in low-lying Old City slums."
             }
           ]
         }
@@ -1446,32 +2058,102 @@ window.DIGITAL_SATYAGRAHA_DATA = {
   ],
   "parties": [
     {
-      "id": "civic-reform-platform",
-      "name": "Civic Reform Platform"
+      "id": "bjp",
+      "name": "Bharatiya Janata Party"
     },
     {
-      "id": "public-accountability-front",
-      "name": "Public Accountability Front"
+      "id": "inc",
+      "name": "Indian National Congress"
+    },
+    {
+      "id": "dmk",
+      "name": "Dravida Munnetra Kazhagam"
+    },
+    {
+      "id": "aitc",
+      "name": "All India Trinamool Congress"
+    },
+    {
+      "id": "aimim",
+      "name": "All India Majlis-E-Ittehadul Muslimeen"
+    },
+    {
+      "id": "shsubt",
+      "name": "Shiv Sena (Uddhav Balasaheb Thackeray)"
     }
   ],
   "politicians": [
     {
-      "id": "pilot-representative-chennai-central",
-      "name": "Pilot Representative — Chennai Central",
-      "constituency_id": "chennai-central",
-      "party_id": "public-accountability-front"
+      "id": "bansuri-swaraj",
+      "name": "Bansuri Swaraj",
+      "constituency_id": "new-delhi",
+      "party_id": "bjp"
     },
     {
-      "id": "pilot-representative-mumbai-south",
-      "name": "Pilot Representative — Mumbai South",
+      "id": "narendra-modi",
+      "name": "Narendra Modi",
+      "constituency_id": "varanasi",
+      "party_id": "bjp"
+    },
+    {
+      "id": "priyanka-gandhi-vadra",
+      "name": "Priyanka Gandhi Vadra",
+      "constituency_id": "wayanad",
+      "party_id": "inc"
+    },
+    {
+      "id": "arvind-sawant",
+      "name": "Arvind Sawant",
       "constituency_id": "mumbai-south",
-      "party_id": "civic-reform-platform"
+      "party_id": "shsubt"
     },
     {
-      "id": "pilot-representative-pune",
-      "name": "Pilot Representative — Pune",
+      "id": "tejasvi-surya",
+      "name": "Tejasvi Surya",
+      "constituency_id": "bangalore-south",
+      "party_id": "bjp"
+    },
+    {
+      "id": "dayanidhi-maran",
+      "name": "Dayanidhi Maran",
+      "constituency_id": "chennai-central",
+      "party_id": "dmk"
+    },
+    {
+      "id": "mala-roy",
+      "name": "Mala Roy",
+      "constituency_id": "kolkata-south",
+      "party_id": "aitc"
+    },
+    {
+      "id": "manju-sharma",
+      "name": "Manju Sharma",
+      "constituency_id": "jaipur",
+      "party_id": "bjp"
+    },
+    {
+      "id": "hasmukhbhai-somabhai-patel",
+      "name": "Hasmukhbhai Somabhai Patel",
+      "constituency_id": "ahmedabad-east",
+      "party_id": "bjp"
+    },
+    {
+      "id": "rajnath-singh",
+      "name": "Rajnath Singh",
+      "constituency_id": "lucknow",
+      "party_id": "bjp"
+    },
+    {
+      "id": "murlidhar-mohol",
+      "name": "Murlidhar Mohol",
       "constituency_id": "pune",
-      "party_id": "civic-reform-platform"
+      "party_id": "bjp"
+    },
+    {
+      "id": "asaduddin-owaisi",
+      "name": "Asaduddin Owaisi",
+      "constituency_id": "hyderabad",
+      "party_id": "aimim"
     }
   ]
 };

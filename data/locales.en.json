@@ -22,7 +22,9 @@
     "noResults": "No records found.",
     "tryHint": "Try constituency, representative, or party name.",
     "resultsFor": "Search results for \"{{query}}\"",
-    "defaultResultsTitle": "Pilot constituencies"
+    "defaultResultsTitle": "Pilot constituencies",
+    "scopeNoticePolitician": "Showing constituencies whose representative matches your search. This database is building toward individual representative profiles — each result links to that representative's full evidence record.",
+    "scopeNoticeParty": "Showing constituencies associated with this party. Party-level aggregated records are being built as part of this shared public knowledge base."
   },
   "legend": {
     "title": "Status legend",
@@ -52,7 +54,10 @@
     "verification": "Verification",
     "evidence": "Evidence",
     "view": "View",
-    "viewEvidence": "View Evidence"
+    "viewEvidence": "View Evidence",
+    "noIdSelected": "No constituency selected",
+    "notFound": "Constituency not found",
+    "noIdHelp": "Search for a constituency from the home page to view its representative's record and evidence."
   },
   "metrics": {
     "promiseVsExecution": "Promise vs Execution",
@@ -71,7 +76,8 @@
     "sourceTier": "Source tier",
     "editHistory": "Edit history",
     "close": "Close",
-    "reportCorrection": "Report correction"
+    "reportCorrection": "Report correction",
+    "noSources": "No sources have been linked to this promise yet. You can help by submitting evidence using the Report correction button."
   },
   "correction": {
     "title": "Submit a correction",

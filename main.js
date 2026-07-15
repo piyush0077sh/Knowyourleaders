@@ -124,9 +124,19 @@ function deriveConfidenceScore(confidenceStr) {
 
 function deriveSourceTier(promise) {
   if (!promise.evidence?.length) return 'C (no sources)';
-  const hasTierA = promise.evidence.some(e =>
-    e.source_type?.includes('service_dashboard') || e.publisher?.includes('Government')
-  );
+  const tierAKeywords = [
+    'government', 'ministry', 'commission', 'election commission',
+    'comptroller', 'auditor', 'lok sabha', 'rajya sabha', 'sansad'
+  ];
+  const hasTierA = promise.evidence.some(e => {
+    const pub = (e.publisher || '').toLowerCase();
+    const sum = (e.summary || '').toLowerCase();
+    return (
+      e.source_type?.includes('service_dashboard') ||
+      tierAKeywords.some(kw => pub.includes(kw)) ||
+      sum.includes('tier a')
+    );
+  });
   return hasTierA ? 'A (primary govt)' : 'B (secondary)';
 }
 
@@ -250,6 +260,21 @@ function findMatches(query, scope = 'all') {
   });
 }
 
+/**
+ * Returns a scope-awareness notice HTML string when the active scope is
+ * 'politician' or 'party'. These scopes still return constituency records
+ * (the pilot data model is constituency-centric). The notice makes this
+ * transparent to the user, in keeping with the SIM mission of building
+ * a trustworthy, source-linked public knowledge base.
+ */
+function scopeNoticeHTML(scope) {
+  if (scope === 'constituency' || scope === 'all') return '';
+  const msg = scope === 'politician'
+    ? t('search.scopeNoticePolitician')
+    : t('search.scopeNoticeParty');
+  return `<div class="scope-notice" role="note"><span class="scope-notice-icon" aria-hidden="true">ℹ️</span><span>${msg}</span></div>`;
+}
+
 function resultCardMarkup(c) {
   return `
     <article class="result-card">
@@ -355,11 +380,13 @@ function initializeHome() {
   function renderResults(matches, titleText) {
     if (resultsTitle) resultsTitle.textContent = titleText;
     if (resultsCount) resultsCount.textContent = String(matches.length);
+    const notice = scopeNoticeHTML(activeScope);
     if (!matches.length) {
-      if (resultsContainer) resultsContainer.innerHTML = `<p class="footnote">${t('search.noResults')} ${t('search.tryHint')}</p>`;
+      if (resultsContainer) resultsContainer.innerHTML =
+        notice + `<p class="footnote">${t('search.noResults')} ${t('search.tryHint')}</p>`;
       return;
     }
-    if (resultsContainer) resultsContainer.innerHTML = matches.map(resultCardMarkup).join('');
+    if (resultsContainer) resultsContainer.innerHTML = notice + matches.map(resultCardMarkup).join('');
   }
 
   function executeSearch() {
@@ -398,8 +425,42 @@ function initializeHome() {
 function initializeConstituency() {
   const params = new URLSearchParams(window.location.search);
   const requestedId = params.get('id');
-  const constituency = enrichedConstituencies.find(c => c.id === requestedId) || enrichedConstituencies[0];
-  if (!constituency) return;
+
+  // Issue D — if no ?id supplied or id not found, show an explicit error
+  // rather than silently loading the first constituency.
+  if (!requestedId) {
+    const main = document.querySelector('main');
+    if (main) {
+      main.innerHTML = `
+        <div class="container">
+          <div class="panel empty-state">
+            <div class="empty-icon">🗺️</div>
+            <h2>${t('constituency.noIdSelected')}</h2>
+            <p>${t('constituency.noIdHelp')}</p>
+            <a href="./index.html" class="primary-button">${t('global.home')}</a>
+          </div>
+        </div>`;
+    }
+    return;
+  }
+
+  const constituency = enrichedConstituencies.find(c => c.id === requestedId);
+
+  if (!constituency) {
+    const main = document.querySelector('main');
+    if (main) {
+      main.innerHTML = `
+        <div class="container">
+          <div class="panel empty-state">
+            <div class="empty-icon">❓</div>
+            <h2>${t('constituency.notFound')}</h2>
+            <p>${t('constituency.noIdHelp')}</p>
+            <a href="./index.html" class="primary-button">${t('global.home')}</a>
+          </div>
+        </div>`;
+    }
+    return;
+  }
 
   const $ = id => document.getElementById(id);
 
@@ -592,14 +653,24 @@ function wireDrawer(constituency) {
     if (drawerNote) drawerNote.textContent = safe(promise.verification_note);
 
     if (evidenceList) {
-      evidenceList.innerHTML = (promise.evidence || []).map((item, idx) => `
-        <li>
-          <strong>${t('evidenceDrawer.sources')} ${idx + 1}:</strong>
-          <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>
-          <div class="footnote">${safe(item.publisher)} • ${formatDate(item.published_on)}</div>
-          <div class="footnote">${safe(item.summary)}</div>
-        </li>
-      `).join('');
+      // Issue B — sort evidence by confidence (high → medium → low) before rendering
+      const CONF_WEIGHT = { high: 3, medium: 2, low: 1 };
+      const rawEvidence = promise.evidence || [];
+      if (!rawEvidence.length) {
+        evidenceList.innerHTML = `<li class="evidence-empty">${t('evidenceDrawer.noSources')}</li>`;
+      } else {
+        const sorted = [...rawEvidence].sort((a, b) =>
+          (CONF_WEIGHT[(b.confidence || 'low')] ?? 0) - (CONF_WEIGHT[(a.confidence || 'low')] ?? 0)
+        );
+        evidenceList.innerHTML = sorted.map((item, idx) => `
+          <li>
+            <strong>${t('evidenceDrawer.sources')} ${idx + 1}:</strong>
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+            <div class="footnote">${safe(item.publisher)} • ${formatDate(item.published_on)}</div>
+            <div class="footnote">${safe(item.summary)}</div>
+          </li>
+        `).join('');
+      }
     }
 
     if (drawerConfBadge) {
@@ -1000,6 +1071,13 @@ async function bootstrap() {
 
   // 3. Wire language switcher pills
   wireLanguageSwitcher();
+
+  // Issue A — mark the current locale's button as active
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const isActive = btn.dataset.lang === currentLocale;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
 
   // 4. Load dataset
   appData = await loadDataset();

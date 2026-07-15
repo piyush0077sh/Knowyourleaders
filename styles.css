@@ -842,3 +842,75 @@ main {
     min-width: 140px;
   }
 }
+
+/* ── Active language button (Issue 10a) ──────────────────── */
+.lang-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #fff;
+  font-weight: 700;
+}
+
+/* ── Brand link — accessible home link in header ─────────── */
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: 6px;
+}
+.brand-link:hover .logo {
+  opacity: 0.85;
+}
+.brand-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
+/* ── Evidence empty state (Issue 7) ──────────────────────── */
+.evidence-empty {
+  list-style: none;
+  color: var(--muted);
+  font-style: italic;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+}
+
+/* ── Scope notice banner (Issues 1, 5, 6) ───────────────── */
+.scope-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem;
+  background: #f0f4ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 10px;
+  font-size: 0.87rem;
+  color: #3730a3;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+.scope-notice-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin-top: 0.05rem;
+}
+
+/* ── No-id / Not-found state ─────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--muted);
+}
+.empty-state .empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.empty-state h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.empty-state p {
+  margin: 0 0 1.2rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}

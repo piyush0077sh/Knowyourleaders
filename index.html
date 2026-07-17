@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>KnowYourLeaders | Vote by record</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
   </head>
   <body>
     <header class="topbar">
@@ -23,71 +26,124 @@
       </div>
     </header>
 
-    <section class="container search-card" aria-label="Search and filters">
-      <div class="search-row">
-        <input
-          id="globalSearch"
-          class="search-input"
-          placeholder="Search constituency / politician / party"
-          aria-label="Search constituency, politician or party"
-        />
-        <button id="searchButton" class="search-button" aria-label="Search">🔍</button>
-      </div>
-      <div class="tabs" role="tablist" aria-label="Record type filters">
-        <button class="tab active" type="button" data-scope="all" role="tab" aria-selected="true">All</button>
-        <button class="tab" type="button" data-scope="constituency" role="tab" aria-selected="false">Constituency</button>
-        <button class="tab" type="button" data-scope="politician" role="tab" aria-selected="false">Politician</button>
-        <button class="tab" type="button" data-scope="party" role="tab" aria-selected="false">Party</button>
-      </div>
-      <div class="status-legend" aria-label="Status legend">
-        <span class="status-pill">✅ Done</span>
-        <span class="status-pill">🟡 In Progress</span>
-        <span class="status-pill">⚪ Not Started</span>
-        <span class="status-pill">🔴 Misleading</span>
+    <!-- Search Section (Floating Glass Panel) -->
+    <section class="container search-card-wrapper" aria-label="Search and filters">
+      <div class="search-card">
+        <div class="search-row">
+          <div class="search-input-container">
+            <span class="search-icon">🔍</span>
+            <input
+              id="globalSearch"
+              class="search-input"
+              placeholder="Search constituency, politician, or party..."
+              aria-label="Search constituency, politician or party"
+            />
+          </div>
+          <button id="searchButton" class="search-button" aria-label="Search">Search</button>
+        </div>
+        <div class="search-meta-row">
+          <div class="tabs" role="tablist" aria-label="Record type filters">
+            <button class="tab active" type="button" data-scope="all" role="tab" aria-selected="true">All</button>
+            <button class="tab" type="button" data-scope="constituency" role="tab" aria-selected="false">Constituency</button>
+            <button class="tab" type="button" data-scope="politician" role="tab" aria-selected="false">Politician</button>
+            <button class="tab" type="button" data-scope="party" role="tab" aria-selected="false">Party</button>
+          </div>
+          <div class="status-legend" aria-label="Status legend">
+            <span class="status-pill"><span class="status-dot status-done"></span>Done</span>
+            <span class="status-pill"><span class="status-dot status-progress"></span>In Progress</span>
+            <span class="status-pill"><span class="status-dot status-not-started"></span>Not Started</span>
+            <span class="status-pill"><span class="status-dot status-misleading"></span>Misleading</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <main class="container">
       <div class="hero-grid">
-        <article class="panel">
-          <h2 id="heroTitle">Pilot dataset browser</h2>
-          <p id="heroBody">
-            Search across constituency names, representatives, and parties. Open any record to inspect evidence, confidence,
-            freshness, and verification timestamps.
-          </p>
-          <ul class="meta-list">
-            <li><strong>Promise vs Execution:</strong> Delivery against commitments.</li>
-            <li><strong>Work vs Impact:</strong> Output quality and outcomes.</li>
-            <li><strong>Freshness:</strong> How recently each claim was verified.</li>
-          </ul>
-          <p class="footnote">
-            Data version: <span id="schemaVersion">--</span> • Last refresh: <span id="lastUpdated">--</span>
-          </p>
-          <p class="footnote" id="datasetStatus">Loading dataset…</p>
-          <p class="footnote" id="homeDisclaimer"></p>
+        <!-- Hero Introduction Panel -->
+        <article class="panel hero-intro-panel">
+          <div class="hero-intro-header">
+            <div class="hero-badge">Verified Public Records</div>
+            <h2 id="heroTitle">Pilot dataset browser</h2>
+            <p id="heroBody">
+              Search across constituency names, representatives, and parties. Open any record to inspect evidence, confidence,
+              freshness, and verification timestamps.
+            </p>
+          </div>
+          
+          <div class="features-grid">
+            <div class="feature-item">
+              <div class="feature-icon">📊</div>
+              <div class="feature-content">
+                <h4>Promise vs Execution</h4>
+                <p>Tracking delivery against electoral commitments.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🛡️</div>
+              <div class="feature-content">
+                <h4>Work vs Impact</h4>
+                <p>Analyzing output quality, execution, and direct outcomes.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🕒</div>
+              <div class="feature-content">
+                <h4>Freshness SLA</h4>
+                <p>Ensuring recent verification audits on all claims.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-footer">
+            <div class="dataset-meta-pills">
+              <span class="meta-pill">Schema: <span id="schemaVersion">--</span></span>
+              <span class="meta-pill">Updated: <span id="lastUpdated">--</span></span>
+            </div>
+            <p class="footnote" id="datasetStatus">Loading dataset…</p>
+            <p class="footnote" id="homeDisclaimer"></p>
+          </div>
         </article>
 
-        <aside class="panel" aria-label="Featured record">
-          <h3 id="featuredTitle">Featured constituency</h3>
-          <p><strong id="featuredName">--</strong></p>
-          <p id="featuredRep" class="footnote">Representative: --</p>
+        <!-- Featured Constituency Panel (Interactive Widget) -->
+        <aside class="panel featured-widget" aria-label="Featured record">
+          <div class="widget-header">
+            <span class="widget-tag">Highlight</span>
+            <h3 id="featuredTitle">Featured constituency</h3>
+          </div>
+          
+          <div class="featured-profile">
+            <div class="avatar-container">
+              <div class="avatar-initials" id="featuredInitials">ND</div>
+              <div class="avatar-ring"></div>
+            </div>
+            <div class="profile-info">
+              <p class="constituency-title" id="featuredName">--</p>
+              <p id="featuredRep" class="representative-subtitle">Representative: --</p>
+            </div>
+          </div>
+
           <div class="metrics-grid">
             <div class="metric-card">
               <p class="metric-title">Promise vs Execution</p>
               <p id="featuredPromiseScore" class="metric-score">0%</p>
-              <div class="ring" style="--score: 0" aria-hidden="true"></div>
+              <div class="ring" id="featuredPromiseRing" style="--score: 0" aria-hidden="true"></div>
             </div>
             <div class="metric-card">
               <p class="metric-title">Work vs Impact</p>
               <p id="featuredImpactScore" class="metric-score">0%</p>
-              <div class="ring" style="--score: 0" aria-hidden="true"></div>
+              <div class="ring" id="featuredImpactRing" style="--score: 0" aria-hidden="true"></div>
             </div>
           </div>
-          <p class="footnote">Freshness mix: <span id="featuredFreshnessMix">--</span></p>
+          <div class="widget-footer">
+            <span class="freshness-label">Freshness mix</span>
+            <span id="featuredFreshnessMix" class="freshness-mix-value">--</span>
+          </div>
         </aside>
       </div>
 
-      <section class="panel" aria-label="Search results">
+      <!-- Results Grid Section -->
+      <section class="panel results-panel" aria-label="Search results">
         <div class="results-header">
           <h3 id="resultsTitle">Pilot constituencies</h3>
           <span id="resultsCount" class="count-chip" aria-live="polite">0</span>
@@ -96,7 +152,7 @@
       </section>
     </main>
 
-    <!-- App-ingest global data (primary data source) -->
+    <!-- App-ingest global data -->
     <script src="./data/app-ingest.v1.js"></script>
     <!-- Application engine -->
     <script src="./main.js"></script>

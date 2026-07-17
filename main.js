@@ -355,6 +355,12 @@ function initializeHome() {
   if (schemaVer) schemaVer.textContent = safe(appData?.schema_version, '1.0.0');
   if (featuredName) featuredName.textContent = featured.name;
   if (featuredRep) featuredRep.textContent = `${t('constituency.representative')}: ${featured.representative}`;
+  const featuredInitials = $('featuredInitials');
+  if (featuredInitials && featured.representative) {
+    const parts = featured.representative.split(' ');
+    const initials = parts.map(p => p[0]).join('').slice(0, 2).toUpperCase();
+    featuredInitials.textContent = initials;
+  }
   if (featuredP) featuredP.textContent = `${featured.metrics.promise_vs_execution.score_pct}%`;
   if (featuredI) featuredI.textContent = `${featured.metrics.work_vs_impact.score_pct}%`;
   if (featuredF) featuredF.textContent = freshnessMixText(featured.promises);

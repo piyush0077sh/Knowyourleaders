@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "locale": "hi",
+    "name": "हिंदी"
+  },
+  "global": {
+    "brand": "KNOWYOURLEADERS",
+    "tagline": "नारों नहीं, रिकॉर्ड के आधार पर वोट करें।",
+    "home": "होम",
+    "languageSwitcherLabel": "भाषा चयन"
+  },
+  "search": {
+    "placeholder": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी खोजें",
+    "ariaLabel": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी खोजें",
+    "button": "खोजें",
+    "scope": {
+      "all": "सभी",
+      "constituency": "निर्वाचन क्षेत्र",
+      "politician": "राजनेता",
+      "party": "पार्टी"
+    },
+    "noResults": "कोई रिकॉर्ड नहीं मिला।",
+    "tryHint": "निर्वाचन क्षेत्र, प्रतिनिधि या पार्टी का नाम आज़माएँ।",
+    "resultsFor": "\"{{query}}\" के लिए खोज परिणाम",
+    "defaultResultsTitle": "पायलट निर्वाचन क्षेत्र",
+    "scopeNoticePolitician": "आपकी खोज से मेल खाने वाले प्रतिनिधियों के निर्वाचन क्षेत्र दिखाए जा रहे हैं। यह डेटाबेस व्यक्तिगत प्रतिनिधि प्रोफाइल की ओर बढ़ रहा है — प्रत्येक परिणाम उस प्रतिनिधि का पूरा साक्ष्य रिकॉर्ड दिखाता है।",
+    "scopeNoticeParty": "इस पार्टी से जुड़े निर्वाचन क्षेत्र दिखाए जा रहे हैं। पार्टी-स्तर के संयुक्त रिकॉर्ड इस सार्वजनिक ज्ञान भंडार के हिस्से के रूप में बनाए जा रहे हैं।"
+  },
+  "legend": {
+    "title": "स्थिति संकेत",
+    "done": "✅ पूरा",
+    "inProgress": "🟡 प्रगति में",
+    "notStarted": "⚪ शुरू नहीं हुआ",
+    "misleading": "🔴 भ्रामक"
+  },
+  "home": {
+    "datasetBrowserTitle": "पायलट डेटासेट ब्राउज़र",
+    "datasetBrowserBody": "निर्वाचन क्षेत्रों, प्रतिनिधियों और पार्टियों में खोजें। किसी रिकॉर्ड में प्रमाण, भरोसा स्तर, ताज़गी और सत्यापन तिथि देखें।",
+    "featuredConstituency": "मुख्य निर्वाचन क्षेत्र",
+    "freshnessMix": "ताज़गी मिश्रण"
+  },
+  "constituency": {
+    "tagline": "निर्वाचन क्षेत्र का नागरिक बही-खाता",
+    "switchConstituency": "निर्वाचन क्षेत्र बदलें",
+    "headingPrefix": "निर्वाचन क्षेत्र",
+    "representative": "प्रतिनिधि",
+    "party": "पार्टी",
+    "term": "कार्यकाल",
+    "lastDataRefresh": "डेटा का अंतिम अद्यतन",
+    "datasetLoad": "डेटासेट स्थिति",
+    "promiseLedger": "वादा रजिस्टर",
+    "promiseAndIndicator": "वादा और संकेतक",
+    "status": "स्थिति",
+    "verification": "सत्यापन",
+    "evidence": "प्रमाण",
+    "view": "देखें",
+    "viewEvidence": "प्रमाण देखें",
+    "noIdSelected": "कोई निर्वाचन क्षेत्र चयनित नहीं",
+    "notFound": "निर्वाचन क्षेत्र नहीं मिला",
+    "noIdHelp": "प्रतिनिधि का रिकॉर्ड और प्रमाण देखने के लिए होम पेज से निर्वाचन क्षेत्र खोजें।"
+  },
+  "metrics": {
+    "promiseVsExecution": "वादा बनाम क्रियान्वयन",
+    "workVsImpact": "काम बनाम प्रभाव"
+  },
+  "evidenceDrawer": {
+    "titlePrefix": "प्रमाण",
+    "indicatorMapping": "संकेतक मैपिंग",
+    "indicator": "संकेतक",
+    "baselineToLatest": "आधार रेखा → नवीनतम",
+    "sources": "स्रोत",
+    "verification": "सत्यापन",
+    "confidence": "भरोसा स्तर",
+    "freshness": "ताज़गी",
+    "lastVerified": "अंतिम सत्यापन",
+    "sourceTier": "स्रोत श्रेणी",
+    "editHistory": "संपादन इतिहास",
+    "close": "बंद करें",
+    "reportCorrection": "सुधार रिपोर्ट करें",
+    "noSources": "इस वादे से अभी कोई स्रोत नहीं जोड़ा गया है। आप 'सुधार रिपोर्ट करें' बटन का उपयोग करके प्रमाण सबमिट करके मदद कर सकते हैं।"
+  },
+  "correction": {
+    "title": "सुधार भेजें",
+    "helper": "क्या सुधारना है, वह लिखें। संभव हो तो सहायक स्रोत जोड़ें।",
+    "name": "नाम",
+    "emailOptional": "ईमेल (वैकल्पिक)",
+    "note": "सुधार टिप्पणी",
+    "namePlaceholder": "आपका नाम",
+    "emailPlaceholder": "you@example.com",
+    "notePlaceholder": "क्या सुधारा जाना चाहिए?",
+    "submit": "सुधार भेजें",
+    "cancel": "रद्द करें",
+    "success": "सुधार समीक्षा के लिए भेज दिया गया है।",
+    "failure": "अभी जमा नहीं हो सका। कृपया फिर प्रयास करें।"
+  },
+  "freshness": {
+    "fresh": "ताज़ा",
+    "aging": "पुराना हो रहा",
+    "stale": "पुराना"
+  },
+  "confidence": {
+    "high": "उच्च",
+    "medium": "मध्यम",
+    "low": "कम"
+  },
+  "disclaimer": {
+    "neutrality": "यह पेज केवल स्रोत-लिंक रिकॉर्ड दिखाता है। यह किसी पार्टी या उम्मीदवार का समर्थन नहीं करता।",
+    "verification": "यदि डेटा अधूरा या पुराना हो, तो सहायक प्रमाण के साथ सुधार रिपोर्ट करें।"
+  },
+  "submissionForm": {
+    "promiseContext": "वादा",
+    "yourName": "आपका नाम",
+    "emailOptional": "ईमेल (वैकल्पिक)",
+    "emailHelper": "यदि आवश्यक हो तो अनुवर्ती के लिए। सार्वजनिक रूप से साझा नहीं किया जाता।",
+    "description": "सुधार का विवरण",
+    "descriptionPlaceholder": "क्या सुधारना है और क्यों, इसका वर्णन करें...",
+    "descriptionHint": "स्पष्ट रूप से बताएं कि कौन सी जानकारी गलत है और सही डेटा क्या होना चाहिए।",
+    "sourceUrl": "स्रोत URL",
+    "sourceUrlRecommended": "स्रोत URL (अनुशंसित)",
+    "sourceUrlPlaceholder": "https://",
+    "sourceUrlHint": "आधिकारिक दस्तावेज़, समाचार लेख या अन्य सत्यापन योग्य स्रोत का लिंक।",
+    "attachFile": "सहायक दस्तावेज़ संलग्न करें",
+    "dragDrop": "खींचें और छोड़ें या",
+    "browse": "ब्राउज़ करें",
+    "fileHint": "PDF, PNG, JPG अधिकतम 10MB",
+    "submit": "सुधार भेजें",
+    "cancel": "रद्द करें",
+    "descriptionRequired": "कृपया सुधार का वर्णन करें (न्यूनतम 20 अक्षर)।",
+    "nameRequired": "कृपया अपना नाम दर्ज करें।"
+  },
+  "submissionToast": {
+    "successTitle": "सुधार सबमिट किया गया",
+    "successBody": "धन्यवाद, आपका सबमिशन समीक्षााधीन है।",
+    "refLabel": "संदर्भ",
+    "errorTitle": "सबमिट नहीं हो सका",
+    "errorBody": "नेटवर्क त्रुटि। आपका ड्राफ्ट सहेज लिया गया है। पुनः प्रयास करें।"
+  },
+  "submissionTracker": {
+    "title": "आपके सबमिशन",
+    "subtitle": "आपके द्वारा सबमिट किए गए सुधारों और प्रमाणों की स्थिति ट्रैक करें।",
+    "filterAll": "सभी",
+    "filterPending": "लंबित",
+    "filterReview": "समीक्षााधीन",
+    "filterVerified": "सत्यापित",
+    "filterRejected": "अस्वीकृत",
+    "colReference": "संदर्भ ID",
+    "colPromise": "वादा",
+    "colSubmitted": "सबमिट किया",
+    "colStatus": "स्थिति",
+    "colUpdated": "अपडेट किया",
+    "colConstituency": "निर्वाचन क्षेत्र",
+    "showing": "{start}–{end} (कुल {total} सबमिशन) दिखा रहा है",
+    "tapHint": "पूर्ण विवरण और टाइमलाइन देखने के लिए सबमिशन पर टैप करें।"
+  },
+  "submissionDetail": {
+    "backLink": "सबमिशन पर वापस",
+    "submittedBy": "द्वारा सबमिट",
+    "description": "विवरण",
+    "sourceUrl": "स्रोत URL",
+    "attachedFile": "संलग्न दस्तावेज़",
+    "statusTimeline": "स्थिति टाइमलाइन",
+    "statusPending": "सबमिट किया गया",
+    "statusReview": "समीक्षा में",
+    "statusVerified": "सत्यापित",
+    "statusRejected": "अस्वीकृत",
+    "pendingDesc": "सुधार समीक्षा के लिए सबमिट किया गया",
+    "reviewDesc": "आधिकारिक स्रोतों से सत्यापित किया जा रहा है",
+    "verifiedDesc": "सुधार की समीक्षा हुई और डेटा अपडेट किया गया",
+    "rejectedDesc": "सुधार की समीक्षा हुई लेकिन स्वीकार नहीं किया गया"
+  },
+  "evidenceFlow": {
+    "submitEvidence": "प्रमाण सबमिट करें",
+    "evidenceHelper": "इस वादे के लिए सहायक प्रमाण साझा करें।"
+  }
+}

@@ -48,7 +48,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -58,7 +58,7 @@ body {
 
 /* ── Typography & Headings ──────────────────────────────── */
 h1, h2, h3, h4, .logo {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display), 'Outfit', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -109,7 +109,7 @@ a:hover {
   padding: 1.5rem 0;
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -190,10 +190,11 @@ a:hover {
 }
 
 .search-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255,255,255,0.5);
   padding: 1.5rem;
 }
 
@@ -697,8 +698,8 @@ a:hover {
 
 .result-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  border-color: var(--brand);
 }
 
 .result-card:hover::before {
@@ -1249,6 +1250,174 @@ select.search-input:focus {
   line-height: 1.6;
 }
 
+/* ── Map / Exploration Style ─────────────────────────────── */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.map-svg {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.map-state {
+  fill: #e2e8f0;
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-state:hover {
+  fill: #93c5fd;
+  stroke: #2563eb;
+  stroke-width: 2;
+}
+
+/* Color codes based on execution */
+.map-color-high {
+  fill: #d1fae5;
+}
+.map-color-high:hover {
+  fill: #6ee7b7;
+}
+
+.map-color-medium {
+  fill: #fef3c7;
+}
+.map-color-medium:hover {
+  fill: #fcd34d;
+}
+
+.map-color-low {
+  fill: #fee2e2;
+}
+.map-color-low:hover {
+  fill: #fca5a5;
+}
+
+.map-color-none {
+  fill: #f1f5f9;
+}
+
+.map-tooltip {
+  position: absolute;
+  background: #0f172a;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  z-index: 50;
+  display: none;
+  white-space: nowrap;
+}
+
+/* ── Compare Styles ──────────────────────────────────────── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .compare-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .compare-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.compare-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.compare-remove-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.compare-remove-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.compare-chart-container {
+  height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding-top: 1.5rem;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 0.5rem;
+}
+
+.compare-chart-bar {
+  width: 40px;
+  background: var(--brand-gradient);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  transition: height 0.6s ease-out;
+}
+
+.compare-chart-bar-value {
+  position: absolute;
+  top: -1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.compare-chart-bar-label {
+  position: absolute;
+  bottom: -1.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 /* ── Responsive breakpoints ──────────────────────────────── */
 @media (min-width: 480px) {
   .form-actions {
@@ -1300,4 +1469,276 @@ select.search-input:focus {
   .results-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PREMIUM ANIMATIONS & EFFECTS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Keyframe Animations ─────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fillGauge {
+  from { stroke-dashoffset: 283; }
+  to { stroke-dashoffset: var(--gauge-offset); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ── 2. Animate-on-visible Utility Classes ──────────────────── */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
+.animate-fade-in-up:nth-child(2) { animation-delay: 0.05s; }
+.animate-fade-in-up:nth-child(3) { animation-delay: 0.1s; }
+.animate-fade-in-up:nth-child(4) { animation-delay: 0.15s; }
+.animate-fade-in-up:nth-child(5) { animation-delay: 0.2s; }
+.animate-fade-in-up:nth-child(6) { animation-delay: 0.25s; }
+.animate-fade-in-up:nth-child(n+7) { animation-delay: 0.3s; }
+
+/* ── 5. Promise Card Styles ─────────────────────────────────── */
+.promise-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.promise-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+.promise-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.1);
+  border-color: var(--border-hover);
+}
+.promise-card.category-governance::before { background: #6366f1; }
+.promise-card.category-healthcare::before { background: #10b981; }
+.promise-card.category-infrastructure::before { background: #f59e0b; }
+.promise-card.category-education::before { background: #8b5cf6; }
+.promise-card.category-economy::before { background: #3b82f6; }
+.promise-card.category-environment::before { background: #22c55e; }
+.promise-card.category-transport::before { background: #f97316; }
+.promise-card.category-housing::before { background: #ec4899; }
+.promise-card.category-public-safety::before { background: #ef4444; }
+.promise-card.category-urban-services::before { background: #14b8a6; }
+.promise-card.category-governance::before, .promise-card.category-default::before { background: #6366f1; }
+
+/* ── 6. Category Badge Styles ───────────────────────────────── */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.category-badge.governance { background: #eef2ff; color: #4338ca; }
+.category-badge.healthcare { background: #ecfdf5; color: #047857; }
+.category-badge.infrastructure { background: #fffbeb; color: #b45309; }
+.category-badge.education { background: #f5f3ff; color: #6d28d9; }
+.category-badge.economy { background: #eff6ff; color: #1d4ed8; }
+.category-badge.environment { background: #f0fdf4; color: #15803d; }
+.category-badge.transport { background: #fff7ed; color: #c2410c; }
+.category-badge.housing { background: #fdf2f8; color: #be185d; }
+.category-badge.public-safety { background: #fef2f2; color: #b91c1c; }
+.category-badge.urban-services { background: #f0fdfa; color: #0f766e; }
+
+/* ── 7. Radial Gauge Styles ─────────────────────────────────── */
+.radial-gauge {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+.radial-gauge svg {
+  transform: rotate(-90deg);
+}
+.radial-gauge .gauge-bg {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 6;
+}
+.radial-gauge .gauge-fill {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  animation: fillGauge 1.2s ease-out both;
+}
+.radial-gauge .gauge-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+/* ── 8. Source Card for Evidence ─────────────────────────────── */
+.source-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem 1rem;
+  transition: all 0.2s ease;
+}
+.source-card:hover {
+  border-color: var(--brand);
+  background: var(--brand-glow);
+}
+.source-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* ── 9. Status Summary Bar ──────────────────────────────────── */
+.status-summary-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--border);
+  gap: 2px;
+}
+.status-summary-bar .segment {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.status-summary-bar .segment.done { background: var(--done); }
+.status-summary-bar .segment.in-progress { background: var(--progress); }
+.status-summary-bar .segment.not-started { background: var(--not-started); }
+.status-summary-bar .segment.misleading { background: var(--misleading); }
+
+/* ── 10. Mobile Hamburger Menu ──────────────────────────────── */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+}
+@media (max-width: 760px) {
+  .mobile-menu-toggle { display: flex; }
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.25rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  }
+  .nav-menu.open { display: flex; }
+  .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+  }
+  .nav-link:hover, .nav-link-active {
+    background: rgba(255,255,255,0.08);
+  }
+  .lang-switcher {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* ── 12. Button Press Effects ───────────────────────────────── */
+.primary-button:active { transform: scale(0.97); }
+.secondary-button:active { transform: scale(0.97); }
+
+/* ── 13. Party Accent Bar on Result Cards ───────────────────── */
+.party-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+.party-accent.bjp { background: #f97316; }
+.party-accent.inc { background: #3b82f6; }
+.party-accent.aitc, .party-accent.tmc { background: #22c55e; }
+.party-accent.dmk { background: #ef4444; }
+.party-accent.sp { background: #10b981; }
+.party-accent.default { background: #94a3b8; }
+
+/* ── 14. Progress Bar Improvements ──────────────────────────── */
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+.progress-bar-fill.impact {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+/* ── 15. Active Nav Indicator ───────────────────────────────── */
+.nav-link-active {
+  position: relative;
+}
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: #f59e0b;
+  border-radius: 999px;
 }

@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "locale": "en",
+    "name": "English"
+  },
+  "global": {
+    "brand": "KNOWYOURLEADERS",
+    "tagline": "Vote by record, not rhetoric.",
+    "home": "Home",
+    "languageSwitcherLabel": "Language switcher"
+  },
+  "search": {
+    "placeholder": "Search constituency, representative, or party",
+    "ariaLabel": "Search constituency, representative, or party",
+    "button": "Search",
+    "scope": {
+      "all": "All",
+      "constituency": "Constituency",
+      "politician": "Politician",
+      "party": "Party"
+    },
+    "noResults": "No records found.",
+    "tryHint": "Try constituency, representative, or party name.",
+    "resultsFor": "Search results for \"{{query}}\"",
+    "defaultResultsTitle": "Pilot constituencies",
+    "scopeNoticePolitician": "Showing constituencies whose representative matches your search. This database is building toward individual representative profiles — each result links to that representative's full evidence record.",
+    "scopeNoticeParty": "Showing constituencies associated with this party. Party-level aggregated records are being built as part of this shared public knowledge base."
+  },
+  "legend": {
+    "title": "Status legend",
+    "done": "✅ Done",
+    "inProgress": "🟡 In Progress",
+    "notStarted": "⚪ Not Started",
+    "misleading": "🔴 Misleading"
+  },
+  "home": {
+    "datasetBrowserTitle": "Pilot dataset browser",
+    "datasetBrowserBody": "Search across constituencies, representatives, and parties. Open a record to review evidence, confidence, freshness, and verification date.",
+    "featuredConstituency": "Featured constituency",
+    "freshnessMix": "Freshness mix"
+  },
+  "constituency": {
+    "tagline": "Constituency civic bahi khata",
+    "switchConstituency": "Switch constituency",
+    "headingPrefix": "Constituency",
+    "representative": "Representative",
+    "party": "Party",
+    "term": "Term",
+    "lastDataRefresh": "Last data refresh",
+    "datasetLoad": "Dataset load",
+    "promiseLedger": "Promise Ledger",
+    "promiseAndIndicator": "Promise & Indicator",
+    "status": "Status",
+    "verification": "Verification",
+    "evidence": "Evidence",
+    "view": "View",
+    "viewEvidence": "View Evidence",
+    "noIdSelected": "No constituency selected",
+    "notFound": "Constituency not found",
+    "noIdHelp": "Search for a constituency from the home page to view its representative's record and evidence."
+  },
+  "metrics": {
+    "promiseVsExecution": "Promise vs Execution",
+    "workVsImpact": "Work vs Impact"
+  },
+  "evidenceDrawer": {
+    "titlePrefix": "Evidence",
+    "indicatorMapping": "Indicator mapping",
+    "indicator": "Indicator",
+    "baselineToLatest": "Baseline → Latest",
+    "sources": "Sources",
+    "verification": "Verification",
+    "confidence": "Confidence",
+    "freshness": "Freshness",
+    "lastVerified": "Last verified",
+    "sourceTier": "Source tier",
+    "editHistory": "Edit history",
+    "close": "Close",
+    "reportCorrection": "Report correction",
+    "noSources": "No sources have been linked to this promise yet. You can help by submitting evidence using the Report correction button."
+  },
+  "correction": {
+    "title": "Submit a correction",
+    "helper": "Share what should be corrected. Add supporting source if available.",
+    "name": "Name",
+    "emailOptional": "Email (optional)",
+    "note": "Correction note",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@example.com",
+    "notePlaceholder": "What should be corrected?",
+    "submit": "Submit correction",
+    "cancel": "Cancel",
+    "success": "Correction submitted for review.",
+    "failure": "Could not submit now. Please try again."
+  },
+  "freshness": {
+    "fresh": "Fresh",
+    "aging": "Aging",
+    "stale": "Stale"
+  },
+  "confidence": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "disclaimer": {
+    "neutrality": "This page presents source-linked records only. It does not endorse any party or candidate.",
+    "verification": "If data is missing or outdated, use Report correction with supporting evidence."
+  },
+  "submissionForm": {
+    "promiseContext": "Promise",
+    "yourName": "Your name",
+    "emailOptional": "Email (optional)",
+    "emailHelper": "For follow-up if needed. Not shared publicly.",
+    "description": "Description of correction",
+    "descriptionPlaceholder": "Describe what should be corrected and why...",
+    "descriptionHint": "Clearly state what information is incorrect and what the correct data should be.",
+    "sourceUrl": "Source URL",
+    "sourceUrlRecommended": "Source URL (recommended)",
+    "sourceUrlPlaceholder": "https://",
+    "sourceUrlHint": "Link to official document, news article, or other verifiable source.",
+    "attachFile": "Attach supporting document",
+    "dragDrop": "Drag & drop or",
+    "browse": "browse",
+    "fileHint": "PDF, PNG, JPG up to 10MB",
+    "submit": "Submit correction",
+    "cancel": "Cancel",
+    "descriptionRequired": "Please describe the correction (min 20 characters).",
+    "nameRequired": "Please enter your name."
+  },
+  "submissionToast": {
+    "successTitle": "Correction submitted",
+    "successBody": "Thank you, your submission is under review.",
+    "refLabel": "Ref",
+    "errorTitle": "Could not submit",
+    "errorBody": "Network error. Your draft has been saved. Try again."
+  },
+  "submissionTracker": {
+    "title": "Your submissions",
+    "subtitle": "Track the status of corrections and evidence you have submitted.",
+    "filterAll": "All",
+    "filterPending": "Pending",
+    "filterReview": "Under review",
+    "filterVerified": "Verified",
+    "filterRejected": "Rejected",
+    "colReference": "Reference ID",
+    "colPromise": "Promise",
+    "colSubmitted": "Submitted",
+    "colStatus": "Status",
+    "colUpdated": "Updated",
+    "colConstituency": "Constituency",
+    "showing": "Showing {start}–{end} of {total} submissions",
+    "tapHint": "Tap a submission to view full details and timeline."
+  },
+  "submissionDetail": {
+    "backLink": "Back to submissions",
+    "submittedBy": "Submitted by",
+    "description": "Description",
+    "sourceUrl": "Source URL",
+    "attachedFile": "Attached document",
+    "statusTimeline": "Status timeline",
+    "statusPending": "Submitted",
+    "statusReview": "Under review",
+    "statusVerified": "Verified",
+    "statusRejected": "Rejected",
+    "pendingDesc": "Correction submitted for review",
+    "reviewDesc": "Being verified against official sources",
+    "verifiedDesc": "Correction reviewed and data updated",
+    "rejectedDesc": "Correction reviewed but not accepted"
+  },
+  "evidenceFlow": {
+    "submitEvidence": "Submit evidence",
+    "evidenceHelper": "Share supporting evidence for this promise."
+  }
+}

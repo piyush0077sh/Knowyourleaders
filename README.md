@@ -1,118 +1,126 @@
-# KnowYourLeaders — Lightweight Website MVP v1.2
+# KnowYourLeaders — Civic Transparency & MP Accountability Platform
 
-Dependency-free, mobile-first static MVP with **multilingual i18n** (EN/हिंदी/தமிழ்),
-**app-ingest v1 dataset integration**, and **WCAG AA accessibility refinements**.
+An interactive, premium web application built with **Next.js**, **React**, **TypeScript**, and **MongoDB** (with local JSON fallback) designed to track the performance, election promises, and MPLAD budget utilization of Members of Parliament in India. 
 
-## v1.2 scope implemented
+Multilingual out-of-the-box (English, Hindi, Tamil) and fully optimized for accessibility (WCAG AA compliance).
 
-### 1. App-ingest v1 dataset integration
-- Switched data source to `data/app-ingest.v1.js` (global `window.DIGITAL_SATYAGRAHA_DATA`) with JSON fallback.
-- Data adapter automatically enriches the simplified app-ingest schema:
-  - Derives `freshness_state` / `freshness_sla_days` from `last_verified`.
-  - Derives `confidence_score` from `confidence` string.
-  - Derives `source_tier` from evidence metadata.
-  - Uses `impact_summary` as verification note.
-- Stats reflect final pilot data: 3 constituencies, 36 promises, 100.0% evidence-tier coverage.
+---
 
-### 2. Full multilingual localization
-- Language switcher in header (EN / हिंदी / தமிழ்).
-- All UI copy sourced from shared locale files in `data/locales.*.json`.
-- Locale persisted via URL parameter (`?lang=`) and `localStorage`.
-- English fallback for any missing translation keys.
-- Placeholder-safe translation engine (`{{query}}` interpolation).
+## 🌟 Premium Features
 
-### 3. WCAG AA accessibility (v3 UX refinements)
-- Minimum touch targets: **44×44px** for all interactive controls.
-- Visible focus ring: **2px solid with 2px offset** (`:focus-visible`).
-- Semantic landmarks: `header`, `main`, `nav`, `section`, `footer`.
-- Table uses `scope="col"` headers and `caption` for screen readers.
-- Evidence drawer uses `role="dialog"`, `aria-modal="true"`, `aria-labelledby`.
-- Drawer has **full focus trap** — Tab/Shift+Tab cycles within open drawer.
-- **Focus restoration** — closing drawer returns focus to trigger button.
-- Drawer dismissible via Escape key and backdrop click.
-- `prefers-reduced-motion` respected (drawer transition disabled when set).
-- Color is never the sole communication method (icon + text + ARIA labels).
-- Minimum body text: **16px**; no text under 14px on desktop.
-- Text-expansion-safe spacing for Hindi/Tamil labels.
+### 1. Interactive Geographic Map (`/explore`)
+- **Interactive State Map**: Responsive SVG-based map of Indian states color-coded by execution score tiers.
+- **State Details Panel**: Dynamic sidebar listing tracked constituencies, representatives, and parties in the hovered or selected state.
+- **Execution Score Tiers**:
+  - 🟢 **High Execution (≥ 65%)** — Delivered on the majority of verified promises.
+  - 🟡 **Medium Execution (50% - 64%)** — Active implementation under way.
+  - 🔴 **Low Execution (< 50%)** — Observed delays or misleading statements.
 
-### 4. Evidence drawer accessibility
-- Focus trap inside drawer.
-- ARIA attributes: `aria-labelledby` pointing to title, `aria-modal="true"`.
-- All labels localised (Confidence, Freshness, Last verified, Source tier, Edit history).
-- "Report correction" button localised.
+### 2. Representative Comparison Desk (`/compare`)
+- **Side-by-Side MP Comparison**: Select up to 3 constituencies to compare representatives' performance.
+- **Custom Visual Analytics**:
+  - SVG bar charts illustrating Promise vs Execution and Work vs Impact scores.
+  - Custom horizontal stacked bars representing precise status distribution.
+  - MPLAD budget utilization progress meters (₹25.0 Crore term tracking).
+- **Responsive Mobile Layout**: Automatically stacks comparison profiles vertically on mobile devices.
 
-### 5. Correction modal localization
-- Modal title, helper text, labels, placeholders, and buttons all use i18n.
-- Success/failure messages localised.
-- Focus sent to first input on open.
-- Dismissible via Escape, backdrop, close, and Cancel buttons.
+### 3. Rich Constituency Detail Dashboard (`/constituency/[id]`)
+- **SVG Radial Performance Gauges**: Animated circular progress indicators mapping out execution and work impact ratings.
+- **Segmented Status Bar**: Visual overview of promises categorized by their progress.
+- **Card-Based Promise Ledger**: Interactive rows with left accent borders matching their categories (e.g. Governance, Healthcare, Infrastructure).
+- **Expandable Impact Summaries**: Inline descriptions detailing the exact implementation status, expandable on click.
+- **Slide-In Evidence Drawer**: Access verified source links, publisher details, dates, source types, and verification notes.
+- **Decision-Maker Directory**: District collector and commissioner contacts to encourage citizen feedback.
+- **MPLAD Project Funding Ledger**: Sanctioned budgets, implementing agencies, and status updates for local works.
 
-## File map
+### 4. Interactive Citizen Audit Form
+- **Correction Submissions**: Send correction notes and upload supporting evidence directly from any promise card.
+- **Data Safety**: Inputs are captured and processed via a Next.js API route (`/api/constituencies/[id]`), saving to MongoDB or a local `corrections.json` file.
 
-- `index.html` — Home search shell + results (i18n-ready)
-- `constituency.html` — Scorecards, ledger, evidence drawer, correction modal
-- `main.js` — i18n engine, data adapter, search, drawer with focus trap, modal, bootstrap
-- `styles.css` — Responsive UI with a11y refinements, focus ring, min-touch targets
-- `data/app-ingest.v1.js` — App-ingest dataset as browser global (primary source)
-- `data/app-ingest.v1.json` — Same data as JSON for fallback fetch
-- `data/locales.en.json` — English UI copy
-- `data/locales.hi.json` — Hindi UI copy
-- `data/locales.ta.json` — Tamil UI copy
+---
 
-## Local development
+## 🛠️ Technical Architecture
 
-```bash
-cd /home/team/shared/Knowyourleaders-repo
-python3 -m http.server 4173 --bind 0.0.0.0
+- **Frontend**: Next.js App Router, React 19, TypeScript, Vanilla CSS (dynamic HSL color system, glassmorphism card filters, and keyframe animations).
+- **Backend / API**: Next.js Server Components and Route Handlers.
+- **Database Layer**: MongoDB (via Mongoose) with a resilient local JSON file fallback (`src/data/app-ingest.v1.json`) if MongoDB environment variables are absent.
+- **Localization (i18n)**: Persistent cookie/URL-based language selector supporting English (`en`), Hindi (`hi`), and Tamil (`ta`).
+
+---
+
+## 📁 Repository Structure
+
+```
+├── next-app/                      # Next.js Application Root
+│   ├── src/
+│   │   ├── app/                   # App Router Pages & API Routes
+│   │   │   ├── api/               # GET & POST endpoints for constituencies & corrections
+│   │   │   ├── compare/           # Representative Comparison Page
+│   │   │   ├── constituency/      # Constituency Detail Page
+│   │   │   └── explore/           # State Map Explorer Page
+│   │   ├── components/            # Reusable UI Components
+│   │   │   ├── Header.tsx         # Mobile-responsive Navigation bar
+│   │   │   ├── IndiaMap.tsx       # Interactive SVG map component
+│   │   │   ├── ConstituencyCompare.tsx    # Comparison Desk Component
+│   │   │   ├── ConstituencyDashboard.tsx  # Homepage search & cards
+│   │   │   └── ConstituencyDetail.tsx     # MP profile & promise ledger
+│   │   ├── data/                  # Locale JSONs, seed data, and raw datasets
+│   │   └── lib/                   # Database logic (db.ts) and translation engine (i18n.ts)
+│   ├── package.json
+│   └── tsconfig.json
+├── backend/                       # Legacy Backend (if applicable)
+├── frontend/                      # Legacy Frontend MVP v1.2 (Vanilla HTML/JS/CSS)
+├── playwright.config.js           # End-to-End Testing config
+└── README.md                      # Project root documentation
 ```
 
-Open:
-- `http://localhost:4173/`
-- `http://localhost:4173/?lang=hi`
-- `http://localhost:4173/?lang=ta`
-- `http://localhost:4173/constituency.html?id=mumbai-south&lang=hi`
-- `http://localhost:4173/constituency.html?id=pune-central&lang=ta`
-- `http://localhost:4173/constituency.html?id=chennai-central`
+---
 
-## Quick validation checklist
+## 🚀 Getting Started
 
-### 1) Syntax check
-```bash
-node --check main.js
-```
+No database setup is required to test the application; it runs out-of-the-box using the local mock data engine.
 
-### 2) Pages serve correctly
-```bash
-curl -sI http://localhost:4173/ | head -1
-curl -sI "http://localhost:4173/constituency.html?id=chennai-central" | head -1
-```
-Both should return `200 OK`.
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18.0.0 or higher)
+- npm or yarn
 
-### 3) Data files reachable
-```bash
-curl -sI http://localhost:4173/data/app-ingest.v1.js | head -1
-curl -sI http://localhost:4173/data/locales.en.json | head -1
-curl -sI http://localhost:4173/data/locales.hi.json | head -1
-```
-All should return `200 OK`.
+### Installation & Run
 
-### 4) Language switcher
-- Home page shows three language pills in header.
-- Clicking `हिंदी` reloads with `?lang=hi` and shows Hindi labels.
-- Clicking `தமிழ்` reloads with `?lang=ta` and shows Tamil labels.
-- English fallback works for any missing keys.
+1. Navigate to the Next.js app directory:
+   ```bash
+   cd next-app
+   ```
 
-### 5) Constituency records
-- `constituency.html?id=chennai-central` shows score rings, promise table, verification badges.
-- Evidence drawer opens when clicking "View" and shows evidence sources.
-- Focus is trapped inside drawer; Escape closes it.
-- "Report correction" button opens localised modal.
+2. Install all dependencies:
+   ```bash
+   npm install
+   ```
 
-### 6) Responsive
-- At 320px width, search bar, tabs, and legend remain fully visible.
-- Promise table switches to card layout on mobile.
-- No horizontal scroll at 320px.
+3. Start the local development server:
+   ```bash
+   npm run dev
+   ```
 
-## Note
+4. Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
-Current evidence links in the dataset are illustrative. Replace with verified official URLs before any public launch. The correction modal is intentionally non-persistent (alert-only) in v1.2.
+---
+
+## 🔧 Database Configuration
+
+To connect the application to a production MongoDB database:
+
+1. Create a `.env.local` file inside the `next-app` directory.
+2. Add your MongoDB connection string:
+   ```env
+   MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/knowyourleaders
+   ```
+3. Restart your Next.js server. The application will automatically seed the cluster and transition from the local JSON files to the active database.
+
+---
+
+## ♿ Accessibility Compliance (WCAG AA)
+
+- **Touch Target Size**: Minimum interactive dimensions are strictly kept at **44×44px** to ensure mobile and touch usability.
+- **Focus Indicators**: Standardized visible focus outline (`2px solid #3b82f6` with `2px offset`) for keyboard navigation.
+- **Aria Roles**: Proper usage of landmark tags (`<header>`, `<main>`, `<nav>`, `<footer>`) and dialog overlays (`role="dialog"` with focus trap).
+- **Reduced Motion**: Respects browser preference (`prefers-reduced-motion`) and silences decorative slide/drawer transitions accordingly.

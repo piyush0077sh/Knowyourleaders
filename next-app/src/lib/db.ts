@@ -96,6 +96,22 @@ async function connectToDatabase() {
     cachedConnection = await mongoose.connect(uri, {
       bufferCommands: false,
     });
+
+    // Auto-seed if database is empty
+    try {
+      const count = await ConstituencyModel.countDocuments();
+      if (count === 0) {
+        console.log('MongoDB connection successful but database is empty. Auto-seeding...');
+        const localData = getLocalData();
+        if (localData && localData.length > 0) {
+          await ConstituencyModel.insertMany(localData);
+          console.log(`Successfully seeded database with ${localData.length} constituencies.`);
+        }
+      }
+    } catch (seedError) {
+      console.error('Failed to auto-seed database:', seedError);
+    }
+
     return cachedConnection;
   } catch (error) {
     console.error('Failed to connect to MongoDB, using local fallback:', error);

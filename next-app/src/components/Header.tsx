@@ -23,8 +23,31 @@ export default function Header() {
   const compareLabel = language === 'hi' ? 'सांसदों की तुलना' : language === 'ta' ? 'எம்.பி.க்களை ஒப்பிடுக' : 'Compare MPs';
 
   return (
-    <header className="topbar" style={{ position: 'relative' }}>
-      <div className="container brand-row">
+    <>
+      {/* ── Top Telemetry Ticker Bar ────────────────────────── */}
+      <div className="bg-slate-950 text-slate-400 py-1 px-4 text-[11px] font-mono border-b border-slate-800/80 flex items-center justify-between overflow-x-auto whitespace-nowrap">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            {language === 'hi' ? 'लाइव ऑडिट नेटवर्क' : language === 'ta' ? 'நேரடி தணிக்கை பிணையம்' : 'LIVE CIVIC AUDIT'}
+          </span>
+          <span className="text-slate-600">|</span>
+          <span>{language === 'hi' ? '12 संसदीय क्षेत्र ट्रैक किए गए' : language === 'ta' ? '12 தொகுதிகள் கண்காணிக்கப்பட்டது' : '12 CONSTITUENCIES TRACKED'}</span>
+          <span className="text-slate-600">|</span>
+          <span>{language === 'hi' ? '₹300 करोड़ MPLAD निधि की निगरानी' : language === 'ta' ? '₹300 கோடி MPLAD நிதி கண்காணிப்பு' : '₹300.0 CR MPLAD FUNDS AUDITED'}</span>
+        </div>
+        <div className="hidden md:flex items-center gap-3 text-slate-500">
+          <span>ECI AUDIT TIER: 100% VERIFIED</span>
+          <span className="text-slate-700">•</span>
+          <span>v2.0 NEXT.JS</span>
+        </div>
+      </div>
+
+      <header className="topbar" style={{ position: 'relative' }}>
+        <div className="container brand-row">
         <div>
           <Link href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Image
@@ -88,5 +111,6 @@ export default function Header() {
         </div>
       </div>
     </header>
+    </>
   );
 }

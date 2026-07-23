@@ -112,10 +112,10 @@ export default function ConstituencyCompare({ constituencies }: ConstituencyComp
     <div>
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="serif-title text-3xl font-extrabold text-slate-900 tracking-tight">
             {language === 'hi' ? 'प्रतिनिधि तुलना डैशबोर्ड' : language === 'ta' ? 'பிரதிநிதி ஒப்பீட்டு டாஷ்போர்டு' : 'Representative Comparison Dashboard'}
           </h2>
-          <p className="text-slate-600 mt-2">
+          <p className="text-slate-600 mt-2 text-sm">
             {language === 'hi' ? '3 निर्वाचन क्षेत्रों का चयन करें और वादों, प्रभाव मेट्रिक्स, और MPLAD बजट उपयोग की तुलना करें।' : language === 'ta' ? '3 தொகுதிகளைத் தேர்ந்தெடுத்து வாக்குறுதிகள், தாக்க அளவீடுகள் மற்றும் MPLAD பட்ஜெட் பயன்பாட்டை ஒப்பிடுங்கள்.' : 'Select up to 3 constituencies to compare promise execution, impact metrics, and MPLAD budget utilization side-by-side.'}
           </p>
         </div>
@@ -144,8 +144,14 @@ export default function ConstituencyCompare({ constituencies }: ConstituencyComp
 
       {selectedItems.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-icon">📊</div>
-          <h2>{language === 'hi' ? 'कोई निर्वाचन क्षेत्र चयनित नहीं' : language === 'ta' ? 'தொகுதிகள் தேர்ந்தெடுக்கப்படவில்லை' : 'No Constituencies Selected'}</h2>
+          <div className="empty-icon flex items-center justify-center text-slate-400 my-2">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/>
+              <line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h2 className="serif-title text-xl font-bold">{language === 'hi' ? 'कोई निर्वाचन क्षेत्र चयनित नहीं' : language === 'ta' ? 'தொகுதிகள் தேர்ந்தெடுக்கப்படவில்லை' : 'No Constituencies Selected'}</h2>
           <p>{language === 'hi' ? 'तुलना शुरू करने के लिए ड्रॉपडाउन से कम से कम एक निर्वाचन क्षेत्र चुनें।' : language === 'ta' ? 'ஒப்பீடு தொடங்க டிராப்டவுனிலிருந்து குறைந்தது ஒரு தொகுதியைத் தேர்ந்தெடுக்கவும்.' : 'Please select at least one constituency from the dropdown to begin comparison.'}</p>
         </div>
       ) : (

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
+import { Inter, Outfit, Newsreader, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/lib/LanguageContext';
 import Header from '@/components/Header';
@@ -16,6 +16,19 @@ const outfit = Outfit({
   display: 'swap',
 });
 
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  style: ['normal', 'italic'],
+  display: 'swap',
+});
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'Know Your Leaders - Smart India Movement',
   description: 'Uncovering constituency project progress, budgets, and politician performance metrics. Empowering citizens through data transparency.',
@@ -27,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${newsreader.variable} ${mono.variable}`}>
       <body>
         <LanguageProvider>
           <div className="flex flex-col min-h-screen">

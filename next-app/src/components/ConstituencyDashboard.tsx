@@ -129,11 +129,11 @@ export default function ConstituencyDashboard({ initialData }: ConstituencyDashb
         {/* Intro Panel */}
         <div className="panel hero-intro-panel">
           <div className="hero-intro-header">
-            <div className="hero-badge">
-              {language === 'hi' ? 'सत्यापित सार्वजनिक रिकॉर्ड' : language === 'ta' ? 'சரிபார்க்கப்பட்ட பொது பதிவுகள்' : 'Verified Public Records'}
+            <div className="hero-badge font-mono text-[10px] uppercase tracking-wider">
+              {language === 'hi' ? 'सत्यापित सार्वजनिक रिकॉर्ड' : language === 'ta' ? 'சரிபார்க்கப்பட்ட பொது பதிவுகள்' : 'VERIFIED CIVIC AUDIT'}
             </div>
-            <h2>{translate('home.datasetBrowserTitle', language)}</h2>
-            <p className="text-slate-600 mt-3">
+            <h2 className="serif-title text-2xl font-extrabold mt-2">{translate('home.datasetBrowserTitle', language)}</h2>
+            <p className="text-slate-600 mt-2 text-sm">
               {translate('home.datasetBrowserBody', language)}
             </p>
           </div>
@@ -141,42 +141,63 @@ export default function ConstituencyDashboard({ initialData }: ConstituencyDashb
           {/* Features Checklist */}
           <div className="features-grid">
             <div className="feature-item">
-              <span className="feature-icon">🛡️</span>
+              <span className="feature-icon flex items-center justify-center text-indigo-600 bg-indigo-50 rounded-lg p-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </span>
               <div className="feature-content">
-                <h4>{translate('metrics.workVsImpact', language)}</h4>
-                <p>
+                <h4 className="serif-title font-bold text-sm">{translate('metrics.workVsImpact', language)}</h4>
+                <p className="text-xs text-slate-500 mt-0.5">
                   {language === 'hi' ? 'गुणवत्ता, निष्पादन और प्रत्यक्ष परिणामों का विश्लेषण करना।' : language === 'ta' ? 'வெளியீட்டு தரம், செயலாக்கம் மற்றும் நேரடி முடிவுகளை பகுப்பாய்வு செய்தல்.' : 'Analyzing output quality, execution, and direct outcomes.'}
                 </p>
               </div>
             </div>
+
             <div className="feature-item">
-              <span className="feature-icon">📊</span>
+              <span className="feature-icon flex items-center justify-center text-emerald-600 bg-emerald-50 rounded-lg p-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </span>
               <div className="feature-content">
-                <h4>{translate('metrics.promiseVsExecution', language)}</h4>
-                <p>
+                <h4 className="serif-title font-bold text-sm">{translate('metrics.promiseVsExecution', language)}</h4>
+                <p className="text-xs text-slate-500 mt-0.5">
                   {language === 'hi' ? 'चुनावी प्रतिबद्धताओं के खिलाफ वितरण की ट्रैकिंग।' : language === 'ta' ? 'தேர்தல் கடமைகளுக்கு எதிரான விநியோகத்தை கண்காணித்தல்.' : 'Tracking delivery against electoral commitments.'}
                 </p>
               </div>
             </div>
+
             <div className="feature-item">
-              <span className="feature-icon">⚖️</span>
+              <span className="feature-icon flex items-center justify-center text-amber-600 bg-amber-50 rounded-lg p-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                  <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                  <path d="M7 21h10"/>
+                  <path d="M12 3v18"/>
+                  <path d="M3 7h18"/>
+                </svg>
+              </span>
               <div className="feature-content">
-                <h4>
+                <h4 className="serif-title font-bold text-sm">
                   {language === 'hi' ? 'तुलना और अन्वेषण मानचित्र' : language === 'ta' ? 'ஒப்பீடு மற்றும் வரைபட ஆய்வு' : 'Comparison & Exploration Map'}
                 </h4>
-                <p>
-                  {language === 'hi' ? 'कार्यों को देखने के लिए भारत के मानचित्र को टॉगल करें या सांसदों की तुलना करने के लिए एक साथ चुनें।' : language === 'ta' ? 'வரைபடம் மூலம் தொகுதிகளை ஆராயுங்கள் மற்றும் எம்.பி.க்களை ஒப்பிடுங்கள்.' : 'Toggle our interactive map of India to filter work or select multiple constituencies side-by-side to review budget utilization and execution.'}
+                <p className="text-xs text-slate-500 mt-0.5">
+                  {language === 'hi' ? 'कार्यों को देखने के लिए भारत के मानचित्र को टॉगल करें या सांसदों की तुलना करने के लिए एक साथ चुनें।' : language === 'ta' ? 'வரைபடம் மூலம் தொகுதிகளை ஆராயுங்கள் மற்றும் எம்.பி.க்களை ஒப்பிடுங்கள்.' : 'Toggle interactive map or select multiple constituencies side-by-side.'}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="hero-footer">
-            <div className="dataset-meta-pills">
-              <span className="meta-pill">{language === 'hi' ? '📊 12 लोक सभा निर्वाचन क्षेत्र' : language === 'ta' ? '📊 12 மக்களவை தொகுதிகள்' : '📊 12 Lok Sabha Constituencies'}</span>
-              <span className="meta-pill">⚡ Dynamic Data Store</span>
+          <div className="hero-footer mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div className="dataset-meta-pills flex gap-2">
+              <span className="meta-pill font-mono text-[10px] uppercase font-bold">{language === 'hi' ? '12 निर्वाचन क्षेत्र' : language === 'ta' ? '12 தொகுதிகள்' : '12 SEATS'}</span>
+              <span className="meta-pill font-mono text-[10px] uppercase font-bold">OPEN DATA v2.0</span>
             </div>
-            <span className="text-xs text-slate-400">Version 2.0 (Next.js)</span>
+            <span className="text-[10px] text-slate-400 font-mono">ECI AUDITED DATASET</span>
           </div>
         </div>
 
@@ -264,8 +285,13 @@ export default function ConstituencyDashboard({ initialData }: ConstituencyDashb
 
         {filteredData.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-icon">🔍</div>
-            <h2>{language === 'hi' ? 'कोई निर्वाचन क्षेत्र नहीं मिला' : language === 'ta' ? 'தொகுதிகள் கிடைக்கவில்லை' : 'No Constituencies Found'}</h2>
+            <div className="empty-icon flex items-center justify-center text-slate-400 my-2">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <h2 className="serif-title text-xl font-bold">{language === 'hi' ? 'कोई निर्वाचन क्षेत्र नहीं मिला' : language === 'ta' ? 'தொகுதிகள் கிடைக்கவில்லை' : 'No Constituencies Found'}</h2>
             <p>We couldn't find any records matching "{searchQuery}". Check the spelling or clear search filters to start over.</p>
             <button className="primary-button" onClick={() => { setSearchQuery(''); setActiveTab('all'); }}>
               {language === 'hi' ? 'फ़िल्टर रीसेट करें' : language === 'ta' ? 'வடிகட்டிகளை மீட்டமைக்கவும்' : 'Reset Filters'}
@@ -278,19 +304,19 @@ export default function ConstituencyDashboard({ initialData }: ConstituencyDashb
                 <div className={`party-accent ${c.party?.toLowerCase() || 'default'}`}></div>
                 <div>
                   <div className="flex justify-between items-start mb-2">
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded border ${getPartyColorClass(c.party)}`}>
+                    <span className={`text-[11px] font-mono font-bold px-2 py-0.5 rounded border ${getPartyColorClass(c.party)}`}>
                       {c.party}
                     </span>
                     <span className="text-xs text-slate-400 font-medium">{c.state}</span>
                   </div>
-                  <h4>{c.name}</h4>
-                  <p className="representative-subtitle mb-4">{c.representative}</p>
+                  <h4 className="serif-title font-bold text-lg text-slate-900 leading-snug">{c.name}</h4>
+                  <p className="representative-subtitle mb-4 text-xs font-medium text-slate-500">{c.representative}</p>
 
                   <div className="space-y-3 mt-4">
                     <div>
                       <div className="flex justify-between text-xs font-semibold text-slate-600 mb-1">
                         <span>{translate('metrics.promiseVsExecution', language)}</span>
-                        <span>{c.metrics.promise_vs_execution.score_pct}%</span>
+                        <span className="telemetry-num font-bold text-slate-900">{c.metrics.promise_vs_execution.score_pct}%</span>
                       </div>
                       <div className="progress-bar-track">
                         <div
@@ -303,7 +329,7 @@ export default function ConstituencyDashboard({ initialData }: ConstituencyDashb
                     <div>
                       <div className="flex justify-between text-xs font-semibold text-slate-600 mb-1">
                         <span>{translate('metrics.workVsImpact', language)}</span>
-                        <span>{c.metrics.work_vs_impact.score_pct}%</span>
+                        <span className="telemetry-num font-bold text-slate-900">{c.metrics.work_vs_impact.score_pct}%</span>
                       </div>
                       <div className="progress-bar-track">
                         <div

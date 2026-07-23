@@ -93,7 +93,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Typography & Headings ──────────────────────────────── */
+/* ── Typography & Editorial Headings ────────────────────── */
 h1, h2, h3, h4, .logo {
   font-family: var(--font-display), 'Outfit', sans-serif;
   font-weight: 700;
@@ -101,17 +101,28 @@ h1, h2, h3, h4, .logo {
   color: var(--text);
 }
 
+.editorial-headline, .serif-title {
+  font-family: var(--font-serif), 'Newsreader', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.telemetry-num, .metric-num, .font-mono-num {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ── Custom Scrollbar ───────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 999px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;

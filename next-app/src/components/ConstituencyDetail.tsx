@@ -365,19 +365,19 @@ export default function ConstituencyDetail({ constituency }: ConstituencyDetailP
       <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm mb-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex items-center gap-5">
-            <div className="w-16 h-16 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-xl shadow-md border-2 border-white">
+            <div className="w-16 h-16 rounded-full bg-slate-900 text-amber-400 font-bold flex items-center justify-center text-xl shadow-md border-2 border-amber-400/40 font-mono">
               {getInitials(constituency.representative)}
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                <h2 className="serif-title text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
                   {constituency.name}
                 </h2>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded border bg-blue-50 text-blue-700 border-blue-100">
+                <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded border bg-blue-50 text-blue-700 border-blue-100">
                   {constituency.party}
                 </span>
               </div>
-              <p className="text-slate-500 font-medium mt-1">
+              <p className="text-slate-500 font-medium mt-1 text-sm">
                 {translate('constituency.representative', language)}:{' '}
                 <span className="font-bold text-slate-800">{constituency.representative}</span> •{' '}
                 {constituency.state}
@@ -388,12 +388,12 @@ export default function ConstituencyDetail({ constituency }: ConstituencyDetailP
           <div className="flex gap-6 items-center w-full md:w-auto justify-center md:justify-end">
             <RadialGauge
               pct={constituency.metrics.promise_vs_execution.score_pct}
-              strokeColor="#059669"
+              strokeColor="var(--done)"
               label={translate('metrics.promiseVsExecution', language)}
             />
             <RadialGauge
               pct={constituency.metrics.work_vs_impact.score_pct}
-              strokeColor="#2563eb"
+              strokeColor="var(--brand)"
               label={translate('metrics.workVsImpact', language)}
             />
           </div>
@@ -403,24 +403,25 @@ export default function ConstituencyDetail({ constituency }: ConstituencyDetailP
       {/* ─── Status Summary Bar ──────────────────────────────── */}
       <div className="panel bg-white border border-slate-200 p-4 rounded-2xl shadow-sm mb-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="text-sm text-slate-600 font-medium flex flex-wrap gap-x-3 gap-y-1">
-            <span>
-              {statusCounts.done} {getStatusEmoji('done')} {translate('legend.done', language)}
+          <div className="text-xs text-slate-600 font-medium flex flex-wrap gap-x-4 gap-y-2 items-center">
+            <span className="flex items-center gap-1.5 font-bold text-slate-800">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+              <span className="telemetry-num">{statusCounts.done}</span> {translate('legend.done', language)}
             </span>
             <span className="text-slate-300">·</span>
-            <span>
-              {statusCounts.in_progress} {getStatusEmoji('in_progress')}{' '}
-              {translate('legend.inProgress', language)}
+            <span className="flex items-center gap-1.5 font-bold text-slate-800">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
+              <span className="telemetry-num">{statusCounts.in_progress}</span> {translate('legend.inProgress', language)}
             </span>
             <span className="text-slate-300">·</span>
-            <span>
-              {statusCounts.not_started} {getStatusEmoji('not_started')}{' '}
-              {translate('legend.notStarted', language)}
+            <span className="flex items-center gap-1.5 font-bold text-slate-800">
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-400 inline-block"></span>
+              <span className="telemetry-num">{statusCounts.not_started}</span> {translate('legend.notStarted', language)}
             </span>
             <span className="text-slate-300">·</span>
-            <span>
-              {statusCounts.misleading} {getStatusEmoji('misleading')}{' '}
-              {translate('legend.misleading', language)}
+            <span className="flex items-center gap-1.5 font-bold text-slate-800">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+              <span className="telemetry-num">{statusCounts.misleading}</span> {translate('legend.misleading', language)}
             </span>
           </div>
         </div>

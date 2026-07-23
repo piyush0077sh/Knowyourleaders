@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { useLanguage, Language } from '@/lib/LanguageContext';
 import { translate } from '@/lib/i18n';
 
@@ -25,9 +26,19 @@ export default function Header() {
     <header className="topbar" style={{ position: 'relative' }}>
       <div className="container brand-row">
         <div>
-          <Link href="/" className="brand-link">
-            <h1 className="logo">{translate('global.brand', language)}</h1>
-            <p className="tagline">{translate('global.tagline', language)}</p>
+          <Link href="/" className="brand-link" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Image
+              src="/logo_icon.svg"
+              alt="KnowYourLeaders"
+              width={38}
+              height={38}
+              style={{ flexShrink: 0 }}
+              priority
+            />
+            <div>
+              <h1 className="logo">{translate('global.brand', language)}</h1>
+              <p className="tagline">{translate('global.tagline', language)}</p>
+            </div>
           </Link>
         </div>
 

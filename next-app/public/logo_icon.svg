@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer shield shape -->
+  <path d="M24 2L6 10v14c0 11.2 7.68 21.68 18 24 10.32-2.32 18-12.8 18-24V10L24 2z" fill="#0f172a"/>
+  <!-- Inner shield highlight -->
+  <path d="M24 4.5L8 11.5v12.5c0 10 6.88 19.4 16 21.5 9.12-2.1 16-11.5 16-21.5V11.5L24 4.5z" fill="#1e293b"/>
+  <!-- Balance scale beam -->
+  <line x1="14" y1="22" x2="34" y2="22" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+  <!-- Scale pillar -->
+  <line x1="24" y1="15" x2="24" y2="32" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+  <!-- Scale base -->
+  <path d="M19 32h10" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+  <!-- Left pan -->
+  <path d="M11 22c0 0 1 5 3 5s3-5 3-5" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Right pan -->
+  <path d="M31 22c0 0 1 5 3 5s3-5 3-5" stroke="#fbbf24" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Top pillar ornament -->
+  <circle cx="24" cy="14" r="2.5" fill="#f59e0b"/>
+  <!-- Checkmark inside ornament -->
+  <path d="M22.5 14l1 1 2-2" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

@@ -1,265 +1,228 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
-interface StateData {
-  name: string;
-  constituencies: {
-    id: string;
-    name: string;
-    representative: string;
-    party: string;
-    score: number;
-  }[];
-}
 
 interface IndiaMapProps {
   constituencyData: any[];
+  colorMode?: 'execution' | 'budget' | 'density';
+  onStateSelect?: (stateName: string) => void;
+  selectedState?: string | null;
 }
 
-export default function IndiaMap({ constituencyData }: IndiaMapProps) {
+// Map state names to recognizable realistic paths (simplified for file size but topologically correct)
+// ViewBox: 0 0 600 700
+const statePaths: Record<string, string> = {
+  "Andhra Pradesh": "M231,482 L260,455 L285,463 L300,440 L318,460 L335,465 L328,500 L280,510 L250,540 L235,510 Z",
+  "Arunachal Pradesh": "M500,240 L530,230 L550,250 L560,280 L520,290 L490,270 Z",
+  "Assam": "M470,285 L500,265 L530,285 L510,305 L475,300 Z",
+  "Bihar": "M370,280 L400,275 L415,295 L405,320 L370,310 L355,295 Z",
+  "Chhattisgarh": "M285,350 L310,345 L320,380 L315,410 L290,440 L275,410 Z",
+  "Goa": "M160,515 L170,512 L175,525 L162,530 Z",
+  "Gujarat": "M80,330 L110,310 L140,320 L150,350 L130,370 L140,400 L95,385 L85,360 Z",
+  "Haryana": "M200,185 L225,180 L235,210 L210,225 L190,205 Z",
+  "Himachal Pradesh": "M210,135 L235,120 L255,140 L240,165 L215,160 Z",
+  "Jharkhand": "M360,320 L400,315 L405,340 L380,360 L355,345 Z",
+  "Karnataka": "M170,455 L220,445 L245,475 L230,520 L185,550 L165,510 Z",
+  "Kerala": "M185,560 L215,580 L205,630 L180,610 Z",
+  "Madhya Pradesh": "M195,300 L245,280 L300,305 L305,340 L275,365 L220,355 L180,330 Z",
+  "Maharashtra": "M145,395 L210,365 L275,375 L285,410 L260,445 L220,440 L165,465 Z",
+  "Manipur": "M530,310 L545,300 L550,330 L535,340 Z",
+  "Meghalaya": "M470,305 L500,295 L505,315 L475,315 Z",
+  "Mizoram": "M520,340 L535,335 L540,375 L525,370 Z",
+  "Nagaland": "M535,285 L555,275 L560,300 L540,310 Z",
+  "Odisha": "M335,370 L370,360 L395,375 L380,410 L345,435 L330,400 Z",
+  "Punjab": "M175,155 L210,145 L220,175 L195,190 L170,180 Z",
+  "Rajasthan": "M115,280 L140,240 L195,235 L220,270 L195,310 L145,320 L105,300 Z",
+  "Sikkim": "M420,245 L435,240 L440,265 L425,270 Z",
+  "Tamil Nadu": "M215,540 L250,510 L270,525 L255,570 L215,620 L205,580 Z",
+  "Telangana": "M240,405 L280,395 L310,430 L285,455 L250,450 L230,430 Z",
+  "Tripura": "M505,340 L520,335 L525,355 L510,360 Z",
+  "Uttar Pradesh": "M250,225 L300,215 L355,245 L365,285 L320,300 L270,275 Z",
+  "Uttarakhand": "M250,165 L280,160 L295,190 L260,210 L245,190 Z",
+  "West Bengal": "M395,335 L425,330 L430,370 L410,405 L395,380 Z",
+  "Jammu & Kashmir": "M160,100 L190,85 L225,105 L210,130 L175,120 Z",
+  "Ladakh": "M215,85 L260,70 L290,105 L270,135 L225,120 Z",
+};
+
+// Delhi is a circle
+const delhiCoords = { cx: 235, cy: 215, r: 4 };
+
+interface TooltipData {
+  state: string;
+  count: number;
+  execution?: number;
+  impact?: number;
+  x: number;
+  y: number;
+}
+
+export default function IndiaMap({
+  constituencyData,
+  colorMode = 'execution',
+  onStateSelect,
+  selectedState,
+}: IndiaMapProps) {
   const router = useRouter();
-  const [hoveredState, setHoveredState] = useState<StateData | null>(null);
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [tooltip, setTooltip] = useState<TooltipData | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
-  // Map constituency data to states
-  const statesMap = React.useMemo(() => {
-    const map: Record<string, StateData> = {};
-
-    constituencyData.forEach((c) => {
-      // Normalize state name to match SVG IDs
-      const stateName = c.state;
-      if (!map[stateName]) {
-        map[stateName] = {
-          name: stateName,
-          constituencies: [],
-        };
-      }
-      map[stateName].constituencies.push({
-        id: c.id,
-        name: c.name,
-        representative: c.representative,
-        party: c.party,
-        score: c.metrics.promise_vs_execution.score_pct,
-      });
+  const stateStats = useMemo(() => {
+    const stats: Record<string, { count: number; execSum: number; impSum: number; ids: string[] }> = {};
+    constituencyData?.forEach(c => {
+      const state = c.state;
+      if (!stats[state]) stats[state] = { count: 0, execSum: 0, impSum: 0, ids: [] };
+      stats[state].count += 1;
+      stats[state].execSum += c.executionScore || 0;
+      stats[state].impSum += c.workImpactScore || 0;
+      stats[state].ids.push(c.id);
     });
-
-    return map;
+    return stats;
   }, [constituencyData]);
 
-  // Determine state color based on average constituency score
-  const getStateColorClass = (stateName: string) => {
-    const data = statesMap[stateName];
-    if (!data || data.constituencies.length === 0) return 'map-color-none';
+  const getColor = (stateName: string) => {
+    const stats = stateStats[stateName];
+    if (!stats || stats.count === 0) return 'hsl(215, 20%, 92%)';
 
-    const avgScore =
-      data.constituencies.reduce((acc, curr) => acc + curr.score, 0) /
-      data.constituencies.length;
+    if (colorMode === 'density') {
+      const count = stats.count;
+      if (count >= 3) return '#312e81'; // deep indigo
+      if (count === 2) return '#3b82f6'; // medium blue
+      if (count === 1) return '#93c5fd'; // light blue
+      return 'hsl(215, 20%, 92%)';
+    }
 
-    if (avgScore >= 65) return 'map-color-high';
-    if (avgScore >= 50) return 'map-color-medium';
-    return 'map-color-low';
+    // Gradient scale for execution/budget
+    const value = colorMode === 'execution' 
+      ? (stats.execSum / stats.count)
+      : (stats.execSum / stats.count); // Mock budget logic to use execution score
+
+    if (value >= 65) return 'hsl(160, 70%, 38%)';
+    if (value >= 50) return 'hsl(38, 92%, 50%)';
+    return 'hsl(0, 72%, 56%)';
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const bounds = e.currentTarget.getBoundingClientRect();
-    setTooltipPos({
-      x: e.clientX - bounds.left + 15,
-      y: e.clientY - bounds.top + 15,
+  const handleMouseMove = (e: React.MouseEvent, stateName: string) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+
+    // Tooltip viewport clamping
+    if (tooltipRef.current) {
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      if (x + tooltipRect.width > rect.width) {
+        x -= tooltipRect.width + 10;
+      } else {
+        x += 10;
+      }
+      if (y + tooltipRect.height > rect.height) {
+        y -= tooltipRect.height + 10;
+      } else {
+        y += 10;
+      }
+    } else {
+      x += 10;
+      y += 10;
+    }
+
+    const stats = stateStats[stateName];
+    setTooltip({
+      state: stateName,
+      count: stats?.count || 0,
+      execution: stats ? stats.execSum / stats.count : undefined,
+      impact: stats ? stats.impSum / stats.count : undefined,
+      x,
+      y,
     });
   };
 
-  const handleStateClick = (stateName: string) => {
-    const data = statesMap[stateName];
-    if (data && data.constituencies.length > 0) {
-      if (data.constituencies.length === 1) {
-        router.push(`/constituency/${data.constituencies[0].id}`);
-      } else {
-        // Search for that state on the homepage
-        router.push(`/?q=${encodeURIComponent(stateName)}`);
-      }
+  const handleMouseLeave = () => {
+    setTooltip(null);
+  };
+
+  const handleClick = (stateName: string) => {
+    const stats = stateStats[stateName];
+    if (!stats || stats.count === 0) return;
+
+    if (stats.count === 1) {
+      router.push(`/constituency/${stats.ids[0]}`);
+    } else if (onStateSelect) {
+      onStateSelect(stateName);
     }
   };
 
-  // Simplified paths for states of India (scaled within a 600x680 viewport)
-  // These are clean, premium geometric representations designed to render reliably.
-  const statePaths = [
-    {
-      id: 'Jammu & Kashmir',
-      name: 'Jammu & Kashmir & Ladakh',
-      d: 'M 220,50 L 250,40 L 290,50 L 300,75 L 290,110 L 250,115 L 210,105 L 205,80 Z',
-    },
-    {
-      id: 'Himachal Pradesh',
-      name: 'Himachal Pradesh',
-      d: 'M 250,115 L 290,110 L 310,120 L 305,145 L 285,150 L 265,140 Z',
-    },
-    {
-      id: 'Punjab',
-      name: 'Punjab',
-      d: 'M 210,105 L 250,115 L 265,140 L 250,165 L 215,160 L 200,135 Z',
-    },
-    {
-      id: 'Uttarakhand',
-      name: 'Uttarakhand',
-      d: 'M 285,150 L 305,145 L 340,160 L 345,185 L 320,200 L 295,185 Z',
-    },
-    {
-      id: 'Haryana',
-      name: 'Haryana',
-      d: 'M 250,165 L 285,150 L 295,185 L 280,205 L 245,200 L 240,175 Z',
-    },
-    {
-      id: 'Delhi',
-      name: 'Delhi',
-      d: 'M 280,190 A 8,8 0 1,1 280,206 A 8,8 0 1,1 280,190 Z',
-    },
-    {
-      id: 'Rajasthan',
-      name: 'Rajasthan',
-      d: 'M 140,180 L 215,160 L 245,200 L 280,205 L 260,250 L 250,290 L 195,295 L 145,250 Z',
-    },
-    {
-      id: 'Gujarat',
-      name: 'Gujarat',
-      d: 'M 115,260 L 145,250 L 195,295 L 200,325 L 175,360 L 155,360 L 140,325 L 115,310 L 95,305 Z',
-    },
-    {
-      id: 'Madhya Pradesh',
-      name: 'Madhya Pradesh',
-      d: 'M 195,295 L 250,290 L 300,265 L 360,270 L 375,320 L 380,365 L 325,385 L 250,380 L 200,325 Z',
-    },
-    {
-      id: 'Uttar Pradesh',
-      name: 'Uttar Pradesh',
-      d: 'M 280,205 L 295,185 L 320,200 L 345,185 L 435,225 L 440,255 L 360,270 L 300,265 Z',
-    },
-    {
-      id: 'Bihar',
-      name: 'Bihar',
-      d: 'M 435,225 L 490,230 L 515,265 L 470,290 L 440,285 L 440,255 Z',
-    },
-    {
-      id: 'Jharkhand',
-      name: 'Jharkhand',
-      d: 'M 440,285 L 470,290 L 495,295 L 500,335 L 450,340 L 430,315 Z',
-    },
-    {
-      id: 'West Bengal',
-      name: 'West Bengal',
-      d: 'M 490,230 L 500,200 L 515,210 L 505,250 L 530,280 L 525,325 L 510,360 L 495,340 L 500,335 L 495,295 L 515,265 Z',
-    },
-    {
-      id: 'Odisha',
-      name: 'Odisha',
-      d: 'M 430,315 L 450,340 L 495,340 L 485,395 L 455,420 L 415,385 L 410,345 Z',
-    },
-    {
-      id: 'Chhattisgarh',
-      name: 'Chhattisgarh',
-      d: 'M 375,320 L 430,315 L 410,345 L 415,385 L 405,435 L 375,410 L 380,365 Z',
-    },
-    {
-      id: 'Maharashtra',
-      name: 'Maharashtra',
-      d: 'M 175,360 L 250,380 L 325,385 L 380,365 L 375,410 L 330,460 L 265,475 L 210,470 L 195,445 L 180,415 Z',
-    },
-    {
-      id: 'Goa',
-      name: 'Goa',
-      d: 'M 205,480 A 6,6 0 1,1 205,492 A 6,6 0 1,1 205,480 Z',
-    },
-    {
-      id: 'Karnataka',
-      name: 'Karnataka',
-      d: 'M 210,470 L 265,475 L 290,515 L 290,565 L 270,595 L 240,580 L 220,535 L 205,492 Z',
-    },
-    {
-      id: 'Andhra Pradesh',
-      name: 'Andhra Pradesh',
-      d: 'M 290,515 L 330,460 L 375,410 L 405,435 L 375,480 L 345,545 L 320,585 L 290,565 Z',
-    },
-    {
-      id: 'Telangana',
-      name: 'Telangana',
-      d: 'M 265,475 L 330,460 L 375,480 L 345,545 L 290,515 Z',
-    },
-    {
-      id: 'Tamil Nadu',
-      name: 'Tamil Nadu',
-      d: 'M 270,595 L 290,565 L 320,585 L 325,620 L 305,665 L 275,655 Z',
-    },
-    {
-      id: 'Kerala',
-      name: 'Kerala',
-      d: 'M 240,580 L 270,595 L 275,655 L 255,650 L 245,610 Z',
-    },
-  ];
-
   return (
-    <div className="map-container select-none">
-      <svg
-        viewBox="0 0 600 680"
-        className="map-svg"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setHoveredState(null)}
+    <div ref={containerRef} className="relative w-full max-w-[600px] aspect-[6/7] mx-auto">
+      <svg 
+        viewBox="0 0 600 700" 
+        className="w-full h-full drop-shadow-lg"
+        style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))' }}
       >
-        {statePaths.map((path) => {
-          const stateData = statesMap[path.id];
-          const hasData = stateData && stateData.constituencies.length > 0;
+        {Object.entries(statePaths).map(([name, d]) => {
+          const isSelected = selectedState === name;
           return (
             <path
-              key={path.id}
-              d={path.d}
-              className={`map-state ${getStateColorClass(path.id)}`}
-              onClick={() => handleStateClick(path.id)}
-              onMouseEnter={() => {
-                if (hasData) {
-                  setHoveredState(stateData);
-                } else {
-                  setHoveredState({ name: path.name, constituencies: [] });
-                }
-              }}
+              key={name}
+              d={d}
+              fill={getColor(name)}
+              stroke={isSelected ? '#3b82f6' : '#ffffff'}
+              strokeWidth={isSelected ? 3 : 1}
               style={{
-                strokeWidth: hasData ? 2 : 1,
-                cursor: hasData ? 'pointer' : 'default',
+                transition: 'fill 0.3s ease, stroke 0.3s ease',
+                opacity: isSelected ? 1 : 0.9,
+                cursor: stateStats[name]?.count ? 'pointer' : 'default',
               }}
-            />
+              onMouseMove={(e) => handleMouseMove(e, name)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleClick(name)}
+            >
+              <title>{name}</title>
+            </path>
           );
         })}
+        {/* Delhi */}
+        <circle
+          cx={delhiCoords.cx}
+          cy={delhiCoords.cy}
+          r={delhiCoords.r}
+          fill={getColor('Delhi')}
+          stroke={selectedState === 'Delhi' ? '#3b82f6' : '#ffffff'}
+          strokeWidth={selectedState === 'Delhi' ? 2 : 1}
+          style={{
+            transition: 'fill 0.3s ease, stroke 0.3s ease',
+            cursor: stateStats['Delhi']?.count ? 'pointer' : 'default',
+          }}
+          onMouseMove={(e) => handleMouseMove(e, 'Delhi')}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => handleClick('Delhi')}
+        >
+          <title>Delhi</title>
+        </circle>
       </svg>
 
-      {/* Dynamic Hover Tooltip */}
-      {hoveredState && (
+      {/* Tooltip */}
+      {tooltip && (
         <div
-          className="map-tooltip"
-          style={{
-            display: 'block',
-            left: `${tooltipPos.x}px`,
-            top: `${tooltipPos.y}px`,
-          }}
+          ref={tooltipRef}
+          className="absolute z-10 p-3 bg-gray-900 text-white rounded-lg shadow-xl text-sm pointer-events-none min-w-[150px]"
+          style={{ left: tooltip.x, top: tooltip.y }}
         >
-          <div className="font-bold border-b border-slate-700 pb-1 mb-1 text-yellow-400">
-            {hoveredState.name}
-          </div>
-          {hoveredState.constituencies.length === 0 ? (
-            <div className="text-xs text-slate-400 italic">No constituencies tracked</div>
-          ) : (
-            <div className="space-y-2 mt-1">
-              {hoveredState.constituencies.map((c) => (
-                <div key={c.id} className="text-xs">
-                  <span className="font-semibold">{c.name}</span>: {c.representative}{' '}
-                  <span className="text-slate-400">({c.party})</span>
-                  <div className="font-bold text-emerald-400 mt-0.5">
-                    Execution Score: {c.score}%
-                  </div>
-                </div>
-              ))}
-              <div className="text-[10px] text-slate-400 border-t border-slate-800 pt-1 mt-1 text-center font-bold">
-                Click to explore details
+          <div className="font-bold text-yellow-400 mb-1">{tooltip.state}</div>
+          <div className="text-gray-300">Constituencies: {tooltip.count}</div>
+          {tooltip.count > 0 && (
+            <>
+              {tooltip.execution !== undefined && (
+                <div className="text-gray-300">Execution: {tooltip.execution.toFixed(1)}%</div>
+              )}
+              {tooltip.impact !== undefined && (
+                <div className="text-gray-300">Impact: {tooltip.impact.toFixed(1)}/10</div>
+              )}
+              <div className="mt-2 text-xs text-blue-300 italic">
+                {tooltip.count === 1 ? 'Click to view' : 'Click to explore'}
               </div>
-            </div>
+            </>
           )}
         </div>
       )}

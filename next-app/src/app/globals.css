@@ -3,45 +3,82 @@
 /* ── KNOWYOURLEADERS PREMIUM CIVIL RECORDS DESIGN SYSTEM ────────────────── */
 
 :root {
-  /* Colors - Professional Light Mode with Deep Navy and Gold/Amber Accents */
-  --bg: #f8fafc;
+  /* ── Core Palette: Deep Ink & Warm Gold ────────────────────── */
+  --bg: #f7f8fb;
   --surface: #ffffff;
-  --surface-hover: #f1f5f9;
-  --text: #0f172a;
-  --muted: #475569;
-  --border: #e2e8f0;
-  --border-hover: #cbd5e1;
-  --brand: #2563eb;
-  --brand-hover: #1d4ed8;
-  --brand-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-  --brand-glow: rgba(59, 130, 246, 0.08);
-  
-  /* Status Colors */
-  --done: #059669;
-  --done-bg: #ecfdf5;
-  --done-border: #a7f3d0;
-  
-  --progress: #d97706;
-  --progress-bg: #fffbeb;
-  --progress-border: #fde68a;
-  
-  --not-started: #475569;
-  --not-started-bg: #f8fafc;
-  --not-started-border: #e2e8f0;
-  
-  --misleading: #dc2626;
-  --misleading-bg: #fef2f2;
-  --misleading-border: #fecaca;
-  
-  /* Layout & Design */
+  --surface-hover: #f0f2f7;
+  --text: #0c1222;
+  --text-secondary: #3d4663;
+  --muted: #6b7394;
+  --border: #dfe2ec;
+  --border-hover: #c3c8d9;
+
+  /* ── Brand: Indigo-Navy + Marigold Gold ────────────────────── */
+  --brand: #3551db;
+  --brand-hover: #2a41b0;
+  --brand-gradient: linear-gradient(135deg, #1e2f7a 0%, #3551db 50%, #5b73f5 100%);
+  --brand-glow: rgba(53, 81, 219, 0.08);
+  --brand-gold: #c2850a;
+  --brand-gold-light: #f5dfa8;
+  --brand-navy: #0c1222;
+
+  /* ── Status Colors (HSL-balanced, soft backgrounds) ────────── */
+  --done: hsl(160, 64%, 36%);         /* Teal-emerald */
+  --done-bg: hsl(160, 60%, 96%);
+  --done-border: hsl(160, 50%, 82%);
+
+  --progress: hsl(38, 92%, 50%);      /* Warm amber */
+  --progress-bg: hsl(40, 100%, 96%);
+  --progress-border: hsl(42, 90%, 80%);
+
+  --not-started: hsl(220, 16%, 52%);  /* Cool slate */
+  --not-started-bg: hsl(220, 20%, 97%);
+  --not-started-border: hsl(220, 18%, 88%);
+
+  --misleading: hsl(4, 68%, 56%);     /* Muted rose-coral */
+  --misleading-bg: hsl(4, 80%, 97%);
+  --misleading-border: hsl(4, 70%, 86%);
+
+  /* ── Category Accent Colors ────────────────────────────────── */
+  --cat-governance: #3551db;
+  --cat-healthcare: #0d9373;
+  --cat-infrastructure: #b5720a;
+  --cat-education: #7c3aed;
+  --cat-economy: #0284c7;
+  --cat-environment: #1a8a46;
+  --cat-transport: #c2410c;
+  --cat-housing: #a8326e;
+  --cat-public-safety: #c43535;
+  --cat-urban-services: #0e7f7d;
+
+  /* ── Map Data Tiers ────────────────────────────────────────── */
+  --map-high: hsl(160, 70%, 38%);
+  --map-high-hover: hsl(160, 70%, 32%);
+  --map-medium: hsl(38, 92%, 50%);
+  --map-medium-hover: hsl(38, 92%, 42%);
+  --map-low: hsl(4, 68%, 56%);
+  --map-low-hover: hsl(4, 68%, 48%);
+  --map-none: hsl(220, 20%, 93%);
+  --map-none-hover: hsl(220, 20%, 86%);
+  --map-selected-stroke: #3551db;
+
+  /* ── Party Accent Colors ───────────────────────────────────── */
+  --party-bjp: #e66a1a;
+  --party-inc: #2570c0;
+  --party-tmc: #1fa855;
+  --party-dmk: #d82e2e;
+  --party-sp: #0d9373;
+  --party-default: #8892a8;
+
+  /* ── Layout & Design ───────────────────────────────────────── */
   --radius: 16px;
   --radius-sm: 10px;
   --radius-lg: 24px;
-  --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.08);
-  
-  --focus-ring: 2px solid #3b82f6;
+  --shadow: 0 4px 20px -2px rgba(12, 18, 34, 0.05), 0 2px 6px -1px rgba(12, 18, 34, 0.03);
+  --shadow-sm: 0 2px 8px rgba(12, 18, 34, 0.04);
+  --shadow-lg: 0 20px 40px -10px rgba(12, 18, 34, 0.1);
+
+  --focus-ring: 2px solid var(--brand);
   --focus-offset: 2px;
   --min-touch: 44px;
 }
@@ -104,13 +141,13 @@ a:hover {
 
 /* ── Topbar (Frosted Navy Header) ────────────────────────── */
 .topbar {
-  background: linear-gradient(135deg, #091124 0%, #111a31 100%);
-  border-bottom: 3px solid #fbbf24;
+  background: linear-gradient(135deg, var(--brand-navy) 0%, #151d35 100%);
+  border-bottom: 3px solid var(--brand-gold);
   padding: 1.5rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .topbar .logo, 
@@ -1286,42 +1323,47 @@ select.search-input:focus {
 
 /* Color codes based on execution */
 .map-color-high {
-  fill: #d1fae5;
+  fill: var(--map-high);
 }
 .map-color-high:hover {
-  fill: #6ee7b7;
+  fill: var(--map-high-hover);
 }
 
 .map-color-medium {
-  fill: #fef3c7;
+  fill: var(--map-medium);
 }
 .map-color-medium:hover {
-  fill: #fcd34d;
+  fill: var(--map-medium-hover);
 }
 
 .map-color-low {
-  fill: #fee2e2;
+  fill: var(--map-low);
 }
 .map-color-low:hover {
-  fill: #fca5a5;
+  fill: var(--map-low-hover);
 }
 
 .map-color-none {
-  fill: #f1f5f9;
+  fill: var(--map-none);
+}
+.map-color-none:hover {
+  fill: var(--map-none-hover);
 }
 
 .map-tooltip {
   position: absolute;
-  background: #0f172a;
+  background: var(--brand-navy);
   color: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  box-shadow: var(--shadow-lg);
+  padding: 0.875rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   pointer-events: none;
   z-index: 50;
   display: none;
   white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
 }
 
 /* ── Compare Styles ──────────────────────────────────────── */

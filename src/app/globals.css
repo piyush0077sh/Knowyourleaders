@@ -1,8 +1,49 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
 /* ── KNOWYOURLEADERS PREMIUM CIVIL RECORDS DESIGN SYSTEM ────────────────── */
 
 :root {
+  /* ── shadcn/ui Design Tokens ───────────────────────────────── */
+  --background: #ffffff;
+  --foreground: #0c1222;
+  --card: #ffffff;
+  --card-foreground: #0c1222;
+  --popover: #ffffff;
+  --popover-foreground: #0c1222;
+  --primary: #3551db;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f2f7;
+  --secondary-foreground: #0c1222;
+  --muted-foreground: #6b7394;
+  --accent: #f0f2f7;
+  --accent-foreground: #0c1222;
+  --destructive: #c43535;
+  --destructive-foreground: #ffffff;
+  --input: #dfe2ec;
+  --ring: #3551db;
+
   /* ── Core Palette: Deep Ink & Warm Gold ────────────────────── */
   --bg: #f7f8fb;
   --surface: #ffffff;

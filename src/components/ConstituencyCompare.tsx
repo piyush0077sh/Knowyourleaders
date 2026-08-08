@@ -1,9 +1,23 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import 'chart.js/auto';
+import { Bar } from 'react-chartjs-2';
 import { useLanguage } from '@/lib/LanguageContext';
 import { translate } from '@/lib/i18n';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 interface PromiseData {
   status: 'done' | 'in_progress' | 'not_started' | 'misleading';
@@ -26,389 +40,308 @@ interface ConstituencyCompareProps {
   constituencies: Constituency[];
 }
 
+const deriveBudget = (execScore: number) => {
+  const total = 25;
+  const spent = Math.round(Math.min(0.95, (execScore / 100) * 1.15) * total * 10) / 10;
+  return { total, spent, remaining: Math.round((total - spent) * 10) / 10, pct: Math.round((spent / total) * 100) };
+};
+
+const partyTone = (party: string) => {
+  const key = party?.toUpperCase();
+  if (key.includes('BJP')) return 'border-orange-200 bg-orange-50 text-orange-700';
+  if (key.includes('INC')) return 'border-blue-200 bg-blue-50 text-blue-700';
+  if (key.includes('TMC') || key.includes('AITC')) return 'border-emerald-200 bg-emerald-50 text-emerald-700';
+  if (key.includes('DMK')) return 'border-red-200 bg-red-50 text-red-700';
+  return 'border-slate-200 bg-slate-50 text-slate-700';
+};
+
 export default function ConstituencyCompare({ constituencies }: ConstituencyCompareProps) {
   const { language } = useLanguage();
-
-  // Pre-select the first two constituencies for immediate visualization
   const [selectedIds, setSelectedIds] = useState<string[]>(
-    constituencies.length >= 2 ? [constituencies[0].id, constituencies[1].id] : []
+    constituencies.length >= 2 ? [constituencies[0].id, constituencies[1].id] : [],
   );
 
-  const selectedItems = useMemo(() => {
-    return selectedIds
-      .map((id) => constituencies.find((c) => c.id === id))
-      .filter((c): c is Constituency => !!c);
-  }, [selectedIds, constituencies]);
+  const selectedItems = useMemo(
+    () => selectedIds.map((id) => constituencies.find((item) => item.id === id)).filter(Boolean) as Constituency[],
+    [selectedIds, constituencies],
+  );
 
-  // Available constituencies to select
-  const availableItems = useMemo(() => {
-    return constituencies.filter((c) => !selectedIds.includes(c.id));
-  }, [constituencies, selectedIds]);
+  const availableItems = useMemo(
+    () => constituencies.filter((item) => !selectedIds.includes(item.id)),
+    [constituencies, selectedIds],
+  );
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const id = e.target.value;
-    if (!id) return;
-    
-    if (selectedIds.length >= 3) {
-      alert('You can compare a maximum of 3 constituencies at a time.');
-      return;
-    }
-    
-    setSelectedIds([...selectedIds, id]);
-    e.target.value = ''; // Reset select
+  const addConstituency = (value: string) => {
+    if (!value) return;
+    if (selectedIds.includes(value)) return;
+    if (selectedIds.length >= 3) return;
+    setSelectedIds((current) => [...current, value]);
   };
 
-  const handleRemove = (idToRemove: string) => {
-    setSelectedIds(selectedIds.filter((id) => id !== idToRemove));
+  const removeConstituency = (id: string) => {
+    setSelectedIds((current) => current.filter((itemId) => itemId !== id));
   };
 
-  // Helper to get initials
-  const getInitials = (name: string) => {
-    if (!name) return 'MP';
-    const parts = name.trim().split(/\s+/);
-    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  };
+  const comparisonRows = selectedItems.map((item) => {
+    const budget = deriveBudget(item.metrics.promise_vs_execution.score_pct);
+    const counts = item.promises.reduce(
+      (acc: Record<string, number>, promise) => {
+        acc[promise.status] = (acc[promise.status] ?? 0) + 1;
+        return acc;
+      },
+      { done: 0, in_progress: 0, not_started: 0, misleading: 0 },
+    );
 
-  // Generate budget spent/remaining. Since the base data doesn't have literal budgets,
-  // we derive realistic MPLAD utilization rates from their promise execution score!
-  // E.g., if execution score is 70%, utilization is around 75% of ₹25 Crore.
-  const getBudgetData = (item: Constituency) => {
-    const execScore = item.metrics.promise_vs_execution.score_pct;
-    const totalMplad = 25.0; // ₹25 Crore
-    const utilizationRate = Math.min(0.95, (execScore / 100) * 1.15); // Factor up slightly
-    const spent = Math.round(totalMplad * utilizationRate * 10) / 10;
-    const remaining = Math.round((totalMplad - spent) * 10) / 10;
     return {
-      total: totalMplad,
-      spent,
-      remaining,
-      percent: Math.round(utilizationRate * 100),
+      ...item,
+      budget,
+      counts,
+      promiseCount: item.promises.length,
     };
+  });
+
+  const executionChart = {
+    data: {
+      labels: comparisonRows.map((item) => item.name),
+      datasets: [
+        {
+          label: 'Promise vs Execution',
+          data: comparisonRows.map((item) => item.metrics.promise_vs_execution.score_pct),
+          backgroundColor: '#0f172a',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#475569' }, grid: { display: false } },
+        y: { beginAtZero: true, max: 100, ticks: { color: '#475569' } },
+      },
+    },
   };
 
-  // Count promises by status
-  const getStatusCounts = (item: Constituency) => {
-    const counts = { done: 0, in_progress: 0, not_started: 0, misleading: 0 };
-    item.promises?.forEach((p) => {
-      if (p.status in counts) {
-        counts[p.status as keyof typeof counts]++;
-      }
-    });
-    return counts;
+  const impactChart = {
+    data: {
+      labels: comparisonRows.map((item) => item.name),
+      datasets: [
+        {
+          label: 'Work vs Impact',
+          data: comparisonRows.map((item) => item.metrics.work_vs_impact.score_pct),
+          backgroundColor: '#475569',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#475569' }, grid: { display: false } },
+        y: { beginAtZero: true, max: 100, ticks: { color: '#475569' } },
+      },
+    },
   };
 
-  const getPartyColorClass = (party: string) => {
-    const p = party?.toUpperCase();
-    if (p === 'BJP') return 'bg-orange-100 text-orange-800 border-orange-200';
-    if (p === 'INC') return 'bg-blue-100 text-blue-800 border-blue-200';
-    if (p === 'AITC' || p === 'TMC') return 'bg-green-100 text-green-800 border-green-200';
-    if (p === 'DMK') return 'bg-red-100 text-red-800 border-red-200';
-    if (p === 'SP') return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-    return 'bg-slate-100 text-slate-800 border-slate-200';
+  const budgetChart = {
+    data: {
+      labels: comparisonRows.map((item) => item.name),
+      datasets: [
+        {
+          label: 'MPLAD utilization %',
+          data: comparisonRows.map((item) => item.budget.pct),
+          backgroundColor: '#94a3b8',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#475569' }, grid: { display: false } },
+        y: { beginAtZero: true, max: 100, ticks: { color: '#475569' } },
+      },
+    },
   };
 
   return (
-    <div>
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <div>
-          <h2 className="serif-title text-3xl font-extrabold text-slate-900 tracking-tight">
-            {language === 'hi' ? 'प्रतिनिधि तुलना डैशबोर्ड' : language === 'ta' ? 'பிரதிநிதி ஒப்பீட்டு டாஷ்போர்டு' : 'Representative Comparison Dashboard'}
-          </h2>
-          <p className="text-slate-600 mt-2 text-sm">
-            {language === 'hi' ? '3 निर्वाचन क्षेत्रों का चयन करें और वादों, प्रभाव मेट्रिक्स, और MPLAD बजट उपयोग की तुलना करें।' : language === 'ta' ? '3 தொகுதிகளைத் தேர்ந்தெடுத்து வாக்குறுதிகள், தாக்க அளவீடுகள் மற்றும் MPLAD பட்ஜெட் பயன்பாட்டை ஒப்பிடுங்கள்.' : 'Select up to 3 constituencies to compare promise execution, impact metrics, and MPLAD budget utilization side-by-side.'}
-          </p>
-        </div>
-
-        {/* Selection Dropdown */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <label htmlFor="compare-select" className="text-sm font-bold text-slate-700 whitespace-nowrap">
-            {language === 'hi' ? 'तुलना में जोड़ें:' : language === 'ta' ? 'ஒப்பிடுவதில் சேர்க்கவும்:' : 'Add to Compare:'}
-          </label>
-          <select
-            id="compare-select"
-            className="search-input py-2! text-sm!"
-            onChange={handleSelectChange}
-            disabled={selectedIds.length >= 3}
-            style={{ width: '220px', minHeight: '40px' }}
-          >
-            <option value="">-- Choose Constituency --</option>
-            {availableItems.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name} ({c.representative})
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+    <div className="space-y-8 py-6">
+      <Card className="border-slate-200 shadow-sm">
+        <CardHeader className="space-y-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="outline" className="border-slate-300 bg-slate-50 text-slate-700">
+              Comparison room
+            </Badge>
+            <Badge variant="secondary" className="bg-slate-100 text-slate-700">
+              Last updated: 15 Jul 2026
+            </Badge>
+          </div>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <CardTitle className="text-3xl text-slate-950">Representative comparison sheet</CardTitle>
+              <CardDescription className="mt-2 max-w-3xl text-base text-slate-600">
+                Compare promise execution, impact, and MPLAD utilization side by side using the same audit frame.
+              </CardDescription>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto]">
+              <Select value="" onValueChange={addConstituency}>
+                <SelectTrigger className="min-w-72">
+                  <SelectValue placeholder="Add a constituency" />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableItems.map((item) => (
+                    <SelectItem key={item.id} value={item.id}>
+                      {item.name} ({item.representative})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button asChild variant="outline">
+                <Link href="/methodology">Methodology</Link>
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
 
       {selectedItems.length === 0 ? (
-        <div className="empty-state">
-          <div className="empty-icon flex items-center justify-center text-slate-400 my-2">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"/>
-              <line x1="12" y1="20" x2="12" y2="4"/>
-              <line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-          </div>
-          <h2 className="serif-title text-xl font-bold">{language === 'hi' ? 'कोई निर्वाचन क्षेत्र चयनित नहीं' : language === 'ta' ? 'தொகுதிகள் தேர்ந்தெடுக்கப்படவில்லை' : 'No Constituencies Selected'}</h2>
-          <p>{language === 'hi' ? 'तुलना शुरू करने के लिए ड्रॉपडाउन से कम से कम एक निर्वाचन क्षेत्र चुनें।' : language === 'ta' ? 'ஒப்பீடு தொடங்க டிராப்டவுனிலிருந்து குறைந்தது ஒரு தொகுதியைத் தேர்ந்தெடுக்கவும்.' : 'Please select at least one constituency from the dropdown to begin comparison.'}</p>
-        </div>
+        <Card className="border-slate-200 shadow-sm">
+          <CardContent className="p-8 text-sm text-slate-500">
+            No constituencies selected. Use the dropdown to add one or more seats for comparison.
+          </CardContent>
+        </Card>
       ) : (
-        <div className="space-y-8">
-          {/* Side-by-side Profile Cards */}
-          <div className={`grid gap-6 ${
-            selectedItems.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
-            selectedItems.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto' :
-            'grid-cols-1 md:grid-cols-3'
-          }`}>
-            {selectedItems.map((item) => (
-              <div key={item.id} className="compare-card panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm relative animate-fade-in-up">
-                {selectedItems.length > 1 && (
-                  <button
-                    className="compare-remove-btn"
-                    onClick={() => handleRemove(item.id)}
-                    aria-label={`Remove ${item.name} from comparison`}
+        <>
+          <section className={`grid gap-4 ${selectedItems.length === 1 ? 'grid-cols-1 max-w-3xl' : selectedItems.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+            {comparisonRows.map((item) => (
+              <Card key={item.id} className="border-slate-200 shadow-sm relative">
+                {selectedItems.length > 1 ? (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-3 top-3 h-8 w-8"
+                    onClick={() => removeConstituency(item.id)}
                   >
-                    ✕
-                  </button>
-                )}
-
-                <div className="flex items-center gap-4 border-b border-slate-100 pb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-inner">
-                    {getInitials(item.representative)}
+                    ×
+                  </Button>
+                ) : null}
+                <CardHeader>
+                  <div className="space-y-2">
+                    <div className="text-lg font-semibold text-slate-950">{item.name}</div>
+                    <div className="text-sm text-slate-500">{item.representative}</div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline" className={partyTone(item.party)}>
+                        {item.party}
+                      </Badge>
+                      <Badge variant="secondary" className="bg-slate-100 text-slate-700">
+                        {item.state}
+                      </Badge>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-800 leading-tight">{item.name}</h3>
-                    <p className="text-sm text-slate-500 font-medium">{item.state}</p>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm text-slate-600">
+                  <div className="flex items-center justify-between">
+                    <span>Execution</span>
+                    <span className="font-semibold text-slate-950">{item.metrics.promise_vs_execution.score_pct}%</span>
                   </div>
-                </div>
-
-                <div className="space-y-3 pt-2 text-sm text-slate-700">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400 font-medium">{translate('constituency.representative', language)}</span>
-                    <span className="font-bold">{item.representative}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Impact</span>
+                    <span className="font-semibold text-slate-950">{item.metrics.work_vs_impact.score_pct}%</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400 font-medium">Party Affinity</span>
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded border ${getPartyColorClass(item.party)}`}>
-                      {item.party}
-                    </span>
+                  <div className="flex items-center justify-between">
+                    <span>Promises</span>
+                    <span className="font-semibold text-slate-950">{item.promiseCount}</span>
                   </div>
-                  <div className="flex justify-between border-t border-slate-100 pt-3">
-                    <span className="text-slate-400 font-medium">Promises Tracked</span>
-                    <span className="font-bold">{item.promises?.length || 0}</span>
+                  <div className="flex items-center justify-between">
+                    <span>MPLAD utilization</span>
+                    <span className="font-semibold text-slate-950">₹{item.budget.spent} / ₹{item.budget.total} Cr</span>
                   </div>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-100">
-                  <Link href={`/constituency/${item.id}`} className="primary-button text-xs w-full text-center py-2!">
-                    {translate('constituency.viewEvidence', language)}
-                  </Link>
-                </div>
-              </div>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href={`/constituency/${item.id}`}>{translate('constituency.viewEvidence', language)}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
-          </div>
+          </section>
 
-          {/* Performance Comparison Charts */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Chart 1: Promise vs Execution */}
-            <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-              <h3 className="text-lg font-bold mb-6 text-slate-800">{translate('metrics.promiseVsExecution', language)} (%)</h3>
-              <div className="h-[240px] flex items-end justify-around pb-6 border-b border-slate-200 relative">
-                {selectedItems.map((item, idx) => {
-                  const val = item.metrics.promise_vs_execution.score_pct;
-                  const barHeight = `${val * 1.8}px`; // scale to fit container height
-                  const colors = [
-                    'linear-gradient(to top, #047857, #10b981)', // green
-                    'linear-gradient(to top, #1d4ed8, #3b82f6)', // blue
-                    'linear-gradient(to top, #b45309, #f59e0b)', // orange
-                  ];
-                  return (
-                    <div key={item.id} className="flex flex-col items-center w-24 relative group">
-                      <div className="text-sm font-extrabold text-slate-800 mb-2">{val}%</div>
-                      <div
-                        className="w-12 rounded-t-lg shadow-sm transition-all duration-500"
-                        style={{
-                          height: barHeight,
-                          background: colors[idx % colors.length],
-                        }}
-                      ></div>
-                      <div className="absolute -bottom-8 text-xs font-bold text-slate-600 text-center line-clamp-1 w-28">
-                        {item.name}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+          <section className="grid gap-6 xl:grid-cols-3">
+            <Card className="border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-xl text-slate-950">Execution score</CardTitle>
+                <CardDescription>Promise delivery percentages by constituency.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-72">
+                  <Bar data={executionChart.data as any} options={executionChart.options as any} />
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-xl text-slate-950">Work vs impact</CardTitle>
+                <CardDescription>Comparative impact signal across selected seats.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-72">
+                  <Bar data={impactChart.data as any} options={impactChart.options as any} />
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-slate-200 shadow-sm">
+              <CardHeader>
+                <CardTitle className="text-xl text-slate-950">MPLAD budget utilization</CardTitle>
+                <CardDescription>Derived spend level on the audited ₹25 crore per seat frame.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-72">
+                  <Bar data={budgetChart.data as any} options={budgetChart.options as any} />
+                </div>
+              </CardContent>
+            </Card>
+          </section>
 
-            {/* Chart 2: Work vs Impact */}
-            <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-              <h3 className="text-lg font-bold mb-6 text-slate-800">{translate('metrics.workVsImpact', language)} (%)</h3>
-              <div className="h-[240px] flex items-end justify-around pb-6 border-b border-slate-200 relative">
-                {selectedItems.map((item, idx) => {
-                  const val = item.metrics.work_vs_impact.score_pct;
-                  const barHeight = `${val * 1.8}px`;
-                  const colors = [
-                    'linear-gradient(to top, #0284c7, #38bdf8)', // cyan
-                    'linear-gradient(to top, #4f46e5, #6366f1)', // indigo
-                    'linear-gradient(to top, #0891b2, #06b6d4)', // teal
-                  ];
-                  return (
-                    <div key={item.id} className="flex flex-col items-center w-24 relative group">
-                      <div className="text-sm font-extrabold text-slate-800 mb-2">{val}%</div>
-                      <div
-                        className="w-12 rounded-t-lg shadow-sm transition-all duration-500"
-                        style={{
-                          height: barHeight,
-                          background: colors[idx % colors.length],
-                        }}
-                      ></div>
-                      <div className="absolute -bottom-8 text-xs font-bold text-slate-600 text-center line-clamp-1 w-28">
-                        {item.name}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Promise Status breakdown comparison */}
-          <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-              <h3 className="text-lg font-bold mb-6 text-slate-800">{language === 'hi' ? 'वादा स्थिति विश्लेषण' : language === 'ta' ? 'வாக்குறுதி நிலை பகுப்பாய்வு' : 'Promise Status Breakdown'}</h3>
-            <div className="space-y-6">
-              {selectedItems.map((item) => {
-                const counts = getStatusCounts(item);
-                const total = counts.done + counts.in_progress + counts.not_started + counts.misleading;
-                
-                const getPct = (val: number) => {
-                  return total > 0 ? (val / total) * 100 : 0;
-                };
-
-                return (
-                  <div key={item.id} className="space-y-2">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="font-bold text-slate-800">{item.name} ({item.representative})</span>
-                      <span className="text-xs text-slate-500 font-medium">Total Promises: {total}</span>
-                    </div>
-
-                    {/* Stacked bar chart */}
-                    {total === 0 ? (
-                      <div className="bg-slate-100 text-slate-400 p-3 rounded-lg text-xs italic text-center">
-                        No promises recorded
-                      </div>
-                    ) : (
-                      <div>
-                        <div className="w-full h-5 rounded-full flex overflow-hidden border border-slate-100 shadow-inner">
-                          {counts.done > 0 && (
-                            <div
-                              className="bg-emerald-500 h-full flex items-center justify-center text-[10px] text-white font-bold"
-                              style={{ width: `${getPct(counts.done)}%` }}
-                              title={`Delivered: ${counts.done}`}
-                            >
-                              {counts.done}
-                            </div>
-                          )}
-                          {counts.in_progress > 0 && (
-                            <div
-                              className="bg-amber-500 h-full flex items-center justify-center text-[10px] text-white font-bold"
-                              style={{ width: `${getPct(counts.in_progress)}%` }}
-                              title={`In Progress: ${counts.in_progress}`}
-                            >
-                              {counts.in_progress}
-                            </div>
-                          )}
-                          {counts.not_started > 0 && (
-                            <div
-                              className="bg-slate-400 h-full flex items-center justify-center text-[10px] text-white font-bold"
-                              style={{ width: `${getPct(counts.not_started)}%` }}
-                              title={`Not Started: ${counts.not_started}`}
-                            >
-                              {counts.not_started}
-                            </div>
-                          )}
-                          {counts.misleading > 0 && (
-                            <div
-                              className="bg-red-500 h-full flex items-center justify-center text-[10px] text-white font-bold"
-                              style={{ width: `${getPct(counts.misleading)}%` }}
-                              title={`Misleading: ${counts.misleading}`}
-                            >
-                              {counts.misleading}
-                            </div>
-                          )}
+          <Card className="border-slate-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">Comparison table</CardTitle>
+              <CardDescription>Structured metric view for the selected constituencies.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Constituency</TableHead>
+                    <TableHead>Representative</TableHead>
+                    <TableHead>Execution</TableHead>
+                    <TableHead>Impact</TableHead>
+                    <TableHead>Budget</TableHead>
+                    <TableHead>Promised / delivered mix</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {comparisonRows.map((item) => (
+                    <TableRow key={item.id}>
+                      <TableCell className="font-medium text-slate-950">{item.name}</TableCell>
+                      <TableCell>{item.representative}</TableCell>
+                      <TableCell>{item.metrics.promise_vs_execution.score_pct}%</TableCell>
+                      <TableCell>{item.metrics.work_vs_impact.score_pct}%</TableCell>
+                      <TableCell>₹{item.budget.spent} Cr</TableCell>
+                      <TableCell>
+                        <div className="flex flex-wrap gap-1.5">
+                          <Badge variant="outline" className="border-emerald-200 bg-emerald-50 text-emerald-700">Done: {item.counts.done}</Badge>
+                          <Badge variant="outline" className="border-amber-200 bg-amber-50 text-amber-700">In progress: {item.counts.in_progress}</Badge>
+                          <Badge variant="outline" className="border-slate-200 bg-slate-50 text-slate-700">Pending: {item.counts.not_started}</Badge>
+                          <Badge variant="outline" className="border-rose-200 bg-rose-50 text-rose-700">Flagged: {item.counts.misleading}</Badge>
                         </div>
-
-                        {/* Status labels */}
-                        <div className="flex gap-4 mt-2 text-[11px] font-semibold text-slate-500 justify-end">
-                          <span className="flex items-center gap-1">
-                            <span className="w-2.5 h-2.5 rounded bg-emerald-500 block"></span>
-                            {translate('legend.done', language)} ({counts.done})
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <span className="w-2.5 h-2.5 rounded bg-amber-500 block"></span>
-                            {translate('legend.inProgress', language)} ({counts.in_progress})
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <span className="w-2.5 h-2.5 rounded bg-slate-400 block"></span>
-                            {translate('legend.notStarted', language)} ({counts.not_started})
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <span className="w-2.5 h-2.5 rounded bg-red-500 block"></span>
-                            {translate('legend.misleading', language)} ({counts.misleading})
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* MPLAD Budget Utilization Visualizer */}
-          <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-              <h3 className="text-lg font-bold mb-6 text-slate-800">{language === 'hi' ? 'MPLAD बजट आवंटन और व्यय' : language === 'ta' ? 'MPLAD பட்ஜெட் ஒதுக்கீடு மற்றும் செலவு' : 'MPLAD Budget Allocation & Spending'}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {selectedItems.map((item) => {
-                const budget = getBudgetData(item);
-                return (
-                  <div key={item.id} className="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-4">
-                    <div>
-                      <div className="font-bold text-slate-800 text-sm">{item.name}</div>
-                      <div className="text-xs text-slate-500">{item.representative}</div>
-                    </div>
-
-                    <div className="text-center bg-white p-3 rounded-lg border border-slate-100 shadow-sm">
-                      <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Estimated Spent</div>
-                      <div className="text-2xl font-extrabold text-blue-600 mt-1">₹{budget.spent} Cr</div>
-                      <div className="text-xs text-slate-500 mt-0.5">of ₹{budget.total} Crore (5 Year Term)</div>
-                    </div>
-
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-semibold text-slate-600">
-                        <span>Utilization Rate</span>
-                        <span>{budget.percent}%</span>
-                      </div>
-                      <div className="progress-bar-track">
-                        <div
-                          className="progress-bar-fill impact"
-                          style={{ width: `${budget.percent}%` }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-between text-xs border-t border-slate-200 pt-2 text-slate-500 font-medium">
-                      <span>Spent: ₹{budget.spent}Cr</span>
-                      <span>Remaining: ₹{budget.remaining}Cr</span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </>
       )}
     </div>
   );

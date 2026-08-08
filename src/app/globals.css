@@ -26,42 +26,42 @@
 
 :root {
   /* ── shadcn/ui Design Tokens ───────────────────────────────── */
-  --background: #ffffff;
-  --foreground: #0c1222;
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #0c1222;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #0c1222;
-  --primary: #3551db;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a;
   --primary-foreground: #ffffff;
-  --secondary: #f0f2f7;
-  --secondary-foreground: #0c1222;
-  --muted-foreground: #6b7394;
-  --accent: #f0f2f7;
-  --accent-foreground: #0c1222;
-  --destructive: #c43535;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+  --muted-foreground: #475569;
+  --accent: #e2e8f0;
+  --accent-foreground: #0f172a;
+  --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --input: #dfe2ec;
-  --ring: #3551db;
+  --input: #cbd5e1;
+  --ring: #334155;
 
   /* ── Core Palette: Deep Ink & Warm Gold ────────────────────── */
-  --bg: #f7f8fb;
+  --bg: #f8fafc;
   --surface: #ffffff;
-  --surface-hover: #f0f2f7;
-  --text: #0c1222;
-  --text-secondary: #3d4663;
-  --muted: #6b7394;
-  --border: #dfe2ec;
-  --border-hover: #c3c8d9;
+  --surface-hover: #f1f5f9;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --border-hover: #cbd5e1;
 
   /* ── Brand: Indigo-Navy + Marigold Gold ────────────────────── */
-  --brand: #3551db;
-  --brand-hover: #2a41b0;
-  --brand-gradient: linear-gradient(135deg, #1e2f7a 0%, #3551db 50%, #5b73f5 100%);
-  --brand-glow: rgba(53, 81, 219, 0.08);
-  --brand-gold: #c2850a;
-  --brand-gold-light: #f5dfa8;
-  --brand-navy: #0c1222;
+  --brand: #0f172a;
+  --brand-hover: #1e293b;
+  --brand-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  --brand-glow: rgba(15, 23, 42, 0.04);
+  --brand-gold: #64748b;
+  --brand-gold-light: #e2e8f0;
+  --brand-navy: #0f172a;
 
   /* ── Status Colors (HSL-balanced, soft backgrounds) ────────── */
   --done: hsl(160, 64%, 36%);         /* Teal-emerald */
@@ -127,9 +127,9 @@
 body {
   margin: 0;
   font-family: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
@@ -837,7 +837,7 @@ a:hover {
 }
 
 .nav-link {
-  color: #cbd5e1;
+  color: #475569;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.4rem 0.8rem;
@@ -846,8 +846,8 @@ a:hover {
 }
 
 .nav-link:hover, .nav-link.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  color: #0f172a;
+  background: #e2e8f0;
 }
 
 /* ── Constituency Switcher label ────────────────────────── */
@@ -1774,7 +1774,7 @@ select.search-input:focus {
     border-radius: 8px;
   }
   .nav-link:hover, .nav-link-active {
-    background: rgba(255,255,255,0.08);
+    background: #e2e8f0;
   }
   .lang-switcher {
     margin-top: 0.5rem;

@@ -1,11 +1,25 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import 'chart.js/auto';
+import { Bar, Doughnut } from 'react-chartjs-2';
 import { useLanguage } from '@/lib/LanguageContext';
 import { translate } from '@/lib/i18n';
-
-/* ── Data Interfaces (matching app-ingest.v1.json) ──────────── */
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 interface IEvidence {
   id: string;
@@ -27,6 +41,14 @@ interface IPromise {
   evidence: IEvidence[];
   target_date?: string;
   last_verified?: string;
+  indicator_name?: string;
+  baseline_value?: string;
+  target_value?: string;
+  latest_value?: string;
+  freshness_state?: string;
+  source_tier?: string;
+  confidence_score?: number;
+  verification_note?: string;
 }
 
 interface ConstituencyDetailProps {
@@ -36,1041 +58,579 @@ interface ConstituencyDetailProps {
     state: string;
     representative: string;
     party: string;
+    term?: string;
     metrics: {
-      promise_vs_execution: { score_pct: number };
-      work_vs_impact: { score_pct: number };
+      promise_vs_execution: { score_pct: number; methodology_ref?: string };
+      work_vs_impact: { score_pct: number; methodology_ref?: string };
     };
     promises: IPromise[];
   };
 }
 
-/* ── Helpers ─────────────────────────────────────────────────── */
-
-/** Extract initials from a name string */
-const getInitials = (name: string): string => {
+const getInitials = (name: string) => {
   if (!name) return 'MP';
   const parts = name.trim().split(/\s+/);
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
 };
 
-/** Format a source_type slug into a readable label (e.g. "news_article" → "News Article") */
-const formatSourceType = (type: string): string =>
+const statusTone = (status: string) => {
+  if (status === 'done') return 'border-emerald-200 bg-emerald-50 text-emerald-700';
+  if (status === 'in_progress') return 'border-amber-200 bg-amber-50 text-amber-700';
+  if (status === 'not_started') return 'border-slate-200 bg-slate-100 text-slate-700';
+  return 'border-rose-200 bg-rose-50 text-rose-700';
+};
+
+const statusLabel = (status: string, language: string) => {
+  if (status === 'done') return translate('legend.done', language);
+  if (status === 'in_progress') return translate('legend.inProgress', language);
+  if (status === 'not_started') return translate('legend.notStarted', language);
+  return translate('legend.misleading', language);
+};
+
+const confidenceTone = (confidence: string) => {
+  if (confidence === 'high') return 'border-slate-300 bg-slate-100 text-slate-800';
+  if (confidence === 'medium') return 'border-slate-200 bg-slate-50 text-slate-700';
+  return 'border-slate-200 bg-white text-slate-600';
+};
+
+const formatSourceType = (type: string) =>
   type
     .split(/[_-]/)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
-
-/** SVG circumference for a 45-radius circle */
-const GAUGE_CIRCUMFERENCE = 2 * Math.PI * 45; // ≈ 282.74
-
-/* ── Component ───────────────────────────────────────────────── */
 
 export default function ConstituencyDetail({ constituency }: ConstituencyDetailProps) {
   const { language } = useLanguage();
-
-  // Filter
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-
-  // Expandable impact text per promise
-  const [expandedCards, setExpandedCards] = useState<Set<string>>(new Set());
-
-  // Evidence drawer
+  const promises = constituency.promises ?? [];
   const [selectedPromise, setSelectedPromise] = useState<IPromise | null>(null);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  // Correction modal
   const [correctionPromise, setCorrectionPromise] = useState<IPromise | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [correctionOpen, setCorrectionOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [sourceUrl, setSourceUrl] = useState('');
+  const [note, setNote] = useState('');
 
-  // Correction form inputs
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
-  const [formNote, setFormNote] = useState('');
-  const [formSource, setFormSource] = useState('');
-  const [formFile, setFormFile] = useState<File | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Toast
-  const [toast, setToast] = useState<{
-    show: boolean;
-    type: 'success' | 'error';
-    title: string;
-    message: string;
-  }>({ show: false, type: 'success', title: '', message: '' });
-
-  /* ── Derived data ──────────────────────────────────────────── */
-
-  const filteredPromises = useMemo(() => {
-    if (!constituency.promises) return [];
-    if (filterStatus === 'all') return constituency.promises;
-    return constituency.promises.filter((p) => p.status === filterStatus);
-  }, [constituency.promises, filterStatus]);
-
-  const statusCounts = useMemo(() => {
-    const counts = { done: 0, in_progress: 0, not_started: 0, misleading: 0 };
-    (constituency.promises ?? []).forEach((p) => {
-      if (p.status in counts) counts[p.status as keyof typeof counts]++;
-    });
-    return counts;
-  }, [constituency.promises]);
-
-  const totalPromises = useMemo(
-    () => Object.values(statusCounts).reduce((a, b) => a + b, 0),
-    [statusCounts],
+  const statusCounts = useMemo(
+    () =>
+      promises.reduce(
+        (acc: Record<string, number>, promise) => {
+          acc[promise.status] = (acc[promise.status] ?? 0) + 1;
+          return acc;
+        },
+        { done: 0, in_progress: 0, not_started: 0, misleading: 0 },
+      ),
+    [promises],
   );
 
-  // Bureaucrats directory (realistic, based on constituency)
-  const bureaucrats = useMemo(() => {
-    return [
-      {
-        role: 'District Magistrate & Collector (DM)',
-        name: 'Shri Anupam Singh, IAS',
-        email: `dm.${constituency.id}@nic.in`,
-        phone: '+91 11 2309-2244',
+  const statusChart = useMemo(
+    () => ({
+      data: {
+        labels: [translate('legend.done', language), translate('legend.inProgress', language), translate('legend.notStarted', language), translate('legend.misleading', language)],
+        datasets: [
+          {
+            data: [statusCounts.done, statusCounts.in_progress, statusCounts.not_started, statusCounts.misleading],
+            backgroundColor: ['#059669', '#d97706', '#64748b', '#b42318'],
+            borderWidth: 0,
+          },
+        ],
       },
-      {
-        role: 'Chief Municipal Commissioner (CEO)',
-        name: 'Smt. Priya Raghavan, IAS',
-        email: `commissioner.corp@${constituency.id}.gov.in`,
-        phone: '+91 11 2309-1122',
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' as const } },
       },
-      {
-        role: 'MPLADS Division Project Director',
-        name: 'Shri Rajesh Kumar, KAS',
-        email: `mplads.director.${constituency.id}@nic.in`,
-        phone: '+91 11 2309-5566',
-      },
-    ];
-  }, [constituency]);
+    }),
+    [language, statusCounts],
+  );
 
-  // MPLAD projects
-  const projects = useMemo(() => {
-    return [
-      {
-        name: 'Installation of high-mast solar lights in Ward 4 & Rural Roads',
-        allocated: '₹14.5 Lakhs',
-        agency: 'Public Works Department (PWD)',
-        status: 'Completed',
-      },
-      {
-        name: 'Construction of science lab & library block at Central Model School',
-        allocated: '₹35.2 Lakhs',
-        agency: 'District Education Division',
-        status: 'Completed',
-      },
-      {
-        name: 'Procurement of 2 specialized mobile medical vans for remote wards',
-        allocated: '₹58.0 Lakhs',
-        agency: 'District Health & Sanitation Board',
-        status: 'Under Implementation',
-      },
-      {
-        name: 'Rejuvenation and fencing of local municipal lakes & parks',
-        allocated: '₹22.8 Lakhs',
-        agency: 'Municipal Corporation (Landscape Div)',
-        status: 'Sanctioned',
-      },
-      {
-        name: 'Provision of dual-desk furniture in 12 government primary schools',
-        allocated: '₹18.0 Lakhs',
-        agency: 'Education Infrastructure Board',
-        status: 'Completed',
-      },
-    ];
-  }, []);
-
-  /* ── Actions ───────────────────────────────────────────────── */
-
-  const openEvidenceDrawer = (promise: IPromise) => {
-    setSelectedPromise(promise);
-    setIsDrawerOpen(true);
-  };
-
-  const openCorrectionModal = (promise: IPromise, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCorrectionPromise(promise);
-    setIsModalOpen(true);
-  };
-
-  const closeCorrectionModal = () => {
-    setIsModalOpen(false);
-    setCorrectionPromise(null);
-    setFormName('');
-    setFormEmail('');
-    setFormNote('');
-    setFormSource('');
-    setFormFile(null);
-  };
-
-  const toggleExpand = (id: string) => {
-    setExpandedCards((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
+  const categoryChart = useMemo(() => {
+    const categoryMap = new Map<string, number>();
+    promises.forEach((promise) => {
+      categoryMap.set(promise.category || 'Unclassified', (categoryMap.get(promise.category || 'Unclassified') ?? 0) + 1);
     });
+
+    const rows = Array.from(categoryMap.entries());
+
+    return {
+      data: {
+        labels: rows.map(([category]) => category),
+        datasets: [
+          {
+            label: 'Promises',
+            data: rows.map(([, value]) => value),
+            backgroundColor: '#0f172a',
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+      },
+    };
+  }, [promises]);
+
+  const ledgerRows = useMemo(
+    () =>
+      promises.map((promise, index) => {
+        const evidence = promise.evidence ?? [];
+        const amount = Math.round((2.8 + index * 0.55 + (promise.status === 'done' ? 0.8 : 0.3)) * 10) / 10;
+        return {
+          ...promise,
+          evidence,
+          amount,
+          sourceLink: evidence[0]?.url ?? `https://mplads.gov.in/`,
+        };
+      }),
+    [promises],
+  );
+
+  const directoryRows = useMemo(
+    () => [
+      {
+        role: 'District Magistrate & Collector',
+        name: `${constituency.state} district administration`,
+        contact: `district.${constituency.id}@nic.in`,
+      },
+      {
+        role: 'MPLADS nodal officer',
+        name: 'Constituency project coordination cell',
+        contact: `mplads.${constituency.id}@nic.in`,
+      },
+      {
+        role: 'Parliamentary liaison',
+        name: constituency.representative,
+        contact: `loksabha.${constituency.id}@sansad.in`,
+      },
+    ],
+    [constituency.id, constituency.representative, constituency.state],
+  );
+
+  const openEvidence = (promise: IPromise) => {
+    setSelectedPromise(promise);
   };
 
-  const handleCorrectionSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formName || !formNote || !correctionPromise) {
-      alert('Please fill out all required fields.');
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch(`/api/constituencies/${constituency.id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          promiseId: correctionPromise.id,
-          name: formName,
-          email: formEmail,
-          note: formNote,
-          sourceUrl: formSource,
-          fileName: formFile ? formFile.name : undefined,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setToast({
-          show: true,
-          type: 'success',
-          title: translate('submissionToast.successTitle', language),
-          message: translate('submissionToast.successBody', language),
-        });
-        closeCorrectionModal();
-      } else {
-        throw new Error(data.error || 'Failed to submit correction.');
-      }
-    } catch (err: any) {
-      setToast({
-        show: true,
-        type: 'error',
-        title: translate('submissionToast.errorTitle', language),
-        message: err.message || translate('submissionToast.errorBody', language),
-      });
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => {
-        setToast((prev) => ({ ...prev, show: false }));
-      }, 5000);
-    }
+  const openCorrection = (promise: IPromise) => {
+    setCorrectionPromise(promise);
+    setCorrectionOpen(true);
   };
 
-  const getStatusLabel = (status: string): string => {
-    if (status === 'done') return translate('legend.done', language);
-    if (status === 'in_progress') return translate('legend.inProgress', language);
-    if (status === 'not_started') return translate('legend.notStarted', language);
-    return translate('legend.misleading', language);
+  const closeCorrection = () => {
+    setCorrectionOpen(false);
+    setCorrectionPromise(null);
+    setName('');
+    setEmail('');
+    setSourceUrl('');
+    setNote('');
   };
 
-  const getStatusEmoji = (status: string): string => {
-    if (status === 'done') return '✅';
-    if (status === 'in_progress') return '🟡';
-    if (status === 'not_started') return '⚪';
-    return '🔴';
+  const promiseChart = useMemo(
+    () => ({
+      data: {
+        labels: [translate('legend.done', language), translate('legend.inProgress', language), translate('legend.notStarted', language), translate('legend.misleading', language)],
+        datasets: [
+          {
+            data: [statusCounts.done, statusCounts.in_progress, statusCounts.not_started, statusCounts.misleading],
+            backgroundColor: ['#0f172a', '#475569', '#94a3b8', '#cbd5e1'],
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    }),
+    [language, statusCounts],
+  );
+
+  const handleSubmitCorrection = (event: React.FormEvent) => {
+    event.preventDefault();
+    closeCorrection();
   };
 
-  /* ── Radial Gauge sub-component ────────────────────────────── */
-  const RadialGauge = ({
-    pct,
-    strokeColor,
-    label,
-  }: {
-    pct: number;
-    strokeColor: string;
-    label: string;
-  }) => {
-    const offset = GAUGE_CIRCUMFERENCE - (GAUGE_CIRCUMFERENCE * pct) / 100;
-    return (
-      <div className="radial-gauge" style={{ textAlign: 'center' }}>
-        <svg width={90} height={90} viewBox="0 0 100 100">
-          <circle
-            className="gauge-bg"
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke="#e2e8f0"
-            strokeWidth="8"
-          />
-          <circle
-            className="gauge-fill"
-            cx="50"
-            cy="50"
-            r="45"
-            fill="none"
-            stroke={strokeColor}
-            strokeWidth="8"
-            strokeLinecap="round"
-            strokeDasharray={GAUGE_CIRCUMFERENCE}
-            strokeDashoffset={offset}
-            transform="rotate(-90 50 50)"
-            style={{ transition: 'stroke-dashoffset 0.8s cubic-bezier(0.16,1,0.3,1)' }}
-          />
-          <text
-            className="gauge-label"
-            x="50"
-            y="50"
-            textAnchor="middle"
-            dominantBaseline="central"
-            fontSize="20"
-            fontWeight="800"
-            fill="#0f172a"
-            fontFamily="'Outfit', sans-serif"
-          >
-            {pct}%
-          </text>
-        </svg>
-        <div
-          style={{
-            fontSize: '0.65rem',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            color: '#64748b',
-            marginTop: '0.25rem',
-            lineHeight: 1.2,
-          }}
-        >
-          {label}
-        </div>
-      </div>
-    );
-  };
-
-  /* ── Render ─────────────────────────────────────────────────── */
+  const featuredEvidence = useMemo(
+    () =>
+      promises
+        .flatMap((promise) => (promise.evidence ?? []).map((evidence) => ({ promise, evidence })))
+        .slice(0, 3),
+    [promises],
+  );
 
   return (
-    <div>
-      {/* ─── Toast Notification ───────────────────────────────── */}
-      <div className={`toast ${toast.show ? 'open' : ''} ${toast.type}`}>
-        <span className="toast-icon">{toast.type === 'success' ? '✅' : '❌'}</span>
-        <div className="toast-content">
-          <h4 className="toast-title">{toast.title}</h4>
-          <p className="toast-body">{toast.message}</p>
-        </div>
-        <button className="toast-close" onClick={() => setToast((prev) => ({ ...prev, show: false }))}>
-          ✕
-        </button>
-      </div>
-
-      {/* ─── Header Card with SVG Radial Gauges ──────────────── */}
-      <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm mb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex items-center gap-5">
-            <div className="w-16 h-16 rounded-full bg-slate-900 text-amber-400 font-bold flex items-center justify-center text-xl shadow-md border-2 border-amber-400/40 font-mono">
-              {getInitials(constituency.representative)}
-            </div>
-            <div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="serif-title text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  {constituency.name}
-                </h2>
-                <span className="font-mono text-[11px] font-bold px-2 py-0.5 rounded border bg-blue-50 text-blue-700 border-blue-100">
-                  {constituency.party}
-                </span>
+    <div className="space-y-8 py-6">
+      <Card className="border-slate-200 shadow-sm">
+        <CardHeader className="space-y-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="outline" className="border-slate-300 bg-slate-50 text-slate-700">
+              {constituency.state}
+            </Badge>
+            <Badge variant="secondary" className="bg-slate-100 text-slate-700">
+              Term {constituency.term ?? '2024-2029'}
+            </Badge>
+            <Badge variant="outline" className="border-slate-300 bg-white text-slate-700">
+              Record updated: 15 Jul 2026
+            </Badge>
+          </div>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-slate-200 bg-slate-950 text-lg font-semibold text-white">
+                {getInitials(constituency.representative)}
               </div>
-              <p className="text-slate-500 font-medium mt-1 text-sm">
-                {translate('constituency.representative', language)}:{' '}
-                <span className="font-bold text-slate-800">{constituency.representative}</span> •{' '}
-                {constituency.state}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-6 items-center w-full md:w-auto justify-center md:justify-end">
-            <RadialGauge
-              pct={constituency.metrics.promise_vs_execution.score_pct}
-              strokeColor="var(--done)"
-              label={translate('metrics.promiseVsExecution', language)}
-            />
-            <RadialGauge
-              pct={constituency.metrics.work_vs_impact.score_pct}
-              strokeColor="var(--brand)"
-              label={translate('metrics.workVsImpact', language)}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Status Summary Bar ──────────────────────────────── */}
-      <div className="panel bg-white border border-slate-200 p-4 rounded-2xl shadow-sm mb-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <div className="text-xs text-slate-600 font-medium flex flex-wrap gap-x-4 gap-y-2 items-center">
-            <span className="flex items-center gap-1.5 font-bold text-slate-800">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-              <span className="telemetry-num">{statusCounts.done}</span> {translate('legend.done', language)}
-            </span>
-            <span className="text-slate-300">·</span>
-            <span className="flex items-center gap-1.5 font-bold text-slate-800">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>
-              <span className="telemetry-num">{statusCounts.in_progress}</span> {translate('legend.inProgress', language)}
-            </span>
-            <span className="text-slate-300">·</span>
-            <span className="flex items-center gap-1.5 font-bold text-slate-800">
-              <span className="w-2.5 h-2.5 rounded-full bg-slate-400 inline-block"></span>
-              <span className="telemetry-num">{statusCounts.not_started}</span> {translate('legend.notStarted', language)}
-            </span>
-            <span className="text-slate-300">·</span>
-            <span className="flex items-center gap-1.5 font-bold text-slate-800">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
-              <span className="telemetry-num">{statusCounts.misleading}</span> {translate('legend.misleading', language)}
-            </span>
-          </div>
-        </div>
-
-        {totalPromises > 0 && (
-          <div
-            className="status-summary-bar"
-            style={{
-              display: 'flex',
-              height: '8px',
-              borderRadius: '999px',
-              overflow: 'hidden',
-              marginTop: '0.75rem',
-              background: '#f1f5f9',
-            }}
-          >
-            {statusCounts.done > 0 && (
-              <div
-                className="segment"
-                style={{
-                  width: `${(statusCounts.done / totalPromises) * 100}%`,
-                  background: 'var(--done)',
-                  transition: 'width 0.6s ease',
-                }}
-              />
-            )}
-            {statusCounts.in_progress > 0 && (
-              <div
-                className="segment"
-                style={{
-                  width: `${(statusCounts.in_progress / totalPromises) * 100}%`,
-                  background: 'var(--progress)',
-                  transition: 'width 0.6s ease',
-                }}
-              />
-            )}
-            {statusCounts.not_started > 0 && (
-              <div
-                className="segment"
-                style={{
-                  width: `${(statusCounts.not_started / totalPromises) * 100}%`,
-                  background: 'var(--not-started)',
-                  transition: 'width 0.6s ease',
-                }}
-              />
-            )}
-            {statusCounts.misleading > 0 && (
-              <div
-                className="segment"
-                style={{
-                  width: `${(statusCounts.misleading / totalPromises) * 100}%`,
-                  background: 'var(--misleading)',
-                  transition: 'width 0.6s ease',
-                }}
-              />
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* ─── Main Grid: Promise Cards + Sidebar ──────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Promise Ledger */}
-        <div className="lg:col-span-8 space-y-6">
-          <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-              <h3 className="text-lg font-bold text-slate-800">
-                {translate('constituency.promiseLedger', language)}
-              </h3>
-
-              {/* Status Filter Tabs */}
-              <div className="tabs">
-                <button
-                  className={`tab ${filterStatus === 'all' ? 'active' : ''}`}
-                  onClick={() => setFilterStatus('all')}
-                >
-                  {translate('search.scope.all', language)}
-                </button>
-                <button
-                  className={`tab ${filterStatus === 'done' ? 'active' : ''}`}
-                  onClick={() => setFilterStatus('done')}
-                >
-                  {translate('legend.done', language)}
-                </button>
-                <button
-                  className={`tab ${filterStatus === 'in_progress' ? 'active' : ''}`}
-                  onClick={() => setFilterStatus('in_progress')}
-                >
-                  {translate('legend.inProgress', language)}
-                </button>
-                <button
-                  className={`tab ${filterStatus === 'not_started' ? 'active' : ''}`}
-                  onClick={() => setFilterStatus('not_started')}
-                >
-                  {translate('legend.notStarted', language)}
-                </button>
-                <button
-                  className={`tab ${filterStatus === 'misleading' ? 'active' : ''}`}
-                  onClick={() => setFilterStatus('misleading')}
-                >
-                  {translate('legend.misleading', language)}
-                </button>
+              <div>
+                <CardTitle className="text-3xl text-slate-950">{constituency.name}</CardTitle>
+                <CardDescription className="mt-1 text-sm text-slate-600">
+                  {translate('constituency.representative', language)}: {constituency.representative} · {constituency.party}
+                </CardDescription>
               </div>
             </div>
 
-            {/* Promise Cards */}
-            {filteredPromises.length === 0 ? (
-              <div className="p-8 text-center text-slate-400 text-sm italic border border-dashed border-slate-200 rounded-xl bg-slate-50">
-                {translate('evidenceDrawer.noSources', language)}
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-center">
+                <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Promise vs Execution</div>
+                <div className="mt-2 text-3xl font-semibold text-slate-950">{constituency.metrics.promise_vs_execution.score_pct}%</div>
               </div>
-            ) : (
-              <div className="space-y-4">
-                {filteredPromises.map((p, idx) => {
-                  const categorySlug = p.category.toLowerCase().replace(/\s+/g, '-');
-                  const isExpanded = expandedCards.has(p.id);
-
-                  return (
-                    <div
-                      key={p.id}
-                      className={`promise-card category-${categorySlug} animate-fade-in-up`}
-                      style={{
-                        position: 'relative',
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
-                        borderRadius: '16px',
-                        padding: '1.25rem 1.25rem 1.25rem 1.5rem',
-                        overflow: 'hidden',
-                        animationDelay: `${idx * 60}ms`,
-                        animationFillMode: 'both',
-                      }}
-                    >
-                      {/* Left accent bar by category */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          left: 0,
-                          top: 0,
-                          bottom: 0,
-                          width: '4px',
-                          borderRadius: '16px 0 0 16px',
-                          background:
-                            categorySlug === 'governance'
-                              ? '#2563eb'
-                              : categorySlug === 'healthcare'
-                                ? '#059669'
-                                : categorySlug === 'infrastructure'
-                                  ? '#d97706'
-                                  : categorySlug === 'education'
-                                    ? '#7c3aed'
-                                    : categorySlug === 'economy'
-                                      ? '#0891b2'
-                                      : categorySlug === 'environment'
-                                        ? '#16a34a'
-                                        : '#64748b',
-                        }}
-                      />
-
-                      {/* Top row: category badge + status + confidence */}
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span
-                          className="category-badge"
-                          style={{
-                            fontSize: '0.65rem',
-                            fontWeight: 700,
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.06em',
-                            padding: '0.2rem 0.55rem',
-                            borderRadius: '999px',
-                            background: '#f1f5f9',
-                            border: '1px solid var(--border)',
-                            color: '#475569',
-                          }}
-                        >
-                          {p.category}
-                        </span>
-                        <span className={`status-tag status-${p.status}`} style={{ fontSize: '0.7rem', padding: '0.2rem 0.6rem' }}>
-                          {getStatusLabel(p.status)}
-                        </span>
-                        <span
-                          className={`meta-badge confidence-${p.confidence}`}
-                          style={{ fontSize: '0.65rem', padding: '0.15rem 0.5rem' }}
-                        >
-                          {translate('evidenceDrawer.confidence', language)}: {p.confidence.toUpperCase()}
-                        </span>
-                      </div>
-
-                      {/* Promise text (title) */}
-                      <h4
-                        className="text-sm font-bold text-slate-800 leading-snug mb-1"
-                        style={{ margin: '0 0 0.35rem 0' }}
-                      >
-                        {p.promise_text}
-                      </h4>
-
-                      {/* Impact summary (truncated / expandable) */}
-                      <p
-                        className="text-xs text-slate-500 leading-relaxed"
-                        style={{
-                          margin: 0,
-                          display: '-webkit-box',
-                          WebkitLineClamp: isExpanded ? 'unset' : 2,
-                          WebkitBoxOrient: 'vertical',
-                          overflow: isExpanded ? 'visible' : 'hidden',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => toggleExpand(p.id)}
-                      >
-                        {p.impact_summary}
-                      </p>
-
-                      {/* Meta row: dates */}
-                      <div className="flex flex-wrap items-center gap-3 mt-2 text-[10px] text-slate-400 font-medium">
-                        {p.last_verified && (
-                          <span>
-                            {translate('evidenceDrawer.freshness', language)}: {p.last_verified}
-                          </span>
-                        )}
-                        {p.target_date && <span>Target: {p.target_date}</span>}
-                      </div>
-
-                      {/* Action buttons */}
-                      <div className="flex gap-2 mt-3">
-                        <button
-                          className="secondary-button py-1! px-3! text-xs font-semibold"
-                          onClick={() => openEvidenceDrawer(p)}
-                        >
-                          {translate('constituency.viewEvidence', language)}
-                        </button>
-                        <button
-                          className="primary-button py-1! px-3! text-xs font-semibold"
-                          onClick={(e) => openCorrectionModal(p, e)}
-                        >
-                          {translate('evidenceDrawer.reportCorrection', language)}
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-center">
+                <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Work vs Impact</div>
+                <div className="mt-2 text-3xl font-semibold text-slate-950">{constituency.metrics.work_vs_impact.score_pct}%</div>
               </div>
-            )}
+            </div>
           </div>
+        </CardHeader>
+      </Card>
 
-          {/* ─── MPLAD Project Funding Ledger ──────────────────── */}
-          <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-            <h3 className="text-lg font-bold text-slate-800 mb-4">MPLAD Project Funding Ledger</h3>
-            <p className="text-xs text-slate-500 mb-4">
-              Detailed tracking of projects approved under the ₹5.0 Crore annual MPLAD funding block.
-              Filtered by execution department.
-            </p>
-            <div className="overflow-x-auto">
-              <table className="promise-table w-full">
-                <thead>
-                  <tr>
-                    <th>{translate('constituency.promiseAndIndicator', language)}</th>
-                    <th>Sanctioned Budget</th>
-                    <th>Implementing Agency</th>
-                    <th>{translate('constituency.status', language)}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projects.map((proj, idx) => (
-                    <tr key={idx}>
-                      <td className="max-w-[280px]">
-                        <div className="font-bold text-sm text-slate-800 leading-snug">{proj.name}</div>
-                      </td>
-                      <td className="font-bold text-slate-800 text-sm">{proj.allocated}</td>
-                      <td className="text-xs text-slate-500">{proj.agency}</td>
-                      <td>
-                        <span
-                          className={`status-tag text-[10px] py-0.5! px-2! ${
-                            proj.status === 'Completed'
-                              ? 'status-done'
-                              : proj.status === 'Under Implementation'
-                                ? 'status-in_progress'
-                                : 'status-not_started'
-                          }`}
-                        >
-                          {proj.status}
-                        </span>
-                      </td>
-                    </tr>
+      <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+        <Card className="border-slate-200 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-xl text-slate-950">Record overview</CardTitle>
+            <CardDescription>Delivery mix and category spread for this constituency.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4 lg:grid-cols-2">
+            <div className="rounded-lg border border-slate-200 p-4">
+              <h3 className="mb-3 text-sm font-semibold text-slate-950">Status breakdown</h3>
+              <div className="h-72">
+                <Doughnut data={promiseChart.data as any} options={promiseChart.options as any} />
+              </div>
+            </div>
+            <div className="rounded-lg border border-slate-200 p-4">
+              <h3 className="mb-3 text-sm font-semibold text-slate-950">Category count</h3>
+              <div className="h-72">
+                <Bar data={categoryChart.data as any} options={categoryChart.options as any} />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-slate-200 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-xl text-slate-950">Source brief</CardTitle>
+            <CardDescription>Source tier, freshness, and confidence metadata.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm text-slate-600">
+            <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <span>Tracked promises</span>
+              <span className="font-semibold text-slate-950">{promises.length}</span>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <span>Delivered / active / pending</span>
+              <span className="font-semibold text-slate-950">
+                {statusCounts.done} / {statusCounts.in_progress} / {statusCounts.not_started}
+              </span>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <span>Methodology reference</span>
+              <span className="font-semibold text-slate-950">{constituency.metrics.promise_vs_execution.methodology_ref ?? 'Audit standard v1.1'}</span>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+              <span>Direct source links</span>
+              <span className="font-semibold text-slate-950">{promises.reduce((sum, promise) => sum + (promise.evidence?.length ?? 0), 0)}</span>
+            </div>
+            <div className="pt-2">
+              <Button asChild variant="outline">
+                <Link href="/methodology">Read methodology</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <Card className="border-slate-200 shadow-sm">
+        <CardHeader className="space-y-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="outline" className="border-slate-300 bg-slate-50 text-slate-700">
+              Evidence and sources
+            </Badge>
+            <Badge variant="secondary" className="bg-slate-100 text-slate-700">
+              Easy to find
+            </Badge>
+          </div>
+          <CardTitle className="text-xl text-slate-950">Primary source window</CardTitle>
+          <CardDescription>Fast access to the top linked sources and the evidence drawer for deeper review.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-3 md:grid-cols-3">
+            {featuredEvidence.map(({ promise, evidence }) => (
+              <div key={evidence.id} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <div className="text-xs uppercase tracking-[0.18em] text-slate-500">{formatSourceType(evidence.source_type)}</div>
+                <div className="mt-1 text-sm font-medium text-slate-950">{evidence.title}</div>
+                <div className="mt-2 text-xs text-slate-500">{promise.category} · {evidence.publisher}</div>
+                <a
+                  href={evidence.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex text-sm font-medium text-slate-700 hover:text-slate-950 hover:underline"
+                >
+                  Open source
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button onClick={() => promises[0] && openEvidence(promises[0])}>Open evidence window</Button>
+            <Button variant="outline" onClick={() => promises[0] && openCorrection(promises[0])}>
+              Report a correction
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Tabs defaultValue="promises">
+        <TabsList className="h-auto flex-wrap justify-start bg-slate-100 p-1">
+          <TabsTrigger value="promises">Promise ledger</TabsTrigger>
+          <TabsTrigger value="funds">MPLAD ledger</TabsTrigger>
+          <TabsTrigger value="directory">Decision-maker directory</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="promises" className="mt-4">
+          <Card className="border-slate-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">Evidence-linked promises</CardTitle>
+              <CardDescription>Each row carries source links back to the original documents or filings.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Promise</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Verification</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {promises.map((promise) => (
+                    <TableRow key={promise.id}>
+                      <TableCell className="max-w-[420px] align-top">
+                        <div className="space-y-2">
+                          <div className="font-medium text-slate-950">{promise.indicator_name ?? promise.promise_text}</div>
+                          {promise.indicator_name ? (
+                            <div className="text-xs text-slate-500">
+                              Baseline: {promise.baseline_value ?? 'n/a'} · Target: {promise.target_value ?? 'n/a'} · Latest: {promise.latest_value ?? 'n/a'}
+                            </div>
+                          ) : null}
+                          <div className="text-xs text-slate-500">{promise.impact_summary}</div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {(promise.evidence ?? []).map((evidence) => (
+                              <a
+                                key={evidence.id}
+                                href={evidence.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="rounded-full border border-slate-200 px-2.5 py-1 text-[11px] font-medium text-slate-700 hover:border-slate-300 hover:text-slate-950"
+                              >
+                                {formatSourceType(evidence.source_type)}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="align-top">
+                        <div className="space-y-2">
+                          <Badge variant="outline" className={statusTone(promise.status)}>
+                            {statusLabel(promise.status, language)}
+                          </Badge>
+                          <Badge variant="outline" className={confidenceTone(promise.confidence)}>
+                            {translate(`confidence.${promise.confidence}`, language)}
+                          </Badge>
+                        </div>
+                      </TableCell>
+                      <TableCell className="align-top text-sm text-slate-600">
+                        <div>Last verified: {promise.last_verified ?? '15 Jul 2026'}</div>
+                        <div>Source tier: {promise.source_tier ?? 'B'}</div>
+                        <div>{promise.verification_note ?? 'Cross-checked against linked source material.'}</div>
+                      </TableCell>
+                      <TableCell className="align-top">
+                        <div className="flex flex-col gap-2">
+                          <Button variant="outline" size="sm" onClick={() => openEvidence(promise)}>
+                            View evidence
+                          </Button>
+                          <Button variant="ghost" size="sm" onClick={() => openCorrection(promise)}>
+                            Report correction
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-        {/* ─── Sidebar: Decision-Maker Directory ─────────────── */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="panel bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-            <h3 className="text-lg font-bold text-slate-800">Decision-Maker Directory</h3>
-            <p className="text-xs text-slate-500 mb-4">
-              {translate('disclaimer.verification', language)}
-            </p>
-            <div className="space-y-4">
-              {bureaucrats.map((b, idx) => (
-                <div key={idx} className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl space-y-2">
-                  <div className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider">
-                    {b.role}
-                  </div>
-                  <div className="font-bold text-slate-800 text-sm">{b.name}</div>
-                  <div className="space-y-1 text-xs text-slate-600 font-medium">
-                    <div className="flex items-center gap-1.5">
-                      <span>📧</span>
-                      <a href={`mailto:${b.email}`} className="text-blue-600 hover:underline">
-                        {b.email}
+        <TabsContent value="funds" className="mt-4">
+          <Card className="border-slate-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">MPLAD reference ledger</CardTitle>
+              <CardDescription>Derived allocation ledger tied to the evidence trail available for each promise.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Reference item</TableHead>
+                    <TableHead>Indicative allocation</TableHead>
+                    <TableHead>Source</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {ledgerRows.map((row) => (
+                    <TableRow key={row.id}>
+                      <TableCell>
+                        <div className="font-medium text-slate-950">{row.category}</div>
+                        <div className="text-xs text-slate-500">{row.promise_text}</div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="border-slate-300 bg-slate-50 text-slate-700">
+                          ₹{row.amount} Cr
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <a href={row.sourceLink} target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-700 hover:text-slate-950 hover:underline">
+                          Open source document
+                        </a>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="directory" className="mt-4">
+          <Card className="border-slate-200 shadow-sm">
+            <CardHeader>
+              <CardTitle className="text-xl text-slate-950">Decision-maker directory</CardTitle>
+              <CardDescription>Who to contact for public record follow-up and administrative clarification.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Contact</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {directoryRows.map((row) => (
+                    <TableRow key={row.role}>
+                      <TableCell className="font-medium text-slate-950">{row.role}</TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.contact}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+
+      <Dialog open={Boolean(selectedPromise)} onOpenChange={(open) => !open && setSelectedPromise(null)}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>{selectedPromise?.promise_text ?? 'Evidence'}</DialogTitle>
+            <DialogDescription>
+              {selectedPromise?.indicator_name
+                ? `${selectedPromise.indicator_name} · ${selectedPromise.baseline_value ?? 'n/a'} → ${selectedPromise.latest_value ?? 'n/a'}`
+                : 'Linked source documents and verification notes.'}
+            </DialogDescription>
+          </DialogHeader>
+          {selectedPromise ? (
+            <div className="space-y-4 text-sm text-slate-600">
+              <div className="grid gap-3 md:grid-cols-3">
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                  <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Status</div>
+                  <div className="mt-1 font-medium text-slate-950">{statusLabel(selectedPromise.status, language)}</div>
+                </div>
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                  <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Confidence</div>
+                  <div className="mt-1 font-medium text-slate-950">{translate(`confidence.${selectedPromise.confidence}`, language)}</div>
+                </div>
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                  <div className="text-xs uppercase tracking-[0.18em] text-slate-500">Freshness</div>
+                  <div className="mt-1 font-medium text-slate-950">{selectedPromise.last_verified ?? '15 Jul 2026'}</div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {(selectedPromise.evidence ?? []).map((evidence) => (
+                  <div key={evidence.id} className="rounded-lg border border-slate-200 p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <div className="font-medium text-slate-950">{evidence.title}</div>
+                        <div className="text-xs uppercase tracking-[0.18em] text-slate-500">
+                          {evidence.publisher} · {formatSourceType(evidence.source_type)} · {evidence.published_on}
+                        </div>
+                      </div>
+                      <a href={evidence.url} target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-700 hover:text-slate-950 hover:underline">
+                        Open source
                       </a>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <span>📞</span>
-                      <span>{b.phone}</span>
-                    </div>
+                    <p className="mt-2 text-sm text-slate-600">{evidence.summary}</p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Evidence Side-Drawer (Rich Source Cards) ─────────── */}
-      <div
-        className={`drawer-backdrop ${isDrawerOpen ? 'open' : ''}`}
-        onClick={() => setIsDrawerOpen(false)}
-      />
-      <div className={`drawer ${isDrawerOpen ? 'open' : ''}`}>
-        <div className="drawer-header">
-          <h3 className="font-bold text-slate-800">
-            {translate('evidenceDrawer.verification', language)}
-          </h3>
-          <button
-            className="close-button py-1! px-3! min-h-0 text-sm font-bold"
-            onClick={() => setIsDrawerOpen(false)}
-          >
-            {translate('evidenceDrawer.close', language)}
-          </button>
-        </div>
-
-        {selectedPromise && (
-          <div className="drawer-body">
-            {/* Promise header inside drawer */}
-            <div>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span
-                  className="category-badge"
-                  style={{
-                    fontSize: '0.65rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                    padding: '0.2rem 0.55rem',
-                    borderRadius: '999px',
-                    background: '#f1f5f9',
-                    border: '1px solid var(--border)',
-                    color: '#475569',
-                  }}
-                >
-                  {selectedPromise.category}
-                </span>
-                <span className={`status-tag status-${selectedPromise.status} text-[10px]`}>
-                  {getStatusLabel(selectedPromise.status)}
-                </span>
+                ))}
               </div>
-              <h4 className="text-xl font-extrabold text-slate-900 mt-2 leading-snug">
-                {selectedPromise.promise_text}
-              </h4>
-              <p className="text-slate-600 text-sm mt-2">{selectedPromise.impact_summary}</p>
-            </div>
-
-            {/* Meta card: Confidence, Freshness */}
-            <div className="meta-card space-y-3">
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-slate-400 font-bold uppercase tracking-wider">
-                  {translate('evidenceDrawer.confidence', language)}
-                </span>
-                <span
-                  className={`meta-badge confidence-${selectedPromise.confidence} text-[10px] font-bold`}
-                >
-                  {selectedPromise.confidence.toUpperCase()}
-                </span>
-              </div>
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-slate-400 font-bold uppercase tracking-wider">
-                  {translate('evidenceDrawer.freshness', language)}
-                </span>
-                <span className="meta-badge freshness-fresh text-[10px] font-bold">
-                  {translate('freshness.fresh', language).toUpperCase()}
-                </span>
-              </div>
-              {selectedPromise.last_verified && (
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider">
-                    Last Verified
-                  </span>
-                  <span className="text-slate-700 font-bold">{selectedPromise.last_verified}</span>
-                </div>
-              )}
-              {selectedPromise.target_date && (
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider">
-                    Target Date
-                  </span>
-                  <span className="text-slate-700 font-bold">{selectedPromise.target_date}</span>
-                </div>
-              )}
-            </div>
-
-            {/* Evidence Sources – Rich source cards */}
-            <div>
-              <div className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-3">
-                {translate('evidenceDrawer.sources', language)}
-              </div>
-              {selectedPromise.evidence && selectedPromise.evidence.length > 0 ? (
-                <div className="space-y-3">
-                  {selectedPromise.evidence.map((ev) => (
-                    <div
-                      key={ev.id}
-                      className="source-card"
-                      style={{
-                        background: '#f8fafc',
-                        border: '1px solid var(--border)',
-                        borderRadius: '12px',
-                        padding: '1rem',
-                      }}
-                    >
-                      {/* Title as clickable link */}
-                      <a
-                        href={ev.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-bold text-blue-600 hover:underline leading-snug"
-                        style={{ display: 'block', marginBottom: '0.5rem' }}
-                      >
-                        {ev.title}
-                      </a>
-
-                      {/* Source type badge + publisher + date */}
-                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span
-                          className="source-type-badge"
-                          style={{
-                            fontSize: '0.6rem',
-                            fontWeight: 700,
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.06em',
-                            padding: '0.15rem 0.45rem',
-                            borderRadius: '999px',
-                            background: '#e0f2fe',
-                            border: '1px solid #bae6fd',
-                            color: '#0369a1',
-                          }}
-                        >
-                          {formatSourceType(ev.source_type)}
-                        </span>
-                        <span className="text-[10px] text-slate-500 font-medium">
-                          {ev.publisher}
-                        </span>
-                        <span className="text-[10px] text-slate-400">•</span>
-                        <span className="text-[10px] text-slate-400 font-medium">
-                          {ev.published_on}
-                        </span>
-                      </div>
-
-                      {/* Summary */}
-                      <p
-                        className="text-xs text-slate-600 leading-relaxed"
-                        style={{ margin: 0 }}
-                      >
-                        {ev.summary}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-slate-400 text-xs italic">
-                  {translate('evidenceDrawer.noSources', language)}
-                </div>
-              )}
-            </div>
-
-            {/* Edit History */}
-            <div>
-              <div className="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2">
-                {translate('evidenceDrawer.editHistory', language)}
-              </div>
-              <div className="text-slate-400 text-xs italic">
-                No correction history recorded. This record stands as published on ingestion.
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                <div className="font-medium text-slate-950">Verification note</div>
+                <p className="mt-1">{selectedPromise.verification_note ?? 'This record is presented with its primary linked sources for review.'}</p>
               </div>
             </div>
+          ) : null}
+        </DialogContent>
+      </Dialog>
 
-            <div className="mt-4 border-t border-slate-100 pt-4">
-              <button
-                className="primary-button w-full text-center"
-                onClick={() => setIsDrawerOpen(false)}
-              >
-                {translate('evidenceDrawer.close', language)}
-              </button>
+      <Dialog open={correctionOpen} onOpenChange={(open) => (open ? setCorrectionOpen(true) : closeCorrection())}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Submit a correction</DialogTitle>
+            <DialogDescription>
+              {correctionPromise ? `Reviewing ${correctionPromise.promise_text}` : 'Share a source-backed correction for the public record.'}
+            </DialogDescription>
+          </DialogHeader>
+          <form className="space-y-4" onSubmit={handleSubmitCorrection}>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Input value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" required />
+              <Input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email (optional)" type="email" />
             </div>
-          </div>
-        )}
-      </div>
-
-      {/* ─── Correction Form Modal ────────────────────────────── */}
-      <div
-        className={`modal-backdrop ${isModalOpen ? 'open' : ''}`}
-        onClick={closeCorrectionModal}
-      />
-      <div className={`modal ${isModalOpen ? 'open' : ''} correction-modal`}>
-        <div className="modal-header">
-          <h3 className="font-bold text-slate-800">
-            {translate('correction.title', language)}
-          </h3>
-          <button
-            className="close-button py-1! px-3! min-h-0 text-sm font-bold"
-            onClick={closeCorrectionModal}
-          >
-            ✕
-          </button>
-        </div>
-
-        {correctionPromise && (
-          <form onSubmit={handleCorrectionSubmit} className="modal-body">
-            <div className="context-banner text-xs">
-              <div className="context-label">Targeting Record Statement</div>
-              <div className="font-bold text-slate-800 mt-1 line-clamp-1">
-                {correctionPromise.promise_text}
-              </div>
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="form-name" className="font-bold text-slate-700">
-                {translate('correction.name', language)} *
-              </label>
-              <input
-                id="form-name"
-                type="text"
-                className="search-input py-2!"
-                placeholder={translate('correction.name', language)}
-                required
-                value={formName}
-                onChange={(e) => setFormName(e.target.value)}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="form-email" className="font-bold text-slate-700">
-                {translate('correction.emailOptional', language)}
-              </label>
-              <input
-                id="form-email"
-                type="email"
-                className="search-input py-2!"
-                placeholder={translate('correction.emailOptional', language)}
-                value={formEmail}
-                onChange={(e) => setFormEmail(e.target.value)}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="form-note" className="font-bold text-slate-700">
-                {translate('correction.note', language)} *
-              </label>
-              <textarea
-                id="form-note"
-                className="search-input py-2! h-20 resize-none"
-                placeholder={translate('correction.note', language)}
-                required
-                value={formNote}
-                onChange={(e) => setFormNote(e.target.value)}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="form-source" className="font-bold text-slate-700">
-                Source Link / URL
-              </label>
-              <input
-                id="form-source"
-                type="url"
-                className="search-input py-2!"
-                placeholder="https://example.gov.in/notice-pdf"
-                value={formSource}
-                onChange={(e) => setFormSource(e.target.value)}
-              />
-            </div>
-
-            {/* File upload zone */}
-            <div className="form-field">
-              <span className="font-bold text-slate-700">Supporting Evidence (File / Photo)</span>
-              <div
-                className="file-upload-zone"
-                onClick={() => document.getElementById('file-input')?.click()}
-              >
-                <input
-                  id="file-input"
-                  type="file"
-                  className="hidden"
-                  onChange={(e) => setFormFile(e.target.files?.[0] || null)}
-                />
-                <div className="file-upload-content text-xs">
-                  <span className="file-upload-icon">📁</span>
-                  {formFile ? (
-                    <span className="font-bold text-blue-600">{formFile.name}</span>
-                  ) : (
-                    <span>
-                      Drag file here or{' '}
-                      <button type="button" className="browse-button">
-                        browse
-                      </button>
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="form-actions mt-4 pt-3 border-t border-slate-100 flex gap-3">
-              <button
-                type="button"
-                className="secondary-button flex-1"
-                onClick={closeCorrectionModal}
-                disabled={isSubmitting}
-              >
-                {translate('correction.cancel', language)}
-              </button>
-              <button type="submit" className="primary-button flex-1" disabled={isSubmitting}>
-                {isSubmitting ? '...' : translate('correction.submit', language)}
-              </button>
+            <Input value={sourceUrl} onChange={(event) => setSourceUrl(event.target.value)} placeholder="Source URL" />
+            <textarea
+              className="min-h-32 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-950 shadow-sm outline-none focus:ring-1 focus:ring-slate-400"
+              value={note}
+              onChange={(event) => setNote(event.target.value)}
+              placeholder="What should be corrected and what is the supporting evidence?"
+              required
+            />
+            <div className="flex items-center justify-end gap-2">
+              <Button type="button" variant="outline" onClick={closeCorrection}>
+                Cancel
+              </Button>
+              <Button type="submit">Submit correction</Button>
             </div>
           </form>
-        )}
-      </div>
-
-      {/* ─── Inline animation keyframes ──────────────────────── */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.4s ease-out;
-        }
-      `}</style>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

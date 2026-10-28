@@ -47,22 +47,21 @@ export default function RootLayout({
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow pb-16">{children}</main>
-            <footer className="mt-auto border-t border-slate-200 bg-white py-8">
-              <div className="container flex flex-col items-center gap-3 text-center text-sm text-slate-500 md:flex-row md:justify-between md:text-left">
-                <p>© {new Date().getFullYear()} Know Your Leaders. Built for evidence-first public accountability.</p>
-                <div className="flex flex-wrap items-center justify-center gap-3 text-xs md:justify-end">
-                  <span>Last updated: 15 Jul 2026</span>
-                  <span className="text-slate-300">•</span>
-                  <a href="https://smart-india-movement.vercel.app/" target="_blank" rel="noreferrer" className="font-medium text-slate-700 hover:text-slate-950">
-                    Smart India Movement
-                  </a>
-                  <span className="text-slate-300">•</span>
-                  <Link href="/methodology" className="font-medium text-slate-700 hover:text-slate-950">
-                    Methodology
-                  </Link>
-                  <span className="text-slate-300">•</span>
-                  <span>Official sources only: mplads.gov.in, ECI, Hansards, and audit records.</span>
+            <footer style={{ borderTop: '1px solid var(--hairline)', background: 'var(--surface)', padding: '2rem 0' }}>
+              <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline', gap: '0.5rem 2rem' }}>
+                  <span style={{ fontSize: 'var(--type-sm)', color: 'var(--ink-3)' }}>
+                    © {new Date().getFullYear()} Know Your Leaders
+                  </span>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem 1.25rem', fontSize: 'var(--type-sm)', color: 'var(--ink-3)' }}>
+                    <a href="https://smart-india-movement.vercel.app/" target="_blank" rel="noreferrer">Smart India Movement</a>
+                    <Link href="/methodology">Methodology</Link>
+                    <a href="https://mplads.gov.in" target="_blank" rel="noreferrer">mplads.gov.in</a>
+                  </div>
                 </div>
+                <p style={{ margin: 0, fontSize: 'var(--type-xs)', color: 'var(--ink-3)', letterSpacing: '0.04em' }}>
+                  All data sourced from official government portals: MPLADS, ECI, Parliamentary Hansards, and audit records. Last updated: 15 Jul 2026.
+                </p>
               </div>
             </footer>
           </div>
